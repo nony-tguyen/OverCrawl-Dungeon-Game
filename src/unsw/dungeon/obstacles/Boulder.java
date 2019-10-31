@@ -48,10 +48,10 @@ public class Boulder extends MovableEntity {
 		
 	}
 
-	public boolean canMove(Entity curr, int desiredX, int desiredY) {
+	public boolean isBlocking(Entity curr, int desiredX, int desiredY) {
 		//System.out.println("hi");
 		if (!(curr instanceof Player)) {
-			return false;
+			return true;
 		} else {
 			//check if there's an obstacle in the spot the boulder would move into
 			// find the diff 
@@ -67,9 +67,9 @@ public class Boulder extends MovableEntity {
 			if (dungeon.isGridAvail(this, (desiredX + xDiff), (desiredY + yDiff))) {
 				// its available so just move it 
 				moveBoulder(xDiff, yDiff);
-				return true;
+				return false;
 			} else {
-				return false;			
+				return true;			
 			}
 		}
 	}

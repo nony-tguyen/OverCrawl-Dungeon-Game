@@ -8,8 +8,10 @@ public class Wall extends Entity {
         super(x, y);
     }
     
-    public boolean canOverlap() {
-    	return false;
-    }
+	@Override
+	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 }
