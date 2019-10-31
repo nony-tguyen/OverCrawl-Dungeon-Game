@@ -1,7 +1,7 @@
 package unsw.dungeon;
 
 public abstract class MovableEntity extends Entity{
-	private Dungeon dungeon;
+	protected Dungeon dungeon;
 	
 	public MovableEntity(Dungeon dungeon, int x, int y) {
 		super(x, y);

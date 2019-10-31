@@ -9,9 +9,9 @@ import unsw.dungeon.obstacles.Boulder;
  */
 public class Player extends MovableEntity {
 
-    private Dungeon dungeon;
-    private int x;
-    private int y;
+    //private Dungeon dungeon;
+    //private int x;
+    //private int y;
 
     /**
      * Create a player positioned in square (x,y)

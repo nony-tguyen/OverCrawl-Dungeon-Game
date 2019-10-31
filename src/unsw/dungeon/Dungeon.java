@@ -66,11 +66,13 @@ public class Dungeon {
     				//System.out.println(curr + "" + "" + x + "" + y);
             		// Check if the boulder in front of the palyer can be moved
             		return ((Boulder) e).canMove(curr, x, y);
-            	} else if (e instanceof FloorSwitch) {
+            	} 
+            	/* else if (e instanceof FloorSwitch) {
             		return ((FloorSwitch) e).canOverlap(curr, x, y); 
+            		*/
             	}
         	}  		
-    	}
+    	
     	return true;
     }
     

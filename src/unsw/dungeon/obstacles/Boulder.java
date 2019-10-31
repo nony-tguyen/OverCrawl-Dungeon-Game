@@ -6,13 +6,13 @@ import unsw.dungeon.MovableEntity;
 import unsw.dungeon.Player;
 
 public class Boulder extends MovableEntity {
-	private Dungeon dungeon; 
-    private int x;
-    private int y;
+	//private Dungeon dungeon; 
+   // private int x;
+    //private int y;
 	
     public Boulder(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
-        this.dungeon = dungeon;
+        //this.dungeon = dungeon;
     }
     
     @Override
