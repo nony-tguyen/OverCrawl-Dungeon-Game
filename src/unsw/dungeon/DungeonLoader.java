@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.Wall;
 
 /**
@@ -19,7 +20,7 @@ import unsw.dungeon.obstacles.Wall;
  *
  */
 public abstract class DungeonLoader {
-
+	
     private JSONObject json;
 
     public DungeonLoader(String filename) throws FileNotFoundException {
@@ -62,6 +63,11 @@ public abstract class DungeonLoader {
             onLoad(wall);
             entity = wall;
             break;
+        case "boulder":
+        	Boulder boulder = new Boulder(dungeon, x, y);
+        	onLoad(boulder);
+        	entity = boulder;
+        	break;
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
@@ -70,6 +76,8 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Entity player);
 
     public abstract void onLoad(Wall wall);
+    public abstract void onLoad(Boulder boulder);
+
 
     // TODO Create additional abstract methods for the other entities
 

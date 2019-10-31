@@ -1,5 +1,7 @@
 package unsw.dungeon;
 
+import unsw.dungeon.obstacles.Boulder;
+
 /**
  * The player entity
  * @author Robert Clifton-Everest
@@ -7,7 +9,9 @@ package unsw.dungeon;
  */
 public class Player extends MovableEntity {
 
-    private Dungeon dungeon;
+    //private Dungeon dungeon;
+    //private int x;
+    //private int y;
 
     /**
      * Create a player positioned in square (x,y)
@@ -20,9 +24,20 @@ public class Player extends MovableEntity {
 
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
-		
+		/*
+		Entity eOverlapped = dungeon.checkGrid(x, y);
+		if (eOverlapped instanceof Boulder) {
+			eOverlapped.moveBoulder()
+			
+		}
+		*/
+		// based on the entity do something
+		// d
 	}
-	
-	
+
+	@Override
+	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

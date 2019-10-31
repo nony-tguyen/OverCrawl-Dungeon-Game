@@ -1,7 +1,7 @@
 package unsw.dungeon;
 
 public abstract class MovableEntity extends Entity{
-	private Dungeon dungeon; 
+	protected Dungeon dungeon;
 	
 	public MovableEntity(Dungeon dungeon, int x, int y) {
 		super(x, y);
@@ -17,6 +17,7 @@ public abstract class MovableEntity extends Entity{
         }
         action();
     }
+
     public void moveDown() {
         if (getY() < dungeon.getHeight() - 1 && canMove(this, getX(), getY() + 1))
             y().set(getY() + 1);
@@ -44,6 +45,7 @@ public abstract class MovableEntity extends Entity{
     
     public abstract void action();
 }
+
 
 
 
