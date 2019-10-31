@@ -59,23 +59,13 @@ public class Dungeon {
     	ArrayList<Entity> entitiesOnGrid = checkGrid(x, y);
     	for (Entity e : entitiesOnGrid) {
         	if (e != null) {
-        		if (e.isBlocking(subject, x, y)) {
-        			return false;
-        		} 
-        		/*
-            	if (e instanceof Wall) {
-    				//System.out.println("hi");
-            		return ((Wall) e).canOverlap();
-            	} else if (e instanceof Boulder) {
+        		if (e instanceof Boulder) {
     				//System.out.println(curr + "" + "" + x + "" + y);
             		// Check if the boulder in front of the palyer can be moved
-            		return ((Boulder) e).canOverlap(curr, x, y);
-            	} 
-            	 else if (e instanceof FloorSwitch) {
-            		return ((FloorSwitch) e).canOverlap(curr, x, y); 
-            		
-            	}
-        	*/
+            		return (((Boulder) e).isBlocking(subject, x, y) ? false : true);
+            	} else if (e.isBlocking()) {
+        			return false;
+        		} 
         	}  
     	}
     	

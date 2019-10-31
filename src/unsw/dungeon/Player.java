@@ -35,9 +35,4 @@ public class Player extends MovableEntity {
 		// d
 	}
 
-	@Override
-	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

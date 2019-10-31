@@ -9,8 +9,7 @@ public class Wall extends Entity {
     }
     
 	@Override
-	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
-		// TODO Auto-generated method stub
+	public boolean isBlocking() {
 		return true;
 	}
 

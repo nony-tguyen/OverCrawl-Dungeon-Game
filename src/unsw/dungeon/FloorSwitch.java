@@ -7,10 +7,4 @@ public class FloorSwitch extends Entity {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
