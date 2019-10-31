@@ -8,7 +8,7 @@ public class Enemy extends Entity {
 	
 	public Enemy(int x, int y) {
 		super(x, y);
-		//this.moveStrategy = new MoveTowards();
+		this.moveStrategy = new MoveTowardsPlayer();
 	}
 	
 	public void setMoveStrategy(EnemyMovement moveStrategy) {
