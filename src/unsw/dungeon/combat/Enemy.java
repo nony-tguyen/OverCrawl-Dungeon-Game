@@ -1,6 +1,7 @@
 package unsw.dungeon.combat;
 
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
 import unsw.dungeon.MovableEntity;
 
 public class Enemy extends MovableEntity {
@@ -24,6 +25,12 @@ public class Enemy extends MovableEntity {
 	public void action() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

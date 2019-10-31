@@ -6,6 +6,7 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.Wall;
 
 /**
@@ -54,24 +55,43 @@ public class Dungeon {
     		System.out.println(e);
     	}
     }
-    public boolean isGridAvail(Entity curr, int x, int y) {
-    	Entity e = checkGrid(x, y);
-    	if (e != null && checkGrid(x, y) instanceof Wall) {
-    		return false;
-    	} else {
-        	return true;   		
+    public boolean isGridAvail(Entity subject, int x, int y) {
+    	ArrayList<Entity> entitiesOnGrid = checkGrid(x, y);
+    	for (Entity e : entitiesOnGrid) {
+        	if (e != null) {
+        		if (e.isBlocking(subject, x, y)) {
+        			return false;
+        		} 
+        		/*
+            	if (e instanceof Wall) {
+    				//System.out.println("hi");
+            		return ((Wall) e).canOverlap();
+            	} else if (e instanceof Boulder) {
+    				//System.out.println(curr + "" + "" + x + "" + y);
+            		// Check if the boulder in front of the palyer can be moved
+            		return ((Boulder) e).canOverlap(curr, x, y);
+            	} 
+            	 else if (e instanceof FloorSwitch) {
+            		return ((FloorSwitch) e).canOverlap(curr, x, y); 
+            		
+            	}
+        	*/
+        	}  
     	}
+    	
+    	return true;
     }
     
-    public Entity checkGrid(int x, int y) {
+    public ArrayList<Entity> checkGrid(int x, int y) {
+    	ArrayList<Entity> entitiesOnGrid = new ArrayList<Entity>();
     	for (Entity e: entities) {
-    		//System.out.println(e.);
     		if (e != null) {
         		if (e.getX() == x && e.getY() == y) {
-        			return e;
+        			entitiesOnGrid.add(e);
         		}  			
     		}
     	}
-    	return null;
+    	return entitiesOnGrid;
     }
+    
 }

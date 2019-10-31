@@ -8,6 +8,12 @@ public class InvinsibilityPotion extends Entity {
 		super(x, y);
 	}
 
+	@Override
+	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	// Update enemy movement when potion acquired
 	
 	// Update enemy movement when potion expires

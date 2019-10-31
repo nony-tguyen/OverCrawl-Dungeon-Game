@@ -45,7 +45,3 @@ public abstract class MovableEntity extends Entity{
     
     public abstract void action();
 }
-
-
-
-
