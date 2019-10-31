@@ -6,6 +6,7 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.Wall;
 
 /**
@@ -55,23 +56,30 @@ public class Dungeon {
     	}
     }
     public boolean isGridAvail(Entity curr, int x, int y) {
-    	Entity e = checkGrid(x, y);
-    	if (e != null && checkGrid(x, y) instanceof Wall) {
-    		return false;
-    	} else {
-        	return true;   		
+    	ArrayList<Entity> entitiesOnGrid = checkGrid(x, y);
+    	for (Entity e : entitiesOnGrid) {
+        	if (e != null) {
+            	if (e instanceof Wall) {
+            		return ((Wall) e).canOverlap();
+            	} else if (e instanceof Boulder) {
+            		// moveBoulder here?
+            		return ((Boulder) e).canOverlap(curr, x, y);
+            	}
+        	}  		
     	}
+    	return true;
     }
     
-    public Entity checkGrid(int x, int y) {
+    public ArrayList<Entity> checkGrid(int x, int y) {
+    	ArrayList<Entity> entitiesOnGrid = new ArrayList<Entity>();
     	for (Entity e: entities) {
-    		//System.out.println(e.);
     		if (e != null) {
         		if (e.getX() == x && e.getY() == y) {
-        			return e;
+        			entitiesOnGrid.add(e);
         		}  			
     		}
     	}
-    	return null;
+    	return entitiesOnGrid;
     }
+    
 }

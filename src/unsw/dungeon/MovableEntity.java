@@ -17,6 +17,7 @@ public abstract class MovableEntity extends Entity{
         }
         action();
     }
+
     public void moveDown() {
         if (getY() < dungeon.getHeight() - 1 && canMove(this, getX(), getY() + 1))
             y().set(getY() + 1);
