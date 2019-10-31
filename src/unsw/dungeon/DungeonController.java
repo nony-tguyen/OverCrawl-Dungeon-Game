@@ -51,6 +51,8 @@ public class DungeonController {
     public void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
         case UP:
+        	//squares.
+        	//dungeon.printEntities();
             player.moveUp();
             break;
         case DOWN:
