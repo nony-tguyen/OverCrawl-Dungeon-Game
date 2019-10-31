@@ -47,9 +47,7 @@ public class Boulder extends MovableEntity {
 		// check if it went on a floor switch 
 		
 	}
-
 	public boolean isBlocking(Entity curr, int desiredX, int desiredY) {
-		//System.out.println("hi");
 		if (!(curr instanceof Player)) {
 			return true;
 		} else {
@@ -94,4 +92,5 @@ public class Boulder extends MovableEntity {
 				break;
 		}
 	}
+
 }
