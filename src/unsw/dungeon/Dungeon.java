@@ -60,10 +60,14 @@ public class Dungeon {
     	for (Entity e : entitiesOnGrid) {
         	if (e != null) {
             	if (e instanceof Wall) {
+    				//System.out.println("hi");
             		return ((Wall) e).canOverlap();
             	} else if (e instanceof Boulder) {
-            		// moveBoulder here?
-            		return ((Boulder) e).canOverlap(curr, x, y);
+    				//System.out.println(curr + "" + "" + x + "" + y);
+            		// Check if the boulder in front of the palyer can be moved
+            		return ((Boulder) e).canMove(curr, x, y);
+            	} else if (e instanceof FloorSwitch) {
+            		return ((FloorSwitch) e).canOverlap(curr, x, y); 
             	}
         	}  		
     	}

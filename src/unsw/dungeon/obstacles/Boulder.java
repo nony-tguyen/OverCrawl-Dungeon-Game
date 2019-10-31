@@ -12,6 +12,7 @@ public class Boulder extends MovableEntity {
 	
     public Boulder(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
+        this.dungeon = dungeon;
     }
     
     @Override
@@ -47,7 +48,8 @@ public class Boulder extends MovableEntity {
 		
 	}
 
-	public boolean canOverlap(Entity curr, int desiredX, int desiredY) {
+	public boolean canMove(Entity curr, int desiredX, int desiredY) {
+		//System.out.println("hi");
 		if (!(curr instanceof Player)) {
 			return false;
 		} else {
@@ -56,11 +58,13 @@ public class Boulder extends MovableEntity {
 			// curr (1,1)
 			// (2, 1) 
 			// want to move right one 
+			
 			int xDiff = desiredX - curr.getX();
 			int yDiff = desiredY - curr.getY();
 			// Check if the boulder can be moved into the grid it will
 			// be pushed into 
-			if (dungeon.isGridAvail(this, desiredX + xDiff, desiredY + yDiff)) {
+			//System.out.println("Desired X:" + (desiredX + xDiff) + "Desired Y:" + (desiredY + yDiff));
+			if (dungeon.isGridAvail(this, (desiredX + xDiff), (desiredY + yDiff))) {
 				// its available so just move it 
 				moveBoulder(xDiff, yDiff);
 				return true;
