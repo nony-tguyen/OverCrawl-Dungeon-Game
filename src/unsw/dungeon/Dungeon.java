@@ -6,6 +6,8 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import unsw.dungeon.obstacles.Wall;
+
 /**
  * A dungeon in the interactive dungeon player.
  *
@@ -46,5 +48,30 @@ public class Dungeon {
 
     public void addEntity(Entity entity) {
         entities.add(entity);
+    }
+    public void printEntities() {
+    	for (Entity e: entities) {
+    		System.out.println(e);
+    	}
+    }
+    public boolean isGridAvail(Entity curr, int x, int y) {
+    	Entity e = checkGrid(x, y);
+    	if (e != null && checkGrid(x, y) instanceof Wall) {
+    		return false;
+    	} else {
+        	return true;   		
+    	}
+    }
+    
+    public Entity checkGrid(int x, int y) {
+    	for (Entity e: entities) {
+    		//System.out.println(e.);
+    		if (e != null) {
+        		if (e.getX() == x && e.getY() == y) {
+        			return e;
+        		}  			
+    		}
+    	}
+    	return null;
     }
 }

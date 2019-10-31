@@ -1,8 +1,7 @@
 package unsw.dungeon.combat;
 
-public abstract class EnemyMovement {
-	public void moveX();
-	public void moveY();
+
+public interface EnemyMovement {
 	
-	public void moveEnemy();
+	public abstract void moveEnemy(Enemy enemy, int playerX, int playerY);
 }

@@ -1,4 +1,6 @@
-package unsw.dungeon;
+package unsw.dungeon.obstacles;
+
+import unsw.dungeon.Entity;
 
 public class Wall extends Entity {
 
