@@ -22,13 +22,23 @@ public class Test1 {
 		Player p = new Player(d, 1, 3);
 		d.setPlayer(p);
 		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
-		e3.moveEnemy(1, 3);
+		/*e3.moveEnemy(1, 3);
 		d.printEntities();
 		e3.moveEnemy(1, 3);
 		d.printEntities();
 		//p.moveUp();
 		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
-		if (d.gameOver()) System.out.println("game over");
+		if (d.gameOver()) System.out.println("game over");*/
+		
+		Sword s = new Sword(d, 1, 2);
+		d.addEntity(s);
+		d.printEntities();
+		p.moveUp();
+		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
+		d.printEntities();
+		System.out.println(p.getInventory());
+		
+		
 	}
 	
 }
