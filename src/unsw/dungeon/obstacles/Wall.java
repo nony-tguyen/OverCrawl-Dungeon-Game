@@ -9,7 +9,7 @@ public class Wall extends Entity {
     }
     
 	@Override
-	public boolean isBlocking() {
+	public boolean isBlocking(Entity subject) {
 		return true;
 	}
 

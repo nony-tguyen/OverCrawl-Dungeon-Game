@@ -61,15 +61,14 @@ public class Dungeon {
     	for (Entity e : entitiesOnGrid) {
         	if (e != null) {
         		if (e instanceof Boulder) {
-    				//System.out.println(curr + "" + "" + x + "" + y);
-            		// Check if the boulder in front of the palyer can be moved
             		return (((Boulder) e).isBlocking(subject, x, y) ? false : true);
-            	} else if (e.isBlocking()) {
+            	} else if (e.isBlocking(subject)) { // only returns if the entity is blocking, otherwise check again
+            		// incase the next entity on same grid is blocking
         			return false;
         		} 
         	}  
     	}
-    	
+    	// looked at all the entities on the grid and none are blocking 
     	return true;
     }
     

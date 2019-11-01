@@ -33,15 +33,6 @@ public class Player extends MovableEntity {
 
 	@Override
 	public void action() {
-		/*
-		Entity eOverlapped = dungeon.checkGrid(x, y);
-		if (eOverlapped instanceof Boulder) {
-			eOverlapped.moveBoulder()
-			
-		}
-		*/
-		// based on the entity do something
-		// d
 	}
 	
 	public void addItem(CollectableEntity entity) {
