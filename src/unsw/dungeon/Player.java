@@ -83,7 +83,7 @@ public class Player extends MovableEntity {
 		else if (this.direction == Direction.RIGHT) 
 			return dungeon.checkGrid(getX() + 1, getY());
 		else if (this.direction == Direction.LEFT) 
-			return dungeon.checkGrid(getX() - 1, getY() - 1);
+			return dungeon.checkGrid(getX() - 1, getY());
 		else 
 			return null;
 	}
