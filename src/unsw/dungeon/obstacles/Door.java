@@ -15,12 +15,19 @@ public class Door extends Entity {
     /**
 	 * @param state the state to set
 	 */
-	public void setState(DoorState state) {
+	public void changeState(DoorState state) {
 		this.state = state;
 	}
 
 	public boolean isBlocking(Entity subject) {
-		return state.isBlocking();
+		return state.isBlocking(subject);
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
 }
