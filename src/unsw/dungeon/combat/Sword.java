@@ -40,9 +40,8 @@ public class Sword extends CollectableEntity {
 	}
 
 	@Override
-	public boolean removeItem(Player player) {
+	public void removeItem(Player player) {
 		player.removeItem(this);
-		return true;
 	}
 
 	public void attack(Player player) {
