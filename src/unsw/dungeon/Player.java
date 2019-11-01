@@ -45,6 +45,7 @@ public class Player extends MovableEntity {
 	}
 	
 	public void addItem(CollectableEntity entity) {
+		System.out.println("Adding" + entity);
 		inventory.add(entity);
 	}
 	
