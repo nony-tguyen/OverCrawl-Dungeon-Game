@@ -27,6 +27,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image playerImage;
     private Image wallImage;
     private Image boulderImage;
+    private Image floorSwitchImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -35,6 +36,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         playerImage = new Image("/human_new.png");
         wallImage = new Image("/brick_brown_0.png");
         boulderImage = new Image("/boulder.png");
+        floorSwitchImage = new Image("/pressure_plate.png");
     }
 
     @Override
@@ -52,6 +54,11 @@ public class DungeonControllerLoader extends DungeonLoader {
     public void onLoad(Boulder boulder) {
 		ImageView view = new ImageView(boulderImage);
         addEntity(boulder, view);
+    }
+    @Override
+    public void onLoad(FloorSwitch fs) {
+		ImageView view = new ImageView(floorSwitchImage);
+        addEntity(fs, view);
     }
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);

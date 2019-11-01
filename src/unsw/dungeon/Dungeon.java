@@ -61,7 +61,7 @@ public class Dungeon {
         	if (e != null) {
         		if (e instanceof Boulder) {
     				//System.out.println(curr + "" + "" + x + "" + y);
-            		// Check if the boulder in front of the palyer can be moved
+            		// Check if the boulder in front of the player can be moved
             		return (((Boulder) e).isBlocking(subject, x, y) ? false : true);
             	} else if (e.isBlocking()) {
         			return false;
