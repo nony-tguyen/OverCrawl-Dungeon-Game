@@ -6,9 +6,10 @@ public class Door extends Entity {
 	
 	private DoorState state;
 	private int id;
-	public Door(int x, int y, DoorState state, int id) {
+	
+	public Door(int x, int y, int id) {
 		super(x, y);
-		this.state = state;
+		this.state = new ClosedState(this);
 		this.id = id; 
 	}
 	

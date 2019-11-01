@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import unsw.dungeon.obstacles.Boulder;
+import unsw.dungeon.obstacles.ClosedState;
+import unsw.dungeon.obstacles.Door;
 import unsw.dungeon.obstacles.Wall;
 
 /**
@@ -73,6 +75,16 @@ public abstract class DungeonLoader {
         	onLoad(fs);
         	entity = fs;
         	break;
+        case "door": 
+        	Door door = new Door(x, y, 5);
+        	onLoad(door);
+        	entity = door;
+        	break;
+        case "key": 
+        	Key key = new Key(dungeon, x, y, 5);
+        	onLoad(key);
+        	entity = key;
+        	break;
         }
         dungeon.addEntity(entity);
     }
@@ -81,6 +93,8 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Wall wall);
     public abstract void onLoad(Boulder boulder);
     public abstract void onLoad(FloorSwitch fs);
+    public abstract void onLoad(Door door);
+    public abstract void onLoad(Key key);
 
     // TODO Create additional abstract methods for the other entities
 
