@@ -20,11 +20,9 @@ public class InvinsibilityPotion extends CollectableEntity {
 	}
 	
 	@Override
-	public boolean removeItem(Player player) {
+	public void removeItem(Player player) {
 		player.removeItem(this);
 		player.setPlayerState(new NormalPlayer(player));
-		
-		return true;
 	}
 
 

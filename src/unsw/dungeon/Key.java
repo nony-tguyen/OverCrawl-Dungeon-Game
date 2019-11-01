@@ -12,13 +12,19 @@ public class Key extends CollectableEntity {
 
 	@Override
 	public void useItem(Player player) {
-		// TODO Auto-generated method stub
+		removeItem(player);
 		
 	}
 	@Override
-	public boolean removeItem(Player player) {
-		// TODO Auto-generated method stub
-		return false;
+	public void removeItem(Player player) {
+		player.removeItem(this);	
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
 }
