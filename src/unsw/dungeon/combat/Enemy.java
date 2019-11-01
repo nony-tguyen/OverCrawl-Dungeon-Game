@@ -42,5 +42,9 @@ public class Enemy extends MovableEntity {
 		else
 			setMoveStrategy(new MoveAwayFromPlayer());
 	}
+	
+	public void killEnemy() {
+		dungeon.removeEntity(this);
+	}
 
 }

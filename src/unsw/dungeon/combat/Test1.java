@@ -2,6 +2,7 @@ package unsw.dungeon.combat;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
+import unsw.dungeon.Player;
 
 public class Test1 {
 	
@@ -17,8 +18,17 @@ public class Test1 {
 		
 		System.out.println(d.getEntities().size());
 		
-		d.removeEntity(e1);
-		System.out.println(d.getEntities().size());
+		d.removeEntity(e2);
+		//System.out.println(d.getEntities().size());
+		//d.printEntities();
+		
+		Enemy e3 = new Enemy(d, 5, 5);
+		d.addEntity(e3);
+		d.printEntities();
+		e3.killEnemy();
+		d.printEntities();
+		Player p = new Player(d, 1, 2);
+		
 	}
 	
 }

@@ -1,12 +1,14 @@
 package unsw.dungeon.combat;
 
-import unsw.dungeon.Entity;
+import unsw.dungeon.CollectableEntity;
+import unsw.dungeon.Dungeon;
+import unsw.dungeon.Player;
 
-public class Sword extends Entity {
+public class Sword extends CollectableEntity {
 	private int durability;
 	
-	public Sword(int x, int y) {
-		super(x, y);
+	public Sword(Dungeon dungeon, int x, int y) {
+		super(dungeon, x, y);
 		this.durability = 5;
 	}
 
@@ -27,9 +29,23 @@ public class Sword extends Entity {
 		
 		
 	}
-	
-	public void removeSword() {
+
+	@Override
+	public void useItem(Player player) {
 		
+		// +1 to enemies killed goal
+		
+		decreaseDurability();
+		if (durability <= 0) {
+			removeItem(player);
+		}
+		
+	}
+
+	@Override
+	public boolean removeItem(Player player) {
+		player.removeItem(this);
+		return true;
 	}
 
 

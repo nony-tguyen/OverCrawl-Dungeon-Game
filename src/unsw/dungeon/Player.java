@@ -74,4 +74,26 @@ public class Player extends MovableEntity {
 			enemy.updateMovement(this);
 		}
 	}
+	
+	public Direction getDirection() {
+		return direction;
+	}
+	
+	/**
+	 * Retrieve the entities that are in the adjacent grid in the direction of the player
+	 * @return List of entity in the adjacent grid
+	 */
+	public List<Entity> getAdjacentEntity() {
+		
+		if (this.direction == Direction.UP) 
+			return dungeon.checkGrid(getX(), getY() - 1);
+		else if (this.direction == Direction.DOWN) 
+			return dungeon.checkGrid(getX(), getY() + 1);
+		else if (this.direction == Direction.RIGHT) 
+			return dungeon.checkGrid(getX() + 1, getY());
+		else if (this.direction == Direction.LEFT) 
+			return dungeon.checkGrid(getX() - 1, getY() - 1);
+		else 
+			return null;
+	}
 }
