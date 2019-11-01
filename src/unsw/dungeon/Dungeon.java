@@ -6,6 +6,7 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.Wall;
 
@@ -84,4 +85,13 @@ public class Dungeon {
     	return entitiesOnGrid;
     }
     
+    public List<Enemy> getEnemies() {
+    	List<Enemy> enemies = new ArrayList<>();
+    	for (Entity e : entities) {
+    		if (e instanceof Enemy) {
+    			enemies.add((Enemy) e);
+    		}
+    	}
+    	return enemies;
+    }
 }
