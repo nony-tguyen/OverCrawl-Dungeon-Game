@@ -43,7 +43,7 @@ public abstract class Entity {
     public String toString() {
     	return this.getClass() + " x: " + getX() + " y: " + getY();
     }
-    public boolean isBlocking() {
+    public boolean isBlocking(Entity subject) {
 		return false;
 	}
 }
