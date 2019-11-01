@@ -28,7 +28,11 @@ public class Test1 {
 		e3.killEnemy();
 		d.printEntities();
 		Player p = new Player(d, 1, 2);
-		
+		d.setPlayer(p);
+		p.moveRight();
+		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
+		p.moveDown();
+		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
 	}
 	
 }
