@@ -93,6 +93,8 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Wall wall);
     public abstract void onLoad(Boulder boulder);
     public abstract void onLoad(FloorSwitch fs);
+    public abstract void onLoad(Door door);
+    public abstract void onLoad(Key key);
 
     // TODO Create additional abstract methods for the other entities
 
