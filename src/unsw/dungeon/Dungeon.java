@@ -94,4 +94,12 @@ public class Dungeon {
     	}
     	return enemies;
     }
+    
+    public List<Entity> getEntities() {
+    	return entities;
+    }
+    
+    public void removeEntity(Entity entity) {
+    	entities.remove(entity);
+    }
 }
