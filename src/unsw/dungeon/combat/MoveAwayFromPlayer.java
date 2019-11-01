@@ -13,6 +13,8 @@ public class MoveAwayFromPlayer implements EnemyMovement {
 			}
 		}
 		
+		if (diff_x != enemy.getX() - playerX) return;
+		
 		int diff_y = enemy.getY() - playerY;
 		if (diff_y != 0) {
 			if (diff_y < 0) {

@@ -33,7 +33,7 @@ public class Enemy extends MovableEntity {
 	}
 
 	public boolean isBlocking(Entity subject) {
-		if (subject instanceof Boulder)
+		if (subject instanceof Boulder || subject instanceof Enemy)
 			return true;
 		else
 			return false;
