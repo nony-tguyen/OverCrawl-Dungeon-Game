@@ -10,7 +10,13 @@ public abstract class CollectableEntity extends Entity {
 		this.dungeon = dungeon;
 	}
 	
+	public abstract void useItem(Player player);
 	
+	public void collectItem(Player player) {
+		player.addItem(this);
+		// Remove item from dungeon map
+		// Check goals here/Add to goal tally
+	}
 	
 	
 

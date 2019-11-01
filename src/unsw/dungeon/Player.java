@@ -1,5 +1,9 @@
 package unsw.dungeon;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.obstacles.Boulder;
 
 /**
@@ -8,10 +12,11 @@ import unsw.dungeon.obstacles.Boulder;
  *
  */
 public class Player extends MovableEntity {
-
-    //private Dungeon dungeon;
-    //private int x;
-    //private int y;
+	PlayerState normalPlayer;
+	PlayerState invinciblePlayer;
+	List<CollectableEntity> inventory;
+	
+    PlayerState playerState;
 
     /**
      * Create a player positioned in square (x,y)
@@ -20,6 +25,10 @@ public class Player extends MovableEntity {
      */
     public Player(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
+        inventory = new ArrayList<>();
+        normalPlayer = new NormalPlayer(this);
+        invinciblePlayer = new InvinciblePlayer(this);
+        playerState = normalPlayer;
     }
 
 	@Override
@@ -34,5 +43,26 @@ public class Player extends MovableEntity {
 		// based on the entity do something
 		// d
 	}
+	
+	public void addItem(CollectableEntity entity) {
+		inventory.add(entity);
+	}
+	
+	public List<CollectableEntity> getInventory() {
+		return inventory;
+	}
+	
+	public boolean handleEnemy(Enemy enemy) {
+		return playerState.handleEnemy(enemy);
+	}
 
+	public boolean isVulnerable() {
+		return playerState.isVulnerable();
+	}
+	
+	public void notifyEnemies() {
+		for (Enemy enemy : dungeon.getEnemies()) {
+			enemy.updateMovement(this);
+		}
+	}
 }

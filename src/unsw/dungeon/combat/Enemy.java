@@ -3,6 +3,8 @@ package unsw.dungeon.combat;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.MovableEntity;
+import unsw.dungeon.Player;
+import unsw.dungeon.obstacles.Boulder;
 
 public class Enemy extends MovableEntity {
 	
@@ -27,10 +29,18 @@ public class Enemy extends MovableEntity {
 		
 	}
 
-	@Override
-	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isBlocking(Entity subject) {
+		if (subject instanceof Boulder)
+			return true;
+		else
+			return false;
+	}
+	
+	public void updateMovement(Player player) {
+		if (player.isVulnerable() == true)
+			setMoveStrategy(new MoveTowardsPlayer());
+		else
+			setMoveStrategy(new MoveAwayFromPlayer());
 	}
 
 }

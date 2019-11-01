@@ -1,18 +1,22 @@
 package unsw.dungeon.combat;
 
-import unsw.dungeon.Entity;
+import unsw.dungeon.CollectableEntity;
+import unsw.dungeon.Dungeon;
+import unsw.dungeon.Player;
 
-public class InvinsibilityPotion extends Entity {
+public class InvinsibilityPotion extends CollectableEntity {
 
-	public InvinsibilityPotion(int x, int y) {
-		super(x, y);
+	public InvinsibilityPotion(Dungeon dungeon, int x, int y) {
+		super(dungeon, x, y);
 	}
 
 	@Override
-	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
+	public void useItem(Player player) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
+
+
 
 	// Update enemy movement when potion acquired
 	

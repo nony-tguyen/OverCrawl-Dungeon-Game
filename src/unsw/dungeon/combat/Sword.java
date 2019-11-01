@@ -25,16 +25,13 @@ public class Sword extends Entity {
 		 * If sword durability == 0, destroy the sword
 		 */
 		
+		
 	}
 	
 	public void removeSword() {
 		
 	}
 
-	@Override
-	public boolean isBlocking(Entity subject, int desiredX, int desiredY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 	
 }
