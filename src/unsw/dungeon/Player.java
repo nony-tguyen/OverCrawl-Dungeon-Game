@@ -37,6 +37,11 @@ public class Player extends MovableEntity {
 		if (enemy != null) {
 			handleEnemy(enemy);
 		}
+		
+		for (Entity entity : dungeon.checkGrid(getX(), getY())) {
+			if (entity instanceof CollectableEntity) 
+				((CollectableEntity) entity).collectItem(this);
+		}
 	}
 	
 	public void addItem(CollectableEntity entity) {
