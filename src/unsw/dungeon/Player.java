@@ -48,8 +48,17 @@ public class Player extends MovableEntity {
 		inventory.add(entity);
 	}
 	
+	public void removeItem(CollectableEntity entity) {
+		inventory.remove(entity);
+	}
+	
 	public List<CollectableEntity> getInventory() {
 		return inventory;
+	}
+	
+	public void setPlayerState(PlayerState playerState) {
+		this.playerState = playerState;
+		notifyEnemies();
 	}
 	
 	public boolean handleEnemy(Enemy enemy) {

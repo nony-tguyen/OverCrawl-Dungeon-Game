@@ -11,6 +11,7 @@ public abstract class CollectableEntity extends Entity {
 	}
 	
 	public abstract void useItem(Player player);
+	public abstract boolean removeItem(Player player);
 	
 	public void collectItem(Player player) {
 		player.addItem(this);
