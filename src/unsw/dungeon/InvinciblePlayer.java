@@ -11,7 +11,7 @@ public class InvinciblePlayer implements PlayerState {
 	
 	@Override
 	public boolean handleEnemy(Enemy enemy) {
-		// Enemy should die here
+		enemy.killEnemy();
 		return true;
 	}
 

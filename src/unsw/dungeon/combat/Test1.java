@@ -12,27 +12,23 @@ public class Test1 {
 		Dungeon d = new Dungeon(10, 10);
 		Entity e1 = new InvinsibilityPotion(d, 0, 0);
 		d.addEntity(e1);
+		d.removeEntity(e1);
+
 		
-		Entity e2 = new InvinsibilityPotion(d, 1, 1);
-		d.addEntity(e2);
-		
-		System.out.println(d.getEntities().size());
-		
-		d.removeEntity(e2);
-		//System.out.println(d.getEntities().size());
-		//d.printEntities();
-		
-		Enemy e3 = new Enemy(d, 5, 5);
+		Enemy e3 = new Enemy(d, 1, 1);
 		d.addEntity(e3);
 		d.printEntities();
-		e3.killEnemy();
-		d.printEntities();
-		Player p = new Player(d, 1, 2);
+
+		Player p = new Player(d, 1, 3);
 		d.setPlayer(p);
-		p.moveRight();
 		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
-		p.moveDown();
+		e3.moveEnemy(1, 3);
+		d.printEntities();
+		e3.moveEnemy(1, 3);
+		d.printEntities();
+		//p.moveUp();
 		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
+		if (d.gameOver()) System.out.println("game over");
 	}
 	
 }

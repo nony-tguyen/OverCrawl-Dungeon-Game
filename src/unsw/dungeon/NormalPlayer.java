@@ -11,7 +11,7 @@ public class NormalPlayer implements PlayerState {
 	
 	@Override
 	public boolean handleEnemy(Enemy enemy) {
-		// Player should die here
+		enemy.killPlayer();
 		return false;
 	}
 

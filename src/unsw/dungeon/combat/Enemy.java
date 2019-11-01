@@ -25,8 +25,11 @@ public class Enemy extends MovableEntity {
 
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
-		
+		if (dungeon.getPlayer().getX() == getX() && dungeon.getPlayer().getY() == getY()) {
+			dungeon.getPlayer().handleEnemy(this);
+		}
+		// I think this makes enemy move continuously
+		// moveEnemy(dungeon.getPlayer().getX(),dungeon.getPlayer().getY());
 	}
 
 	public boolean isBlocking(Entity subject) {
@@ -45,6 +48,10 @@ public class Enemy extends MovableEntity {
 	
 	public void killEnemy() {
 		dungeon.removeEntity(this);
+	}
+	
+	public void killPlayer() {
+		dungeon.setPlayer(null);
 	}
 
 }

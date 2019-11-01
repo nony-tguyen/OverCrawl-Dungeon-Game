@@ -33,6 +33,10 @@ public class Player extends MovableEntity {
 
 	@Override
 	public void action() {
+		Enemy enemy = foundEnemy();
+		if (enemy != null) {
+			handleEnemy(enemy);
+		}
 	}
 	
 	public void addItem(CollectableEntity entity) {
@@ -64,6 +68,14 @@ public class Player extends MovableEntity {
 		for (Enemy enemy : dungeon.getEnemies()) {
 			enemy.updateMovement(this);
 		}
+	}
+	
+	public Enemy foundEnemy() {
+		for (Enemy enemy : dungeon.getEnemies()) {
+			if (enemy.getX() == getX() && enemy.getY() == getY())
+				return enemy;
+		}
+		return null;
 	}
 	
 	public Direction getDirection() {

@@ -101,4 +101,11 @@ public class Dungeon {
     public void removeEntity(Entity entity) {
     	entities.remove(entity);
     }
+    
+    public boolean gameOver() {
+    	if (player == null) 
+    		return true;
+    	else 
+    		return false;
+    }
 }

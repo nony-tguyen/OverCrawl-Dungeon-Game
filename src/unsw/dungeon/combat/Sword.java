@@ -2,6 +2,7 @@ package unsw.dungeon.combat;
 
 import unsw.dungeon.CollectableEntity;
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
 
 public class Sword extends CollectableEntity {
@@ -20,21 +21,17 @@ public class Sword extends CollectableEntity {
 		durability = durability - 1;
 	}
 	
-	public void useSword() {
-		/**
-		 * Check if object is enemy and remaining sword durability
-		 * If it is enemy, kill enemy and decrease durability
-		 * If sword durability == 0, destroy the sword
-		 */
-		
-		
-	}
 
+	/**
+	 * Check if object is enemy 
+	 * If it is enemy, kill enemy
+	 * Decrease durability 
+	 * If sword durability == 0, destroy the sword
+	 */
 	@Override
 	public void useItem(Player player) {
-		
 		// +1 to enemies killed goal
-		
+		attack(player);
 		decreaseDurability();
 		if (durability <= 0) {
 			removeItem(player);
@@ -48,6 +45,13 @@ public class Sword extends CollectableEntity {
 		return true;
 	}
 
-
+	public void attack(Player player) {
+		for (Entity entity : player.getAdjacentEntity()) {
+			if (entity instanceof Enemy) {
+				((Enemy) entity).killEnemy();
+				return;
+			}
+		}
+	}
 	
 }
