@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import unsw.dungeon.obstacles.Boulder;
+import unsw.dungeon.obstacles.ClosedState;
+import unsw.dungeon.obstacles.Door;
 import unsw.dungeon.obstacles.Wall;
 
 /**
@@ -72,6 +74,16 @@ public abstract class DungeonLoader {
         	FloorSwitch fs = new FloorSwitch(x, y);
         	onLoad(fs);
         	entity = fs;
+        	break;
+        case "door": 
+        	Door door = new Door(x, y, 5);
+        	onLoad(door);
+        	entity = door;
+        	break;
+        case "key": 
+        	Key key = new Key(dungeon, x, y, 5);
+        	onLoad(key);
+        	entity = key;
         	break;
         }
         dungeon.addEntity(entity);
