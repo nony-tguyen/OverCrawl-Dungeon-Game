@@ -1,18 +1,25 @@
 package unsw.dungeon.combat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.MovableEntity;
 import unsw.dungeon.Player;
+import unsw.dungeon.goals.GoalComponent;
+import unsw.dungeon.goals.GoalSubject;
 import unsw.dungeon.obstacles.Boulder;
 
-public class Enemy extends MovableEntity {
+public class Enemy extends MovableEntity implements GoalSubject {
 	
 	private EnemyMovement moveStrategy;
+	private List<GoalComponent> goalObservers;
 	
 	public Enemy(Dungeon dungeon, int x, int y) {
 		super(dungeon, x, y);
 		this.moveStrategy = new MoveTowardsPlayer();
+		this.goalObservers = new ArrayList<>();
 	}
 	
 	public void setMoveStrategy(EnemyMovement moveStrategy) {
@@ -48,10 +55,20 @@ public class Enemy extends MovableEntity {
 	
 	public void killEnemy() {
 		dungeon.removeEntity(this);
+		notifyGoal();
 	}
 	
 	public void killPlayer() {
 		dungeon.setPlayer(null);
 	}
 
+	public void addGoalObserver(GoalComponent goal) {
+		goalObservers.add(goal);
+	}
+	
+	public void notifyGoal() {
+		for (GoalComponent goal : goalObservers) {
+			goal.updateGoal(this);
+		}
+	}
 }
