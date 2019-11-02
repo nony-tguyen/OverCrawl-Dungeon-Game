@@ -20,6 +20,9 @@ public class Door extends Entity {
 		this.state = state;
 	}
 
+	/** Checks if the door blocks, depending on the state
+	 * @param subject
+	 */
 	public boolean isBlocking(Entity subject) {
 		return state.isBlocking(subject);
 	}
@@ -30,5 +33,13 @@ public class Door extends Entity {
 	public int getId() {
 		return id;
 	}
+
+	/**
+	 * @return the state
+	 */
+	public DoorState getState() {
+		return state;
+	}
+	
 
 }

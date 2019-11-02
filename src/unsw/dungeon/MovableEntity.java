@@ -9,36 +9,35 @@ public abstract class MovableEntity extends Entity{
 		this.dungeon = dungeon; 
 	}
     public void moveUp() {
-       	// check if obstacle
-    	// or taken space
-    	// Can't push boulder -> can't move
-    	// 
         if (getY() > 0 && canMove(this, getX(), getY() - 1)) {
-            y().set(getY() - 1);    	
+            y().set(getY() - 1);  
+            direction = Direction.UP;
+            action();
         }
-        direction = Direction.UP;
-        action();
     }
 
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1 && canMove(this, getX(), getY() + 1))
+        if (getY() < dungeon.getHeight() - 1 && canMove(this, getX(), getY() + 1)) {
             y().set(getY() + 1);
-        direction = Direction.DOWN;
-        action();
+            direction = Direction.DOWN;
+            action();
+        }
     }
 
     public void moveLeft() {
-        if (getX() > 0 && canMove(this, getX() - 1, getY()))
+        if (getX() > 0 && canMove(this, getX() - 1, getY())) {
             x().set(getX() - 1);
-        direction = Direction.LEFT;
-        action();
+            direction = Direction.LEFT;
+            action();
+        }
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1 && canMove(this, getX() + 1, getY()))
+        if (getX() < dungeon.getWidth() - 1 && canMove(this, getX() + 1, getY())) {
             x().set(getX() + 1);
-        direction = Direction.RIGHT;
-        action();
+            direction = Direction.RIGHT;
+            action();
+        }
     }
     public boolean canMove(Entity entity, int desiredX, int desiredY) {
     	if (dungeon.isGridAvail(entity, desiredX, desiredY)) {
