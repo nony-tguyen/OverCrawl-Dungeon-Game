@@ -31,7 +31,7 @@ public class Key extends CollectableEntity {
 		}
 	}
 	/**
-	 * Checks if the player has a keen in their inventory
+	 * Checks if the player has a key in their inventory
 	 * @param subject
 	 * @return true if they have a key, false if not
 	 */
