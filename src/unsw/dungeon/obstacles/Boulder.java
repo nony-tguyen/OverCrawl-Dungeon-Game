@@ -41,7 +41,6 @@ public class Boulder extends MovableEntity {
 		} else {
 			// For instance: if player currently at (1,1) and their desired coordinates are (2, 1) 
 			// They want to move right one 
-			
 			int xDiff = desiredXPlayer - curr.getX();
 			int yDiff = desiedYPlayer - curr.getY();
 			// Check if the boulder can be moved into the grid it will be pushed into 
