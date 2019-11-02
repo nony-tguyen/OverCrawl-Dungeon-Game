@@ -8,17 +8,19 @@ import unsw.dungeon.Entity;
 
 public class CompositeGoal implements GoalComponent {
 	
+	Dungeon dungeon;
 	List<GoalComponent> goals;
+	GoalConditions checkGoalStrategy;
 	
-	
-	public CompositeGoal() {
+	public CompositeGoal(Dungeon dungeon, GoalConditions checkGoalStrategy) {
+		this.dungeon = dungeon;
+		this.checkGoalStrategy = checkGoalStrategy;
 		goals = new ArrayList<>();
 	}
 	
 	@Override
 	public boolean checkGoalCompleted(Dungeon dungeon) {
-		
-		return false;
+		return checkGoalStrategy.checkGoalCompleted(dungeon, goals);
 	}
 
 	@Override
@@ -37,6 +39,10 @@ public class CompositeGoal implements GoalComponent {
 	public int getCurrentTotal() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public void addGoal(GoalComponent goal) {
+		goals.add(goal);
 	}
 
 }

@@ -6,24 +6,15 @@ import java.util.List;
 import unsw.dungeon.goals.GoalComponent;
 import unsw.dungeon.goals.GoalSubject;
 
-public class Treasure extends CollectableEntity implements GoalSubject{
-
+public class Exit extends Entity implements GoalSubject {
+	
 	private List<GoalComponent> goalObservers;
 	
-	public Treasure(Dungeon dungeon, int x, int y) {
-		super(dungeon, x, y);
+	public Exit(int x, int y) {
+		super(x, y);
 		this.goalObservers = new ArrayList<>();
 	}
 
-	@Override
-	public void useItem(Player player) {
-	}
-
-	@Override
-	public void removeItem(Player player) {
-		player.removeItem(this);	
-	}
-	
 	@Override
 	public boolean affectGoal() {
 		return true;
@@ -40,4 +31,7 @@ public class Treasure extends CollectableEntity implements GoalSubject{
 			goal.updateGoal(this);
 		}
 	}
+	
+	
+
 }

@@ -37,10 +37,12 @@ public class FloorSwitch extends Entity implements GoalSubject {
 	public boolean isTriggered() {
 		return this.triggered;
 	}
+	
 	@Override
 	public void addGoalObserver(GoalComponent goal) {
 		goalObservers.add(goal);
 	}
+	
 	@Override
 	public void notifyGoal() {
 		for (GoalComponent goal : goalObservers) {

@@ -46,4 +46,8 @@ public abstract class Entity {
     public boolean isBlocking(Entity subject) {
 		return false;
 	}
+    
+    public boolean affectGoal() {
+    	return false;
+    }
 }

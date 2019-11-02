@@ -5,9 +5,13 @@ import unsw.dungeon.Entity;
 
 public class EnemyGoal implements GoalComponent {
 	
+	Dungeon dungeon;
 	int totalEnemies;
 	int currentCount;
 	
+	public EnemyGoal(Dungeon dungeon) {
+		this.dungeon = dungeon;
+	}
 	
 	@Override
 	public boolean checkGoalCompleted(Dungeon dungeon) {
