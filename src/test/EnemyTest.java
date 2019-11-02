@@ -1,4 +1,4 @@
-package unsw.dungeon.combat;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Player;
+import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.Wall;
 
@@ -114,6 +115,20 @@ class EnemyTest {
 		e1.moveEnemy(0, 0);
 		assertTrue(e1.getX() != 1 && e1.getY() != 1);
 		dungeon.removeEntity(boulder);
+	}
+	
+	@Test
+	public void testEnemyKillPlayer() {
+		initializeDungeon();
+		e1 = new Enemy(dungeon, 1, 1);
+		dungeon.addEntity(e1);
+		
+		e1.moveEnemy(0, 0);
+		e1.moveEnemy(0, 0);
+		
+		// Enemy is now at player's position
+		assertTrue(e1.getX() == 0 && e1.getY() == 0);
+		assertTrue(dungeon.gameOver());
 	}
 
 }

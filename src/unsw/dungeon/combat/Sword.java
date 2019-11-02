@@ -36,7 +36,17 @@ public class Sword extends CollectableEntity {
 		if (durability <= 0) {
 			removeItem(player);
 		}
-		
+	}
+
+	// Player can only carry one sword at a time
+	@Override
+	public void collectItem(Player player) {
+		for (CollectableEntity e : player.getInventory()) {
+			if (e instanceof Sword) {
+				return;
+			}
+		}
+		super.collectItem(player);
 	}
 
 	@Override
