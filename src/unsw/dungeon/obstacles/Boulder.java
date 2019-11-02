@@ -9,47 +9,13 @@ import unsw.dungeon.MovableEntity;
 import unsw.dungeon.Player;
 
 public class Boulder extends MovableEntity {
-	//private Dungeon dungeon; 
-   // private int x;
-    //private int y;
 	
     public Boulder(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
-        //this.dungeon = dungeon;
-    }
- 
-    @Override
-    public void moveUp() {
-        if (getY() > 0) {
-            y().set(getY() - 1);    	
-        }
-        action();
-    }
-    
-    @Override
-    public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1)
-            y().set(getY() + 1);
-        action();
-    }
-    @Override
-    public void moveLeft() {
-    	
-        if (getX() > 0)
-            x().set(getX() - 1);
-        action();
-    }
-    @Override
-    public void moveRight() {
-    	// if the current one is a floor switch then untrigger?
-        if (getX() < dungeon.getWidth() - 1)
-            x().set(getX() + 1);
-        action();
     }
     
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
 		// check if it went on a floor switch
 		// If it's a floor switch trigger it. 
 		// Need to check when the boulder goes off
