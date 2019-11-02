@@ -54,7 +54,11 @@ public class Boulder extends MovableEntity {
 			}
 		}
 	}
-	
+	/**
+	 * Moves boulder in one direction depending on which value is matched 
+	 * @param x
+	 * @param y
+	 */
 	public void moveBoulder(int x, int y) {
 		// Check if the place the boulder will be moved from is a switch 
 		FloorSwitch fs = isSwitch(getX(), getY());
@@ -80,13 +84,15 @@ public class Boulder extends MovableEntity {
 		}
 	}
 	/**
-	 * 
-	 * @return the 
+	 * Checks if there is a switch at a particular grid
+	 * @param x
+	 * @param y
+	 * @return
 	 */
 	public FloorSwitch isSwitch(int x, int y) {
 		ArrayList<Entity> entitiesOnGrid = dungeon.checkGrid( x, y );
 		for (Entity e : entitiesOnGrid) {
-			if(e instanceof FloorSwitch) {
+			if (e instanceof FloorSwitch) {
 				return (FloorSwitch) e;	
 			}
 		}
