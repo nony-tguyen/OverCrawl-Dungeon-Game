@@ -9,37 +9,11 @@ import unsw.dungeon.MovableEntity;
 import unsw.dungeon.Player;
 
 public class Boulder extends MovableEntity {
+	
     public Boulder(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
     }
  
-    @Override
-    public void moveUp() {
-        if (getY() > 0) {
-            y().set(getY() - 1);    	
-        }
-        action();
-    }
-    
-    @Override
-    public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1)
-            y().set(getY() + 1);
-        action();
-    }
-    @Override
-    public void moveLeft() {	
-        if (getX() > 0)
-            x().set(getX() - 1);
-        action();
-    }
-    @Override
-    public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1)
-            x().set(getX() + 1);
-        action();
-    }
-    
 	@Override
 	public void action() {
 		// check if it went on a floor switch

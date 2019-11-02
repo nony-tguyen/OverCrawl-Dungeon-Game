@@ -15,7 +15,7 @@ public class Test1 {
 		d.removeEntity(e1);
 
 		
-		Enemy e3 = new Enemy(d, 1, 1);
+		Enemy e3 = new Enemy(d, 0, 1);
 		d.addEntity(e3);
 		d.printEntities();
 
@@ -29,6 +29,16 @@ public class Test1 {
 		//p.moveUp();
 		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
 		if (d.gameOver()) System.out.println("game over");
+		
+		/*Sword s = new Sword(d, 1, 2);
+		d.addEntity(s);
+		d.printEntities();
+		p.moveUp();
+		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
+		d.printEntities();
+		System.out.println(p.getInventory());*/
+		
+		
 	}
 	
 }
