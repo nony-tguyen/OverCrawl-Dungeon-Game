@@ -9,10 +9,6 @@ public abstract class MovableEntity extends Entity{
 		this.dungeon = dungeon; 
 	}
     public void moveUp() {
-       	// check if obstacle
-    	// or taken space
-    	// Can't push boulder -> can't move
-    	// 
         if (getY() > 0 && canMove(this, getX(), getY() - 1)) {
             y().set(getY() - 1);    	
         }

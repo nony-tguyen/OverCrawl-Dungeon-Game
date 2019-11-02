@@ -9,13 +9,8 @@ import unsw.dungeon.MovableEntity;
 import unsw.dungeon.Player;
 
 public class Boulder extends MovableEntity {
-	//private Dungeon dungeon; 
-   // private int x;
-    //private int y;
-	
     public Boulder(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
-        //this.dungeon = dungeon;
     }
  
     @Override
@@ -33,15 +28,13 @@ public class Boulder extends MovableEntity {
         action();
     }
     @Override
-    public void moveLeft() {
-    	
+    public void moveLeft() {	
         if (getX() > 0)
             x().set(getX() - 1);
         action();
     }
     @Override
     public void moveRight() {
-    	// if the current one is a floor switch then untrigger?
         if (getX() < dungeon.getWidth() - 1)
             x().set(getX() + 1);
         action();
@@ -49,7 +42,6 @@ public class Boulder extends MovableEntity {
     
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
 		// check if it went on a floor switch
 		// If it's a floor switch trigger it. 
 		// Need to check when the boulder goes off
@@ -61,23 +53,26 @@ public class Boulder extends MovableEntity {
 			fs.trigger();
 		}
 	}
-	public boolean isBlocking(Entity curr, int desiredX, int desiredY) {
+	/**
+	 * Check if there's an obstacle in the spot the boulder would move into
+	 * @param curr
+	 * @param desiredXPlayer
+	 * @param desiedYPlayer
+	 * @return true is blocking, false if not 
+	 */
+	public boolean isBlocking(Entity curr, int desiredXPlayer, int desiedYPlayer) {
+		// Block for everything but the player 
 		if (!(curr instanceof Player)) {
 			return true;
 		} else {
-			//check if there's an obstacle in the spot the boulder would move into
-			// find the diff 
-			// curr (1,1)
-			// (2, 1) 
-			// want to move right one 
+			// For instance: if player currently at (1,1) and their desired coordinates are (2, 1) 
+			// They want to move right one 
 			
-			int xDiff = desiredX - curr.getX();
-			int yDiff = desiredY - curr.getY();
-			// Check if the boulder can be moved into the grid it will
-			// be pushed into 
-			//System.out.println("Desired X:" + (desiredX + xDiff) + "Desired Y:" + (desiredY + yDiff));
-			if (dungeon.isGridAvail(this, (desiredX + xDiff), (desiredY + yDiff))) {
-				// It's available so just move it 
+			int xDiff = desiredXPlayer - curr.getX();
+			int yDiff = desiedYPlayer - curr.getY();
+			// Check if the boulder can be moved into the grid it will be pushed into 
+			if (dungeon.isGridAvail(this, (desiredXPlayer + xDiff), (desiedYPlayer + yDiff))) {
+				// It's available so just move it, since already checked
 				moveBoulder(xDiff, yDiff);
 				return false;
 			} else {

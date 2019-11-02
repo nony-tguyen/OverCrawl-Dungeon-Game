@@ -63,7 +63,7 @@ public class Dungeon {
         		if (e instanceof Boulder) {
             		return (((Boulder) e).isBlocking(subject, x, y) ? false : true);
             	} else if (e.isBlocking(subject)) { // only returns if the entity is blocking, otherwise check again
-            		// incase the next entity on same grid is blocking
+            		// in case the next entity on same grid is blocking
         			return false;
         		} 
         	}  
