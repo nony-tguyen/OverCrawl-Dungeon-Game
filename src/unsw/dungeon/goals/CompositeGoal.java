@@ -19,8 +19,8 @@ public class CompositeGoal implements GoalComponent {
 	}
 	
 	@Override
-	public boolean checkGoalCompleted(Dungeon dungeon) {
-		return checkGoalStrategy.checkGoalCompleted(dungeon, goals);
+	public boolean checkGoalCompleted() {
+		return checkGoalStrategy.checkGoalCompleted(goals);
 	}
 
 	@Override

@@ -10,9 +10,9 @@ public class ORSubGoal implements GoalConditions {
 	 * OR Subgoals, at least one sub goal must be completed for the composite goal to be satisfied
 	 */
 	@Override
-	public boolean checkGoalCompleted(Dungeon dungeon, List<GoalComponent> goals) {
+	public boolean checkGoalCompleted(List<GoalComponent> goals) {
 		for (GoalComponent g : goals) {
-			if (g.checkGoalCompleted(dungeon)) {
+			if (g.checkGoalCompleted()) {
 				return true;
 			}
 		}

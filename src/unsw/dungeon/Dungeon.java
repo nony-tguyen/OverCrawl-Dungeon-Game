@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import unsw.dungeon.combat.Enemy;
+import unsw.dungeon.goals.GoalComponent;
 import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.Wall;
 
@@ -24,12 +25,15 @@ public class Dungeon {
     private int width, height;
     private List<Entity> entities;
     private Player player;
+    private GoalComponent goal;
+    private boolean dungeonCompleted;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
         this.player = null;
+        this.dungeonCompleted = false;
     }
 
     public int getWidth() {
@@ -115,5 +119,25 @@ public class Dungeon {
     		return true;
     	else 
     		return false;
+    }
+    
+    public void setGoal(GoalComponent goal) {
+    	this.goal = goal;
+    }
+    
+    public GoalComponent getGoal() {
+    	return this.goal;
+    }
+    
+    public void updateGameProgression() {
+    	if (player == null || goal.checkGoalCompleted()) {
+    		dungeonCompleted = true;
+    	} else {
+    		dungeonCompleted = false;
+    	}
+    }
+    
+    public boolean isGameFinished() {
+    	return dungeonCompleted;
     }
 }

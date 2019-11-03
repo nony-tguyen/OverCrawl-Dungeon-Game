@@ -7,20 +7,28 @@ import unsw.dungeon.Exit;
 public class ExitGoal implements GoalComponent {
 	
 	Dungeon dungeon;
+	private boolean complete;
+	
+	public ExitGoal(Dungeon dungeon) {
+		this.dungeon = dungeon;
+		this.complete = false;
+	}
 	
 	@Override
-	public boolean checkGoalCompleted(Dungeon dungeon) {
-		Exit exit = getExit(dungeon);
-		if (dungeon.getPlayer().getX() == exit.getX() && dungeon.getPlayer().getY() == exit.getY()) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean checkGoalCompleted() {
+		return complete;
 	}
 
 	@Override
 	public void updateGoal(Entity entity) {
-		checkGoalCompleted(dungeon);
+		Exit exit = getExit(dungeon);
+		if (dungeon.getPlayer().getX() == exit.getX() && dungeon.getPlayer().getY() == exit.getY()) {
+			complete = true;
+			dungeon.updateGameProgression();
+		} else {
+			complete = false;
+			dungeon.updateGameProgression();
+		}
 	}
 
 	@Override
