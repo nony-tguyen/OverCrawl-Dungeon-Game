@@ -2,6 +2,7 @@ package unsw.dungeon.obstacles;
 
 import java.util.ArrayList;
 
+import unsw.dungeon.Direction;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.FloorSwitch;
@@ -34,7 +35,7 @@ public class Boulder extends MovableEntity {
 	 * @param desiedYPlayer
 	 * @return true is blocking, false if not 
 	 */
-	public boolean isBlocking(Entity curr, int desiredXPlayer, int desiedYPlayer) {
+	public boolean isBlocking(Entity curr, int desiredXPlayer, int desiredYPlayer) {
 		// Block for everything but the player 
 		if (!(curr instanceof Player)) {
 			return true;
@@ -42,9 +43,34 @@ public class Boulder extends MovableEntity {
 			// For instance: if player currently at (1,1) and their desired coordinates are (2, 1) 
 			// They want to move right one 
 			int xDiff = desiredXPlayer - curr.getX();
-			int yDiff = desiedYPlayer - curr.getY();
+			int yDiff = desiredYPlayer - curr.getY();
+			
+			// Came from teleport 
+			if (Math.abs(xDiff) > 1 || Math.abs(yDiff) > 1) {
+				//System.out.println("hi");
+				// change the xDiff, yDiff based on the position of the player
+				switch(((MovableEntity) curr).getDirection()) {
+					case UP :
+						yDiff = -1;
+						xDiff = 0;
+						break;
+					case DOWN:
+						yDiff = 1;
+						xDiff = 0;
+						break;
+						
+					case LEFT:
+						yDiff = 0;
+						xDiff = -1;
+						break;
+					case RIGHT:
+						yDiff = 0;
+						xDiff = 1;
+				}
+			}
+			//System.out.println("xDiff is " + xDiff + "yDiff is " + yDiff);
 			// Check if the boulder can be moved into the grid it will be pushed into 
-			if (dungeon.isGridAvail(this, (desiredXPlayer + xDiff), (desiedYPlayer + yDiff))) {
+			if (dungeon.isGridAvail(this, (desiredXPlayer + xDiff), (desiredYPlayer + yDiff))) {
 				// It's available so just move it, since already checked
 				moveBoulder(xDiff, yDiff);
 				return false;

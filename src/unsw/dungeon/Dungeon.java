@@ -58,12 +58,17 @@ public class Dungeon {
     }
     public boolean isGridAvail(Entity subject, int x, int y) {
     	ArrayList<Entity> entitiesOnGrid = checkGrid(x, y);
+
     	for (Entity e : entitiesOnGrid) {
         	if (e != null) {
         		if (e instanceof Boulder) {
+                	//System.out.println("aSubject is " + subject + "Checking at " + x + " " + y + "Blocker is " + e);
+                	// relies on player's current pos. but this 
+                	// only need to check x, y vs boulder
             		return (((Boulder) e).isBlocking(subject, x, y) ? false : true);
             	} else if (e.isBlocking(subject)) { // only returns if the entity is blocking, otherwise check again
             		// in case the next entity on same grid is blocking
+                	//System.out.println("Subject is " + subject + "Checking at " + x + " " + y + "Blocker is " + e);
         			return false;
         		} 
         	}  

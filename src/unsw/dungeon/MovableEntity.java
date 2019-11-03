@@ -47,5 +47,11 @@ public abstract class MovableEntity extends Entity{
     	}
     }
     
-    public abstract void action();
+    /**
+	 * @return the direction
+	 */
+	public Direction getDirection() {
+		return direction;
+	}
+	public abstract void action();
 }

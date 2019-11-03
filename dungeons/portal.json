@@ -898,6 +898,11 @@
       "type": "portal"
     },
     {
+      "x": 4,
+      "y": 4,
+      "type": "boulder"
+    },
+    {
       "x": 5,
       "y": 15,
       "type": "portal"
