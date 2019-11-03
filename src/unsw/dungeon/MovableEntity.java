@@ -9,7 +9,7 @@ public abstract class MovableEntity extends Entity{
 		this.dungeon = dungeon; 
 	}
     public void moveUp() {
-        if (getY() > 0 && canMove(this, getX(), getY() - 1)) {
+        if (canMove(this, getX(), getY() - 1)) {
             y().set(getY() - 1);  
             direction = Direction.UP;
             action();
@@ -17,7 +17,7 @@ public abstract class MovableEntity extends Entity{
     }
 
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1 && canMove(this, getX(), getY() + 1)) {
+        if (canMove(this, getX(), getY() + 1)) {
             y().set(getY() + 1);
             direction = Direction.DOWN;
             action();
@@ -25,7 +25,7 @@ public abstract class MovableEntity extends Entity{
     }
 
     public void moveLeft() {
-        if (getX() > 0 && canMove(this, getX() - 1, getY())) {
+        if (canMove(this, getX() - 1, getY())) {
             x().set(getX() - 1);
             direction = Direction.LEFT;
             action();
@@ -33,7 +33,7 @@ public abstract class MovableEntity extends Entity{
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1 && canMove(this, getX() + 1, getY())) {
+        if (canMove(this, getX() + 1, getY())) {
             x().set(getX() + 1);
             direction = Direction.RIGHT;
             action();

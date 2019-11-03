@@ -57,8 +57,11 @@ public class Dungeon {
     	}
     }
     public boolean isGridAvail(Entity subject, int x, int y) {
+    	// Don't bother checking beyond the bounds
+    	if (y < 0 || y >= this.height || x < 0 || x >= this.width) {
+    		return false;
+    	}
     	ArrayList<Entity> entitiesOnGrid = checkGrid(x, y);
-
     	for (Entity e : entitiesOnGrid) {
         	if (e != null) {
         		if (e instanceof Boulder) {

@@ -17,6 +17,8 @@ class PortalTest {
 	private Player player;
 	private Enemy e;
 	private Boulder b;
+	private Portal p1;
+	private Portal p2;
 	
 	@Before
 	public void initializeDungeon() {
@@ -28,13 +30,15 @@ class PortalTest {
 		b = new Boulder(dungeon, 4, 3);
 		dungeon.addEntity(b);
 		dungeon.setPlayer(player);
+		p1 = new Portal(dungeon, 3, 3, 1);
+		p2 = new Portal(dungeon, 5, 4, 1);
+		dungeon.addEntity(p1);
+		dungeon.addEntity(p2);
 	}
 	
 	@Test
 	void testOneOtherPortal() {
 		initializeDungeon();
-		Portal p1 = new Portal(dungeon, 3, 3, 1);
-		Portal p2 = new Portal(dungeon, 1, 4, 1);
 		dungeon.addEntity(p1);
 		dungeon.addEntity(p2);
 		assertEquals(p2, p1.getTwinPortal());
@@ -42,10 +46,6 @@ class PortalTest {
 	@Test
 	void testEntitiesTeleport() {
 		initializeDungeon();
-		Portal p1 = new Portal(dungeon, 3, 3, 1);
-		Portal p2 = new Portal(dungeon, 5, 4, 1);
-		dungeon.addEntity(p1);
-		dungeon.addEntity(p2);
 		// Boulder move into portal and teleported to adjacent left grid
 		b.moveLeft();
 		assertEquals(4, b.getX());
@@ -70,7 +70,34 @@ class PortalTest {
 	@Test
 	void testEntitiesBlocked() {
 		initializeDungeon();
-		//Boulder 
+		Boulder b2 = new Boulder(dungeon, 4, 4);
+		dungeon.addEntity(b2);
+		// Boulder blocked by obstacle and player blocked by two boulders
+		p1.teleport(player, 5, 3);
+		player.moveLeft();
+		assertEquals(4, b.getX());
+		assertEquals(3, b.getY());
+		dungeon.removeEntity(b);
+		dungeon.removeEntity(b2);
+		
+		// Player push one boulder out of the way
+		Boulder b3 = new Boulder(dungeon, 4,3);
+		dungeon.addEntity(b3);
+		p1.teleport(player, 5, 3);
+		player.moveLeft();
+		System.out.println(player.getX() + " " + player.getY());
+		System.out.println(b3.getX() + " " + b3.getY());
+		assertEquals(4, b3.getX());
+		assertEquals(4, b3.getY());
+		assertEquals(4, player.getX());
+		assertEquals(3, player.getY());
+		
+		// Enemy blocked by obstacle
+		Boulder b4 = new Boulder(dungeon, 6, 4);
+		dungeon.addEntity(b4);
+		e.moveRight();
+		assertEquals(2, e.getX());
+		assertEquals(3, e.getY());
 		
 	}
 

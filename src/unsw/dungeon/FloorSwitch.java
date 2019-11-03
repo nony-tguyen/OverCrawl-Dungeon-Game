@@ -16,14 +16,12 @@ public class FloorSwitch extends Entity implements GoalSubject {
 		this.triggered = false;
 		this.goalObservers = new ArrayList<>();
 	}
-	//TODO Make this a subject so that Goals can observe when this is triggered/untriggered 
 	/**
 	 * Set the trigger on
 	 */
 	public void trigger() {
 		this.triggered = true;
 		notifyGoal();
-		//System.out.println("Triggered");
 	}
 	/**
 	 * Set the trigger off
@@ -31,7 +29,6 @@ public class FloorSwitch extends Entity implements GoalSubject {
 	public void untrigger() {
 		this.triggered = false;
 		notifyGoal();
-		//System.out.println("Untriggered");
 	}
 	
 	public boolean isTriggered() {
