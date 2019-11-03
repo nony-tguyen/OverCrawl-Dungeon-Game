@@ -14,7 +14,7 @@ public class DungeonApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Dungeon");
 
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("maze.json");
+        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("portal.json");
 
         DungeonController controller = dungeonLoader.loadController();
 
@@ -25,7 +25,7 @@ public class DungeonApplication extends Application {
         root.requestFocus();
         primaryStage.setScene(scene);
         primaryStage.show();
-
+        
     }
 
     public static void main(String[] args) {

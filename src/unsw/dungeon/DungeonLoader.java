@@ -7,6 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import unsw.dungeon.obstacles.Boulder;
+import unsw.dungeon.obstacles.ClosedState;
+import unsw.dungeon.obstacles.Door;
+import unsw.dungeon.obstacles.Wall;
+
 /**
  * Loads a dungeon from a .json file.
  *
@@ -17,7 +22,7 @@ import org.json.JSONTokener;
  *
  */
 public abstract class DungeonLoader {
-
+	
     private JSONObject json;
 
     public DungeonLoader(String filename) throws FileNotFoundException {
@@ -60,14 +65,43 @@ public abstract class DungeonLoader {
             onLoad(wall);
             entity = wall;
             break;
-        // TODO Handle other possible entities
+        case "boulder":
+        	Boulder boulder = new Boulder(dungeon, x, y);
+        	onLoad(boulder);
+        	entity = boulder;
+        	break;
+        case "switch":
+        	FloorSwitch fs = new FloorSwitch(x, y);
+        	onLoad(fs);
+        	entity = fs;
+        	break;
+        case "door": 
+        	Door door = new Door(x, y, 5);
+        	onLoad(door);
+        	entity = door;
+        	break;
+        case "key": 
+        	Key key = new Key(dungeon, x, y, 5);
+        	onLoad(key);
+        	entity = key;
+        	break;
+        case "portal":
+        	Portal portal = new Portal(dungeon, x, y, 3);
+        	onLoad(portal);
+        	entity = portal;
+        	break;
         }
         dungeon.addEntity(entity);
     }
 
     public abstract void onLoad(Entity player);
-
     public abstract void onLoad(Wall wall);
+    public abstract void onLoad(Boulder boulder);
+    public abstract void onLoad(FloorSwitch fs);
+    public abstract void onLoad(Door door);
+    public abstract void onLoad(Key key);
+    public abstract void onLoad(Portal portal);
+
 
     // TODO Create additional abstract methods for the other entities
 

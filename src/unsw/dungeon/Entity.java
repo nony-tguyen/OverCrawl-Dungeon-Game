@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @author Robert Clifton-Everest
  *
  */
-public class Entity {
+public abstract class Entity {
 
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
@@ -38,5 +38,27 @@ public class Entity {
 
     public int getX() {
         return x().get();
+    }
+    @Override
+    public String toString() {
+    	return this.getClass() + " x: " + getX() + " y: " + getY();
+    }
+    
+    /**
+     * Determine whether this entity blocks another entity 'subject'
+     * Set to false as default, most entities will not block another
+     * @param subject 
+     * @return True if entity blocks subject, otherwise False
+     */
+    public boolean isBlocking(Entity subject) {
+		return false;
+	}
+    
+    /**
+     * Determine whether the entity contributes to a dungeon goal
+     * @return True if it affects a goal, otherwise False
+     */
+    public boolean affectGoal() {
+    	return false;
     }
 }

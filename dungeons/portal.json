@@ -1,0 +1,29 @@
+{
+  "width": 10,
+  "height": 10,
+  "entities": [
+    {
+      "x": 5,
+      "y": 3,
+      "type": "player"
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "type": "boulder"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "type": "portal"
+    },
+    {
+      "x": 5,
+      "y": 4,
+      "type": "portal"
+    },
+  ],
+  "goal-condition": {
+    "goal": "exit"
+  }
+}
