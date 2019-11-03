@@ -9,4 +9,5 @@ public interface GoalComponent {
 	public void updateGoal(Entity entity);
 	public void setGoalTotal(int total);
 	public int getCurrentTotal();
+	public void addGoal(GoalComponent goal);
 }

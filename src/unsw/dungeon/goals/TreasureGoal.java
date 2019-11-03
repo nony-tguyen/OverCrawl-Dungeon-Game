@@ -39,4 +39,7 @@ public class TreasureGoal implements GoalComponent {
 		return currentCount;
 	}
 
+	@Override
+	public void addGoal(GoalComponent goal) {}
+
 }

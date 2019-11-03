@@ -45,4 +45,7 @@ public class BouldersGoal implements GoalComponent {
 		return currentCount;
 	}
 
+	@Override
+	public void addGoal(GoalComponent goal) {}
+
 }

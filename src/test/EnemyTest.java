@@ -128,7 +128,7 @@ class EnemyTest {
 		
 		// Enemy is now at player's position
 		assertTrue(e1.getX() == 0 && e1.getY() == 0);
-		assertTrue(dungeon.gameOver());
+		assertTrue(dungeon.isGameFinished());
 	}
 
 }

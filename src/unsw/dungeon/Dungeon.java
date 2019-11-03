@@ -110,13 +110,6 @@ public class Dungeon {
     	entities.remove(entity);
     }
     
-    public boolean gameOver() {
-    	if (player == null) 
-    		return true;
-    	else 
-    		return false;
-    }
-    
     public void setGoal(GoalComponent goal) {
     	this.goal = goal;
     }

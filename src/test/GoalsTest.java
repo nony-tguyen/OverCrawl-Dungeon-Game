@@ -12,17 +12,19 @@ import unsw.dungeon.Player;
 import unsw.dungeon.Treasure;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.combat.Sword;
+import unsw.dungeon.goals.ANDSubGoal;
 import unsw.dungeon.goals.BouldersGoal;
+import unsw.dungeon.goals.CompositeGoal;
 import unsw.dungeon.goals.EnemyGoal;
 import unsw.dungeon.goals.ExitGoal;
 import unsw.dungeon.goals.GoalComponent;
+import unsw.dungeon.goals.GoalConditions;
 import unsw.dungeon.goals.TreasureGoal;
 import unsw.dungeon.obstacles.Boulder;
 
 class GoalsTest {
 	private Dungeon dungeon;
 	private Player player;
-	private Enemy e1, e2, e3;
 
 	@Before
 	public void initializeDungeon(){
@@ -140,15 +142,18 @@ class GoalsTest {
 		
 		
 		// Player at (1, 0)
-		player.moveRight();		
+		player.moveRight();	
+		assertFalse(goal.checkGoalCompleted());
 		assertFalse(dungeon.isGameFinished());
 		
 		// Player at (2, 0)
-		player.moveRight();		
+		player.moveRight();	
+		assertFalse(goal.checkGoalCompleted());
 		assertFalse(dungeon.isGameFinished());
 		
 		// Player at (2, 1) -> Goal completed
-		player.moveDown();		
+		player.moveDown();	
+		assertTrue(goal.checkGoalCompleted());
 		assertTrue(dungeon.isGameFinished());
 	}
 }
