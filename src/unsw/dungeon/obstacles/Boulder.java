@@ -87,7 +87,9 @@ public class Boulder extends MovableEntity {
 	public void moveBoulder(int x, int y) {
 		// Check if the place the boulder will be moved from is a switch 
 		FloorSwitch fs = isSwitch(getX(), getY());
+		System.out.println("hi");
 		if (fs != null) {
+
 			fs.untrigger();
 		}
 		switch (x) {
