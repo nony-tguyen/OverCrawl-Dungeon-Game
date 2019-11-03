@@ -5,26 +5,28 @@ import unsw.dungeon.Entity;
 
 public class EnemyGoal implements GoalComponent {
 	
-	Dungeon dungeon;
-	int totalEnemies;
-	int currentCount;
+	private Dungeon dungeon;
+	private int totalEnemies;
+	private int currentCount;
+	private boolean complete;
 	
 	public EnemyGoal(Dungeon dungeon) {
 		this.dungeon = dungeon;
+		this.complete = false;
 	}
 	
 	@Override
-	public boolean checkGoalCompleted(Dungeon dungeon) {
-		if (currentCount == totalEnemies) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean checkGoalCompleted() {
+		return complete;
 	}
 
 	@Override
 	public void updateGoal(Entity entity) {
 		currentCount = currentCount + 1;
+		if (currentCount == totalEnemies) {
+			complete = true;
+			dungeon.updateGameProgression();
+		}
 	}
 
 	@Override

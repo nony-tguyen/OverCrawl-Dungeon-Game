@@ -6,5 +6,5 @@ import unsw.dungeon.Dungeon;
 
 public interface GoalConditions {
 	
-	public boolean checkGoalCompleted(Dungeon dungeon, List<GoalComponent> goals);
+	public boolean checkGoalCompleted(List<GoalComponent> goals);
 }

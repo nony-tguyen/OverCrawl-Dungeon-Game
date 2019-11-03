@@ -60,6 +60,7 @@ public class Enemy extends MovableEntity implements GoalSubject {
 	
 	public void killPlayer() {
 		dungeon.setPlayer(null);
+		dungeon.updateGameProgression();
 	}
 
 	public void addGoalObserver(GoalComponent goal) {

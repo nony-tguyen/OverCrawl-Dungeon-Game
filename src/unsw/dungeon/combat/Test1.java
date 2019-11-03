@@ -28,7 +28,7 @@ public class Test1 {
 		d.printEntities();
 		//p.moveUp();
 		System.out.println(p.getX() + " " + p.getY() + " " + p.getDirection());
-		if (d.gameOver()) System.out.println("game over");
+		if (d.isGameFinished()) System.out.println("game over");
 		
 		/*Sword s = new Sword(d, 1, 2);
 		d.addEntity(s);

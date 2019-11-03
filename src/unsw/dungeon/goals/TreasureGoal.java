@@ -8,23 +8,25 @@ public class TreasureGoal implements GoalComponent {
 	Dungeon dungeon;
 	int totalTreasure;
 	int currentCount;
+	private boolean complete;
 	
 	public TreasureGoal(Dungeon dungeon) {
 		this.dungeon = dungeon;
+		this.complete = false;
 	}
 	
 	@Override
-	public boolean checkGoalCompleted(Dungeon dungeon) {
-		if (currentCount == totalTreasure) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean checkGoalCompleted() {
+		return complete;
 	}
 
 	@Override
 	public void updateGoal(Entity entity) {
 		currentCount = currentCount + 1;
+		if (currentCount == totalTreasure) {
+			complete = true;
+			dungeon.updateGameProgression();
+		}
 	}
 
 	@Override
