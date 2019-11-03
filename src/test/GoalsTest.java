@@ -12,17 +12,19 @@ import unsw.dungeon.Player;
 import unsw.dungeon.Treasure;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.combat.Sword;
+import unsw.dungeon.goals.ANDSubGoal;
 import unsw.dungeon.goals.BouldersGoal;
+import unsw.dungeon.goals.CompositeGoal;
 import unsw.dungeon.goals.EnemyGoal;
 import unsw.dungeon.goals.ExitGoal;
 import unsw.dungeon.goals.GoalComponent;
+import unsw.dungeon.goals.GoalConditions;
 import unsw.dungeon.goals.TreasureGoal;
 import unsw.dungeon.obstacles.Boulder;
 
 class GoalsTest {
 	private Dungeon dungeon;
 	private Player player;
-	private Enemy e1, e2, e3;
 
 	@Before
 	public void initializeDungeon(){
@@ -140,15 +142,65 @@ class GoalsTest {
 		
 		
 		// Player at (1, 0)
-		player.moveRight();		
+		player.moveRight();	
+		assertFalse(goal.checkGoalCompleted());
 		assertFalse(dungeon.isGameFinished());
 		
 		// Player at (2, 0)
-		player.moveRight();		
+		player.moveRight();	
+		assertFalse(goal.checkGoalCompleted());
 		assertFalse(dungeon.isGameFinished());
 		
 		// Player at (2, 1) -> Goal completed
-		player.moveDown();		
+		player.moveDown();	
+		assertTrue(goal.checkGoalCompleted());
+		assertTrue(dungeon.isGameFinished());
+	}
+	
+	@Test
+	void testCompositeGoal1() {
+		// Destroying all enemies AND getting to an exit
+		
+		initializeDungeon();
+		Enemy e1 = new Enemy(dungeon, 2, 0);
+		Enemy e2 = new Enemy(dungeon, 3, 0);
+		Sword s = new Sword(dungeon, 1, 0);
+		dungeon.addEntity(e1);
+		dungeon.addEntity(e2);
+		dungeon.addEntity(s);
+		
+		GoalComponent enemyGoal = new EnemyGoal(dungeon);
+		e1.addGoalObserver(enemyGoal);
+		e2.addGoalObserver(enemyGoal);
+		enemyGoal.setGoalTotal(2);
+		
+		Exit exit = new Exit(2, 1);
+		dungeon.addEntity(exit);
+		
+		GoalComponent exitGoal = new ExitGoal(dungeon);
+		exit.addGoalObserver(exitGoal);
+		
+		// Allows the goal to be checked if completed using AND
+		GoalConditions strategy = new ANDSubGoal();
+		GoalComponent goal = new CompositeGoal(dungeon, strategy);
+		goal.addGoal(enemyGoal);
+		goal.addGoal(exitGoal);
+		dungeon.setGoal(goal);
+		
+		assertFalse(goal.checkGoalCompleted());
+		assertFalse(dungeon.isGameFinished());
+		
+		// Finish enemy goal but overall goal not finished
+		player.moveRight();
+		s.useItem(player);
+		player.moveRight();
+		s.useItem(player);
+		assertTrue(enemyGoal.checkGoalCompleted());
+		assertFalse(dungeon.isGameFinished());
+		
+		// Finish exit goal, overall goal is now completed
+		player.moveDown();
+		assertTrue(exitGoal.checkGoalCompleted());
 		assertTrue(dungeon.isGameFinished());
 	}
 }

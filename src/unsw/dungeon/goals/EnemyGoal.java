@@ -38,4 +38,7 @@ public class EnemyGoal implements GoalComponent {
 	public int getCurrentTotal() {
 		return currentCount;
 	}
+
+	@Override
+	public void addGoal(GoalComponent goal) {}
 }

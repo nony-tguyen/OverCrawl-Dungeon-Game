@@ -47,4 +47,7 @@ public class ExitGoal implements GoalComponent {
 		return null;	
 	}
 
+	@Override
+	public void addGoal(GoalComponent goal) {}
+
 }
