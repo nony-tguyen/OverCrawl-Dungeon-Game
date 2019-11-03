@@ -15,7 +15,6 @@ public class Key extends CollectableEntity {
 	@Override
 	public void useItem(Player player) {
 		removeItem(player);
-		
 	}
 	@Override
 	public void removeItem(Player player) {
