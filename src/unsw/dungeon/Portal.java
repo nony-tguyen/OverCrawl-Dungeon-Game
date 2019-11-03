@@ -83,7 +83,6 @@ public class Portal extends Entity {
 	 * Teleports the entity to the desired location 
 	 */
 	public void teleport(Entity subject, int x, int y) {
-		//System.out.println("Setting at " + x + " "+ y);
 		subject.x().set(x);
 		subject.y().set(y);
 	}

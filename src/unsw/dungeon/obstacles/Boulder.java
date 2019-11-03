@@ -47,7 +47,6 @@ public class Boulder extends MovableEntity {
 			
 			// Came from teleport 
 			if (Math.abs(xDiff) > 1 || Math.abs(yDiff) > 1) {
-				//System.out.println("hi");
 				// change the xDiff, yDiff based on the position of the player
 				switch(((MovableEntity) curr).getDirection()) {
 					case UP :
@@ -68,7 +67,6 @@ public class Boulder extends MovableEntity {
 						xDiff = 1;
 				}
 			}
-			//System.out.println("xDiff is " + xDiff + "yDiff is " + yDiff);
 			// Check if the boulder can be moved into the grid it will be pushed into 
 			if (dungeon.isGridAvail(this, (desiredXPlayer + xDiff), (desiredYPlayer + yDiff))) {
 				// It's available so just move it, since already checked
@@ -87,7 +85,6 @@ public class Boulder extends MovableEntity {
 	public void moveBoulder(int x, int y) {
 		// Check if the place the boulder will be moved from is a switch 
 		FloorSwitch fs = isSwitch(getX(), getY());
-		System.out.println("hi");
 		if (fs != null) {
 
 			fs.untrigger();

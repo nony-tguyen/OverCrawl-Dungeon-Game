@@ -85,8 +85,6 @@ class PortalTest {
 		dungeon.addEntity(b3);
 		p1.teleport(player, 5, 3);
 		player.moveLeft();
-		System.out.println(player.getX() + " " + player.getY());
-		System.out.println(b3.getX() + " " + b3.getY());
 		assertEquals(4, b3.getX());
 		assertEquals(4, b3.getY());
 		assertEquals(4, player.getX());
