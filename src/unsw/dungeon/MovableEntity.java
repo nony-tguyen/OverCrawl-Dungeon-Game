@@ -1,5 +1,9 @@
 package unsw.dungeon;
 
+/**
+ * A type of entity that can move around the dungeon
+ *
+ */
 public abstract class MovableEntity extends Entity{
 	protected Dungeon dungeon;
 	protected Direction direction;
@@ -8,6 +12,10 @@ public abstract class MovableEntity extends Entity{
 		super(x, y);
 		this.dungeon = dungeon; 
 	}
+	
+	/**
+	 * Move the entity 1 grid up
+	 */
     public void moveUp() {
         if (canMove(this, getX(), getY() - 1)) {
             y().set(getY() - 1);  
@@ -16,6 +24,9 @@ public abstract class MovableEntity extends Entity{
         }
     }
 
+    /**
+     * Move the entity 1 grid down
+     */
     public void moveDown() {
         if (canMove(this, getX(), getY() + 1)) {
             y().set(getY() + 1);
@@ -24,6 +35,9 @@ public abstract class MovableEntity extends Entity{
         }
     }
 
+    /**
+     * Move the entity 1 grid left
+     */
     public void moveLeft() {
         if (canMove(this, getX() - 1, getY())) {
             x().set(getX() - 1);
@@ -32,6 +46,9 @@ public abstract class MovableEntity extends Entity{
         }
     }
 
+    /**
+     * Move the entity 1 grid right
+     */
     public void moveRight() {
         if (canMove(this, getX() + 1, getY())) {
             x().set(getX() + 1);
@@ -39,6 +56,14 @@ public abstract class MovableEntity extends Entity{
             action();
         }
     }
+    
+    /**
+     * Checks if the grid the entity wants to move to is not obstructing
+     * @param entity
+     * @param desiredX
+     * @param desiredY
+     * @return True if grid is non-obstructing otherwise false
+     */
     public boolean canMove(Entity entity, int desiredX, int desiredY) {
     	if (dungeon.isGridAvail(entity, desiredX, desiredY)) {
         	return true;  		
@@ -48,10 +73,15 @@ public abstract class MovableEntity extends Entity{
     }
     
     /**
-	 * @return the direction
+     * Direction that the entity is facing
+	 * @return direction
 	 */
 	public Direction getDirection() {
 		return direction;
 	}
+	
+	/**
+	 * The action the entity will take upon moving to a new grid
+	 */
 	public abstract void action();
 }

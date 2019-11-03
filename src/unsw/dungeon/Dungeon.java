@@ -55,11 +55,20 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+    
     public void printEntities() {
     	for (Entity e: entities) {
     		System.out.println(e);
     	}
     }
+    
+    /**
+     * Determine whether the grid requested is available for the subject to move into
+     * @param subject
+     * @param x
+     * @param y
+     * @return
+     */
     public boolean isGridAvail(Entity subject, int x, int y) {
     	// Don't bother checking beyond the bounds
     	if (y < 0 || y >= this.height || x < 0 || x >= this.width) {
@@ -80,6 +89,12 @@ public class Dungeon {
     	return true;
     }
     
+    /**
+     * Gets the list of entities that exist in the requested grid
+     * @param x
+     * @param y
+     * @return
+     */
     public ArrayList<Entity> checkGrid(int x, int y) {
     	ArrayList<Entity> entitiesOnGrid = new ArrayList<Entity>();
     	for (Entity e: entities) {
@@ -92,6 +107,9 @@ public class Dungeon {
     	return entitiesOnGrid;
     }
     
+    /**
+     * @return Enemy entities in the dungeon
+     */
     public List<Enemy> getEnemies() {
     	List<Enemy> enemies = new ArrayList<>();
     	for (Entity e : entities) {
@@ -102,6 +120,9 @@ public class Dungeon {
     	return enemies;
     }
     
+    /**
+     * @return All entities in the dungeon
+     */
     public List<Entity> getEntities() {
     	return entities;
     }
@@ -110,14 +131,17 @@ public class Dungeon {
     	entities.remove(entity);
     }
     
+    /**
+     * Set the goal to achieve for the dungeon
+     * @param goal
+     */
     public void setGoal(GoalComponent goal) {
     	this.goal = goal;
     }
     
-    public GoalComponent getGoal() {
-    	return this.goal;
-    }
-    
+    /**
+     * Update the game state after an action
+     */
     public void updateGameProgression() {
     	if (player == null || goal.checkGoalCompleted()) {
     		dungeonCompleted = true;
@@ -126,6 +150,9 @@ public class Dungeon {
     	}
     }
     
+    /**
+     * @return True if the game has finished by player dying or goals completed
+     */
     public boolean isGameFinished() {
     	return dungeonCompleted;
     }

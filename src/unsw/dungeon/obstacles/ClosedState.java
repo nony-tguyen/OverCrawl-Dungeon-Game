@@ -8,6 +8,10 @@ import unsw.dungeon.Entity;
 import unsw.dungeon.Key;
 import unsw.dungeon.Player;
 
+/**
+ * The door state where a key must be used to open the door
+ *
+ */
 public class ClosedState implements DoorState {
 	private Door door;
 	

@@ -1,5 +1,9 @@
 package unsw.dungeon.combat;
 
+/**
+ * Implements enemy movement strategy to run towards the player in the dungeon
+ *
+ */
 public class MoveTowardsPlayer implements EnemyMovement {
 
 	@Override

@@ -12,13 +12,10 @@ import unsw.dungeon.Player;
 import unsw.dungeon.Treasure;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.combat.Sword;
-import unsw.dungeon.goals.ANDSubGoal;
 import unsw.dungeon.goals.BouldersGoal;
-import unsw.dungeon.goals.CompositeGoal;
 import unsw.dungeon.goals.EnemyGoal;
 import unsw.dungeon.goals.ExitGoal;
 import unsw.dungeon.goals.GoalComponent;
-import unsw.dungeon.goals.GoalConditions;
 import unsw.dungeon.goals.TreasureGoal;
 import unsw.dungeon.obstacles.Boulder;
 

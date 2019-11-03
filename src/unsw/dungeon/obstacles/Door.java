@@ -2,6 +2,10 @@ package unsw.dungeon.obstacles;
 
 import unsw.dungeon.Entity;
 
+/**
+ * A door entity that has an open and close state
+ *
+ */
 public class Door extends Entity {
 	
 	private DoorState state;

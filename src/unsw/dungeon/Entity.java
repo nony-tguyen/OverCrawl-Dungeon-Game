@@ -43,10 +43,21 @@ public abstract class Entity {
     public String toString() {
     	return this.getClass() + " x: " + getX() + " y: " + getY();
     }
+    
+    /**
+     * Determine whether this entity blocks another entity 'subject'
+     * Set to false as default, most entities will not block another
+     * @param subject 
+     * @return True if entity blocks subject, otherwise False
+     */
     public boolean isBlocking(Entity subject) {
 		return false;
 	}
     
+    /**
+     * Determine whether the entity contributes to a dungeon goal
+     * @return True if it affects a goal, otherwise False
+     */
     public boolean affectGoal() {
     	return false;
     }

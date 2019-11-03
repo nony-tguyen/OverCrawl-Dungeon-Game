@@ -2,6 +2,10 @@ package unsw.dungeon;
 
 import unsw.dungeon.combat.Enemy;
 
+/**
+ * A player state that is invulnerable to enemies
+ *
+ */
 public class InvinciblePlayer implements PlayerState {
 	Player player;
 	

@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.MovableEntity;
 import unsw.dungeon.Player;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.obstacles.Boulder;

@@ -11,6 +11,10 @@ import unsw.dungeon.goals.GoalComponent;
 import unsw.dungeon.goals.GoalSubject;
 import unsw.dungeon.obstacles.Boulder;
 
+/**
+ * An enemy entity that tries to kill the player
+ *
+ */
 public class Enemy extends MovableEntity implements GoalSubject {
 	
 	private EnemyMovement moveStrategy;
@@ -22,6 +26,10 @@ public class Enemy extends MovableEntity implements GoalSubject {
 		this.goalObservers = new ArrayList<>();
 	}
 	
+	/**
+	 * Set how the enemy moves
+	 * @param moveStrategy
+	 */
 	public void setMoveStrategy(EnemyMovement moveStrategy) {
 		this.moveStrategy = moveStrategy;
 	}
@@ -46,6 +54,10 @@ public class Enemy extends MovableEntity implements GoalSubject {
 			return false;
 	}
 	
+	/**
+	 * The player notifies the enemy to change their movement behaviour
+	 * @param player
+	 */
 	public void updateMovement(Player player) {
 		if (player.isVulnerable() == true)
 			setMoveStrategy(new MoveTowardsPlayer());
@@ -53,11 +65,17 @@ public class Enemy extends MovableEntity implements GoalSubject {
 			setMoveStrategy(new MoveAwayFromPlayer());
 	}
 	
+	/**
+	 * The enemy is killed by player
+	 */
 	public void killEnemy() {
 		dungeon.removeEntity(this);
 		notifyGoal();
 	}
 	
+	/**
+	 * The player is killed by enemy
+	 */
 	public void killPlayer() {
 		dungeon.setPlayer(null);
 		dungeon.updateGameProgression();

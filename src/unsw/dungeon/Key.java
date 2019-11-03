@@ -2,6 +2,11 @@ package unsw.dungeon;
 
 import java.util.List;
 
+/**
+ * A key entity to unlock doors
+ * @author z5207825
+ *
+ */
 public class Key extends CollectableEntity {
 
 	private int id;
@@ -11,21 +16,21 @@ public class Key extends CollectableEntity {
 		this.id = id;
 	}
 
-
 	@Override
 	public void useItem(Player player) {
 		removeItem(player);
 	}
+	
 	@Override
 	public void removeItem(Player player) {
 		player.removeItem(this);	
 	}
+	
 	@Override
 	public void collectItem(Player player) {
 		// Only collect if there are no other keys in the inventory
 		if (! hasKey(player)) {
 			player.addItem(this);
-			// Remove item from dungeon map
 			dungeon.removeEntity(this);			
 		}
 	}

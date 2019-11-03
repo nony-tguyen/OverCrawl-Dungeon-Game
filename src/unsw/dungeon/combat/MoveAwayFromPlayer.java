@@ -1,5 +1,9 @@
 package unsw.dungeon.combat;
 
+/**
+ * Implements enemy movement strategy to run away from the player in the dungeon
+ *
+ */
 public class MoveAwayFromPlayer implements EnemyMovement {
 
 	@Override

@@ -5,6 +5,11 @@ import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
 
+/**
+ * A sword entity that is used by the player to kill the enemy
+ * @author z5207825
+ *
+ */
 public class Sword extends CollectableEntity {
 	private int durability;
 	
@@ -21,16 +26,8 @@ public class Sword extends CollectableEntity {
 		durability = durability - 1;
 	}
 	
-
-	/**
-	 * Check if object is enemy 
-	 * If it is enemy, kill enemy
-	 * Decrease durability 
-	 * If sword durability == 0, destroy the sword
-	 */
 	@Override
 	public void useItem(Player player) {
-		// +1 to enemies killed goal
 		attack(player);
 		decreaseDurability();
 		if (durability <= 0) {
@@ -38,7 +35,6 @@ public class Sword extends CollectableEntity {
 		}
 	}
 
-	// Player can only carry one sword at a time
 	@Override
 	public void collectItem(Player player) {
 		for (CollectableEntity e : player.getInventory()) {
@@ -54,6 +50,10 @@ public class Sword extends CollectableEntity {
 		player.removeItem(this);
 	}
 
+	/**
+	 * Use the sword to kill the enemy
+	 * @param player
+	 */
 	public void attack(Player player) {
 		for (Entity entity : player.getAdjacentEntity()) {
 			if (entity instanceof Enemy) {

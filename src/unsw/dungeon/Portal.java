@@ -2,6 +2,10 @@ package unsw.dungeon;
 
 import java.util.*;
 
+/**
+ * A portal entity that allows an entity to travel to a corresponding portal
+ *
+ */
 public class Portal extends Entity {
 	
 	private Dungeon dungeon;
@@ -12,6 +16,7 @@ public class Portal extends Entity {
 		this.dungeon = dungeon;
 		this.id = id;
 	}
+	
 	@Override
 	public boolean isBlocking(Entity subject) {
 		// ask its twin portal if its blocked
@@ -30,9 +35,10 @@ public class Portal extends Entity {
 			return true; 
 		}
 	}
+	
 	/**
-	 * 
-	 * @return it's corresponding portal
+	 * Get the corresponding portal with the same id
+	 * @return portal
 	 */
 	public Portal getTwinPortal() {
 		List<Entity> entities = dungeon.getEntities();
@@ -43,6 +49,7 @@ public class Portal extends Entity {
 		}
 		return null;
 	}
+	
 	/**
 	 * Checks if the desired grid next to the twin is available. 
 	 * @param portal
@@ -79,13 +86,18 @@ public class Portal extends Entity {
 			return null;
 		}
 	}
-	/*
-	 * Teleports the entity to the desired location 
+	
+	/**
+	 * Teleport to the corresponding portal
+	 * @param subject
+	 * @param x
+	 * @param y
 	 */
 	public void teleport(Entity subject, int x, int y) {
 		subject.x().set(x);
 		subject.y().set(y);
 	}
+	
 	/**
 	 * @return the id
 	 */
@@ -94,4 +106,3 @@ public class Portal extends Entity {
 	}
 
 }
-//47108943

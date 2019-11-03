@@ -6,6 +6,10 @@ import java.util.List;
 import unsw.dungeon.goals.GoalComponent;
 import unsw.dungeon.goals.GoalSubject;
 
+/**
+ * A treasure entity that is collected to complete a goal
+ *
+ */
 public class Treasure extends CollectableEntity implements GoalSubject{
 
 	private List<GoalComponent> goalObservers;

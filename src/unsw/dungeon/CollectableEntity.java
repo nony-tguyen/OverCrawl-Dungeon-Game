@@ -1,5 +1,9 @@
 package unsw.dungeon;
 
+/**
+ * A type entity that is able to be collected by the player
+ * 
+ */
 public abstract class CollectableEntity extends Entity {
 	protected Dungeon dungeon;
 	protected String name;
@@ -10,16 +14,24 @@ public abstract class CollectableEntity extends Entity {
 		this.dungeon = dungeon;
 	}
 	
+	/**
+	 * Apply the entity on the player if it is able to be applied
+	 * @param player
+	 */
 	public abstract void useItem(Player player);
+	
+	/**
+	 * Dispose of the item from the player's inventory
+	 * @param player
+	 */
 	public abstract void removeItem(Player player);
 	
+	/**
+	 * Add item to player's inventory from the dungeon
+	 * @param player
+	 */
 	public void collectItem(Player player) {
 		player.addItem(this);
-		// Remove item from dungeon map
 		dungeon.removeEntity(this);
-		// Check goals here/Add to goal tally
 	}
-	
-	
-
 }

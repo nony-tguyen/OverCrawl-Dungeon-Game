@@ -6,6 +6,11 @@ import java.util.List;
 import unsw.dungeon.goals.GoalComponent;
 import unsw.dungeon.goals.GoalSubject;
 
+/**
+ * A floor switch entity to place boulders on top of in order to complete a goal.
+ * @author z5207825
+ *
+ */
 public class FloorSwitch extends Entity implements GoalSubject {
 
 	private boolean triggered;

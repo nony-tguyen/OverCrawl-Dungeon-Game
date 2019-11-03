@@ -6,6 +6,10 @@ import unsw.dungeon.InvinciblePlayer;
 import unsw.dungeon.NormalPlayer;
 import unsw.dungeon.Player;
 
+/**
+ * An invisibility potion entity that puts player into an invincible state when used
+ *
+ */
 public class InvinsibilityPotion extends CollectableEntity {
 
 	private int timeLimit = 10;
@@ -25,16 +29,11 @@ public class InvinsibilityPotion extends CollectableEntity {
 		player.setPlayerState(new NormalPlayer(player));
 	}
 
-
+	/**
+	 * Get time duration of the potion
+	 * @return
+	 */
 	public int getTimeLimit() {
 		return timeLimit;
 	}
-
-	
-
-	// Update enemy movement when potion acquired
-	
-	// Update enemy movement when potion expires
-	
-	// Update player state when potion expires
 }

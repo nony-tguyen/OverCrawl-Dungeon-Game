@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import unsw.dungeon.combat.Enemy;
-import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.goals.GoalSubject;
 
 /**
@@ -48,18 +47,34 @@ public class Player extends MovableEntity {
 		}
 	}
 	
+	/**
+	 * Add a collectable entity to player's inventory
+	 * @param entity
+	 */
 	public void addItem(CollectableEntity entity) {
 		inventory.add(entity);
 	}
 	
+	/**
+	 * Remove an item from the player's inventory
+	 * @param entity
+	 */
 	public void removeItem(CollectableEntity entity) {
 		inventory.remove(entity);
 	}
 	
+	/**
+	 * Get player's item currently obtained
+	 * @return inventory
+	 */
 	public List<CollectableEntity> getInventory() {
 		return inventory;
 	}
 	
+	/**
+	 * Change the player's current state
+	 * @param playerState
+	 */
 	public void setPlayerState(PlayerState playerState) {
 		this.playerState = playerState;
 		notifyEnemies();
@@ -73,6 +88,9 @@ public class Player extends MovableEntity {
 		return playerState.isVulnerable();
 	}
 	
+	/**
+	 * Enemies observe the player's state and move accordingly
+	 */
 	public void notifyEnemies() {
 		for (Enemy enemy : dungeon.getEnemies()) {
 			enemy.updateMovement(this);

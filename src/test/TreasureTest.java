@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import unsw.dungeon.CollectableEntity;
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Key;
 import unsw.dungeon.Player;
 import unsw.dungeon.Treasure;
 import unsw.dungeon.combat.Enemy;

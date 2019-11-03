@@ -6,6 +6,10 @@ import java.util.List;
 import unsw.dungeon.goals.GoalComponent;
 import unsw.dungeon.goals.GoalSubject;
 
+/**
+ * An exit entity for the player to complete the dungeon level
+ *
+ */
 public class Exit extends Entity implements GoalSubject {
 	
 	private List<GoalComponent> goalObservers;

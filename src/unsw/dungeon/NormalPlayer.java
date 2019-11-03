@@ -2,6 +2,10 @@ package unsw.dungeon;
 
 import unsw.dungeon.combat.Enemy;
 
+/**
+ * A player state that is vulnerable to enemies
+ *
+ */
 public class NormalPlayer implements PlayerState {
 	Player player;
 	
