@@ -11,7 +11,6 @@ import unsw.dungeon.Player;
 
 /**
  * A boulder entity that can only be moved one at a time by a player
- * @author z5207825
  *
  */
 public class Boulder extends MovableEntity {

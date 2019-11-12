@@ -9,7 +9,6 @@ import java.util.List;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.goals.GoalComponent;
 import unsw.dungeon.obstacles.Boulder;
-import unsw.dungeon.obstacles.Wall;
 
 /**
  * A dungeon in the interactive dungeon player.

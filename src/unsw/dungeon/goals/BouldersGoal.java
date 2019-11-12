@@ -1,7 +1,6 @@
 package unsw.dungeon.goals;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Entity;
 import unsw.dungeon.FloorSwitch;
 
 public class BouldersGoal implements GoalComponent {
@@ -22,8 +21,8 @@ public class BouldersGoal implements GoalComponent {
 	}
 
 	@Override
-	public void updateGoal(Entity entity) {
-		if (((FloorSwitch) entity).isTriggered()) {
+	public void updateGoal(Boolean goalAchieved) {
+		if (goalAchieved) {
 			currentCount++;
 			if (currentCount == totalFloorSwitch) {
 				complete = true;
