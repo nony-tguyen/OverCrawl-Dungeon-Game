@@ -72,14 +72,6 @@ public class Enemy extends MovableEntity implements GoalSubject {
 		dungeon.removeEntity(this);
 		notifyGoal();
 	}
-	
-	/**
-	 * The player is killed by enemy
-	 */
-	public void killPlayer() {
-		dungeon.setPlayer(null);
-		dungeon.updateGameProgression();
-	}
 
 	public void addGoalObserver(GoalComponent goal) {
 		goalObservers.add(goal);
@@ -87,7 +79,7 @@ public class Enemy extends MovableEntity implements GoalSubject {
 	
 	public void notifyGoal() {
 		for (GoalComponent goal : goalObservers) {
-			goal.updateGoal(this);
+			goal.updateGoal(true);
 		}
 	}
 }

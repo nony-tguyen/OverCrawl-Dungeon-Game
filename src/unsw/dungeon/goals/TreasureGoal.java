@@ -1,7 +1,6 @@
 package unsw.dungeon.goals;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Entity;
 
 public class TreasureGoal implements GoalComponent {
 	
@@ -21,7 +20,7 @@ public class TreasureGoal implements GoalComponent {
 	}
 
 	@Override
-	public void updateGoal(Entity entity) {
+	public void updateGoal(Boolean goalAchieved) {
 		currentCount = currentCount + 1;
 		if (currentCount == totalTreasure) {
 			complete = true;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import unsw.dungeon.combat.Enemy;
-import unsw.dungeon.goals.GoalSubject;
 
 /**
  * The player entity
@@ -39,11 +38,16 @@ public class Player extends MovableEntity {
 		}
 		
 		for (Entity entity : dungeon.checkGrid(getX(), getY())) {
-			if (entity instanceof CollectableEntity) 
+			entity.collectItem(this);
+			if (entity.affectGoal()) {
+				entity.notifyGoal();
+			}
+			
+			/*if (entity instanceof CollectableEntity) 
 				((CollectableEntity) entity).collectItem(this);
 			
 			if (entity.affectGoal())
-				((GoalSubject) entity).notifyGoal();			
+				((GoalSubject) entity).notifyGoal();	*/
 		}
 	}
 	
@@ -103,6 +107,14 @@ public class Player extends MovableEntity {
 				return enemy;
 		}
 		return null;
+	}
+	
+	/**
+	 * The player is killed
+	 */
+	public void killPlayer() {
+		dungeon.setPlayer(null);
+		dungeon.updateGameProgression();
 	}
 	
 	public Direction getDirection() {
