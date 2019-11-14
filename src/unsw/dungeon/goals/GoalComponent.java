@@ -1,7 +1,5 @@
 package unsw.dungeon.goals;
 
-import unsw.dungeon.Dungeon;
-import unsw.dungeon.Entity;
 
 public interface GoalComponent {
 	
@@ -13,9 +11,9 @@ public interface GoalComponent {
 	
 	/**
 	 * Update the goal given an action by the goal subject
-	 * @param entity
+	 * @param goalAchieved
 	 */
-	public void updateGoal(Entity entity);
+	public void updateGoal(Boolean goalAchieved);
 	
 	/**
 	 * Set target total for the goal to be accomplished

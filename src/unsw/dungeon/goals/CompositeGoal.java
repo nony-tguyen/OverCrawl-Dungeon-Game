@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Entity;
 
 public class CompositeGoal implements GoalComponent {
 	
@@ -24,7 +23,7 @@ public class CompositeGoal implements GoalComponent {
 	}
 
 	@Override
-	public void updateGoal(Entity entity) {
+	public void updateGoal(Boolean goalAchieved) {
 		// TODO Auto-generated method stub
 		
 	}

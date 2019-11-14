@@ -61,4 +61,15 @@ public abstract class Entity {
     public boolean affectGoal() {
     	return false;
     }
+    
+    /**
+     * Allows only for CollectableEntity to be collected by the player
+     * @param player
+     */
+    public void collectItem(Player player) {}
+    
+    /**
+     * Allows only for entities related to goals to notify their observers
+     */
+    public void notifyGoal() {}
 }

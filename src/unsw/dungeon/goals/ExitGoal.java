@@ -20,7 +20,7 @@ public class ExitGoal implements GoalComponent {
 	}
 
 	@Override
-	public void updateGoal(Entity entity) {
+	public void updateGoal(Boolean goalAchieved) {
 		Exit exit = getExit(dungeon);
 		if (dungeon.getPlayer().getX() == exit.getX() && dungeon.getPlayer().getY() == exit.getY()) {
 			complete = true;

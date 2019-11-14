@@ -41,7 +41,7 @@ public class Treasure extends CollectableEntity implements GoalSubject{
 	@Override
 	public void notifyGoal() {
 		for (GoalComponent goal : goalObservers) {
-			goal.updateGoal(this);
+			goal.updateGoal(true);
 		}
 	}
 }
