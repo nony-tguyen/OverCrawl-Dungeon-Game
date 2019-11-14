@@ -1,7 +1,6 @@
 package unsw.dungeon.goals;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.FloorSwitch;
 
 public class BouldersGoal implements GoalComponent {
 	
