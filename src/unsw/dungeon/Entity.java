@@ -1,6 +1,8 @@
 package unsw.dungeon;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
@@ -13,6 +15,7 @@ public abstract class Entity {
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
+    private BooleanProperty onDungeon;
 
     /**
      * Create an entity positioned in square (x,y)
@@ -22,6 +25,7 @@ public abstract class Entity {
     public Entity(int x, int y) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
+        onDungeon = new SimpleBooleanProperty(true);
     }
 
     public IntegerProperty x() {
@@ -72,4 +76,12 @@ public abstract class Entity {
      * Allows only for entities related to goals to notify their observers
      */
     public void notifyGoal() {}
+    
+    /**
+     * Determine whether the entity is displayed on the map
+     * @return True if entity exists in the dungeon map
+     */
+    public BooleanProperty visibleOnMap() {
+    	return onDungeon;
+    }
 }
