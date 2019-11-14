@@ -1,4 +1,4 @@
-package unsw.dungeon;
+package unsw.application;
 
 import java.io.IOException;
 
@@ -17,8 +17,7 @@ public class DungeonApplication extends Application {
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("portal.json");
 
         DungeonController controller = dungeonLoader.loadController();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/DungeonView.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
         Scene scene = new Scene(root);
