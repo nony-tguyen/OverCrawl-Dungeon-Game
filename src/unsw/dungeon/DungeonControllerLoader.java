@@ -10,6 +10,9 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import unsw.dungeon.combat.Enemy;
+import unsw.dungeon.combat.InvincibilityPotion;
+import unsw.dungeon.combat.Sword;
 import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.Door;
 import unsw.dungeon.obstacles.Wall;
@@ -29,9 +32,16 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image wallImage;
     private Image boulderImage;
     private Image floorSwitchImage;
-    private Image doorImage;
+    private Image closedDoorImage;
+    private Image openDoorImage;
     private Image keyImage;
     private Image portalImage;
+    private Image treasureImage;
+    private Image swordImage;
+    private Image invincibilityImage;
+	private Image enemyArcherImage;
+
+	private Image exitImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -41,9 +51,16 @@ public class DungeonControllerLoader extends DungeonLoader {
         wallImage = new Image("/brick_brown_0.png");
         boulderImage = new Image("/boulder.png");
         floorSwitchImage = new Image("/pressure_plate.png");
-        doorImage = new Image("/closed_door.png");
+        closedDoorImage = new Image("/closed_door.png");
+        openDoorImage = new Image("/open_door.png");
         keyImage = new Image("/key.png");
         portalImage = new Image("/portal.png");
+        treasureImage = new Image("/gold_pile.png");
+        swordImage = new Image("/greatsword_1_new.png");
+        invincibilityImage = new Image("/brilliant_blue_new.png");
+        enemyArcherImage = new Image("/deep_elf_master_archer.png");
+        exitImage = new Image("/exit.png");
+        
     }
 
     @Override
@@ -69,7 +86,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
     @Override
     public void onLoad(Door door) {
-		ImageView view = new ImageView(doorImage);
+		ImageView view = new ImageView(closedDoorImage);
         addEntity(door, view);
     }
     @Override
@@ -82,6 +99,35 @@ public class DungeonControllerLoader extends DungeonLoader {
 		ImageView view = new ImageView(portalImage);
         addEntity(portal, view);
     }
+	@Override
+	public void onLoad(Enemy enemy) {
+		ImageView view = new ImageView(enemyArcherImage);
+        addEntity(enemy, view);
+	}
+
+	@Override
+	public void onLoad(Sword sword) {
+		ImageView view = new ImageView(swordImage);
+        addEntity(sword, view);		
+	}
+
+	@Override
+	public void onLoad(InvincibilityPotion invincibility) {
+		ImageView view = new ImageView(invincibilityImage);
+        addEntity(invincibility, view);
+	}
+
+	@Override
+	public void onLoad(Exit exit) {
+		ImageView view = new ImageView(exitImage);
+        addEntity(exit, view);
+	}
+
+	@Override
+	public void onLoad(Treasure treasure) {
+		ImageView view = new ImageView(treasureImage);
+        addEntity(treasure, view);
+	}
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);
@@ -125,6 +171,5 @@ public class DungeonControllerLoader extends DungeonLoader {
     public DungeonController loadController() throws FileNotFoundException {
         return new DungeonController(load(), entities);
     }
-
 
 }

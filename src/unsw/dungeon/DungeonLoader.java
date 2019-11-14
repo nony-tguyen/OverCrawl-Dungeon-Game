@@ -7,6 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import unsw.dungeon.combat.Enemy;
+import unsw.dungeon.combat.InvincibilityPotion;
+import unsw.dungeon.combat.Sword;
 import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.ClosedState;
 import unsw.dungeon.obstacles.Door;
@@ -51,6 +54,11 @@ public abstract class DungeonLoader {
         String type = json.getString("type");
         int x = json.getInt("x");
         int y = json.getInt("y");
+        int id = 0;
+        if (type.equals("door") || type.equals("key") || type.equals("portal")) {
+            id = json.getInt("id");    	
+        }
+
 
         Entity entity = null;
         switch (type) {
@@ -76,19 +84,44 @@ public abstract class DungeonLoader {
         	entity = fs;
         	break;
         case "door": 
-        	Door door = new Door(x, y, 5);
+        	Door door = new Door(x, y, id);
         	onLoad(door);
         	entity = door;
         	break;
         case "key": 
-        	Key key = new Key(dungeon, x, y, 5);
+        	Key key = new Key(dungeon, x, y, id);
         	onLoad(key);
         	entity = key;
         	break;
         case "portal":
-        	Portal portal = new Portal(dungeon, x, y, 3);
+        	Portal portal = new Portal(dungeon, x, y, id);
         	onLoad(portal);
         	entity = portal;
+        	break;
+        case "enemy": 
+        	Enemy enemy = new Enemy(dungeon, x, y);
+        	onLoad(enemy);
+        	entity = enemy; 
+        	break;
+        case "sword": 
+        	Sword sword = new Sword(dungeon, x, y);
+        	onLoad(sword);
+        	entity = sword; 
+        	break;
+        case "invincibility": 
+        	InvincibilityPotion invincibility = new InvincibilityPotion(dungeon, x, y);
+        	onLoad(invincibility);
+        	entity = invincibility; 
+        	break;
+        case "exit": 
+        	Exit exit = new Exit(x, y);
+        	onLoad(exit);
+        	entity = exit; 
+        	break;
+        case "treasure": 
+        	Treasure treasure = new Treasure(dungeon, x, y);
+        	onLoad(treasure);
+        	entity = treasure; 
         	break;
         }
         dungeon.addEntity(entity);
@@ -101,6 +134,11 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Door door);
     public abstract void onLoad(Key key);
     public abstract void onLoad(Portal portal);
+    public abstract void onLoad(Enemy enemy);
+    public abstract void onLoad(Sword sword);
+    public abstract void onLoad(InvincibilityPotion invincibility);
+    public abstract void onLoad(Exit exit);
+    public abstract void onLoad(Treasure treasure);
 
 
     // TODO Create additional abstract methods for the other entities

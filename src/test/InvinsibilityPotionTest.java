@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Player;
 import unsw.dungeon.combat.Enemy;
-import unsw.dungeon.combat.InvinsibilityPotion;
+import unsw.dungeon.combat.InvincibilityPotion;
 
 class InvinsibilityPotionTest {
 	private Dungeon dungeon;
@@ -24,7 +24,7 @@ class InvinsibilityPotionTest {
 	@Test
 	void testCollectInvinsibilityPotion() {
 		initializeDungeon();
-		InvinsibilityPotion ip = new InvinsibilityPotion(dungeon, 1, 0);
+		InvincibilityPotion ip = new InvincibilityPotion(dungeon, 1, 0);
 		dungeon.addEntity(ip);
 		
 		assertTrue(dungeon.getEntities().contains(ip));
@@ -36,7 +36,7 @@ class InvinsibilityPotionTest {
 		assertFalse(dungeon.getEntities().contains(ip));
 		
 		// Enemies cannot collect this item
-		InvinsibilityPotion ip2 = new InvinsibilityPotion(dungeon, 9, 9);
+		InvincibilityPotion ip2 = new InvincibilityPotion(dungeon, 9, 9);
 		dungeon.addEntity(ip2);
 		Enemy e1 = new Enemy(dungeon, 8, 9);
 		dungeon.addEntity(e1);
@@ -48,7 +48,7 @@ class InvinsibilityPotionTest {
 	void testUseInvincibilityPotion() {
 		// Testing player states due to invincibility potion
 		initializeDungeon();
-		InvinsibilityPotion ip = new InvinsibilityPotion(dungeon, 1, 0);
+		InvincibilityPotion ip = new InvincibilityPotion(dungeon, 1, 0);
 		dungeon.addEntity(ip);
 		
 		// Player in normal state
@@ -73,7 +73,7 @@ class InvinsibilityPotionTest {
 	void testEnemyBehaviourWithPotion() {
 		// Player activates invincibility potion
 		initializeDungeon();
-		InvinsibilityPotion ip = new InvinsibilityPotion(dungeon, 1, 0);
+		InvincibilityPotion ip = new InvincibilityPotion(dungeon, 1, 0);
 		dungeon.addEntity(ip);
 		Enemy e = new Enemy(dungeon, 2, 2);
 		dungeon.addEntity(e);
@@ -94,7 +94,7 @@ class InvinsibilityPotionTest {
 	@Test
 	void testKillEnemyWithPotion() {
 		initializeDungeon();
-		InvinsibilityPotion ip = new InvinsibilityPotion(dungeon, 1, 0);
+		InvincibilityPotion ip = new InvincibilityPotion(dungeon, 1, 0);
 		dungeon.addEntity(ip);
 		Enemy e = new Enemy(dungeon, 1, 1);
 		dungeon.addEntity(e);

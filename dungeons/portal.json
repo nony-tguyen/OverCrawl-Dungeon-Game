@@ -15,13 +15,15 @@
     {
       "x": 3,
       "y": 3,
+      "id": 3,
       "type": "portal"
     },
     {
       "x": 5,
       "y": 4,
+      "id": 3,
       "type": "portal"
-    },
+    }
   ],
   "goal-condition": {
     "goal": "exit"
