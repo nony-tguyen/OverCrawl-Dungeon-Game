@@ -10,11 +10,11 @@ import unsw.dungeon.Player;
  * An invisibility potion entity that puts player into an invincible state when used
  *
  */
-public class InvinsibilityPotion extends CollectableEntity {
+public class InvincibilityPotion extends CollectableEntity {
 
 	private int timeLimit = 10;
 	
-	public InvinsibilityPotion(Dungeon dungeon, int x, int y) {
+	public InvincibilityPotion(Dungeon dungeon, int x, int y) {
 		super(dungeon, x, y);
 	}
 
