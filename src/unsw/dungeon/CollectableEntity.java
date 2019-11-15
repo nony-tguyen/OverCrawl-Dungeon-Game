@@ -33,5 +33,6 @@ public abstract class CollectableEntity extends Entity {
 	public void collectItem(Player player) {
 		player.addItem(this);
 		dungeon.removeEntity(this);
+		removeVisible();
 	}
 }

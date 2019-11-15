@@ -84,4 +84,12 @@ public abstract class Entity {
     public BooleanProperty visibleOnMap() {
     	return onDungeon;
     }
+    
+    public void setVisible() {
+    	onDungeon.setValue(true);
+    }
+    
+    public void removeVisible() {
+    	onDungeon.setValue(false);
+    }
 }
