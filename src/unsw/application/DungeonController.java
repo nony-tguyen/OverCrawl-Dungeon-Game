@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -12,9 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
+import unsw.dungeon.combat.Enemy;
+import unsw.dungeon.combat.InvincibilityPotion;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -31,11 +36,15 @@ public class DungeonController {
     private Player player;
 
     private Dungeon dungeon;
+    
+    private Timeline timeline;
 
     public DungeonController(Dungeon dungeon, HashMap<Entity, ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new HashMap<>(initialEntities);
+        timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> enemyMove()));	
+		timeline.setCycleCount(Timeline.INDEFINITE);
     }
 
     @FXML
@@ -66,6 +75,8 @@ public class DungeonController {
     			}
             });
         }
+        
+
     }
 
     @FXML
@@ -85,9 +96,45 @@ public class DungeonController {
         case RIGHT:
             player.moveRight();
             break;
+        case SPACE:
+        	useSword();
+        	break;
+        case I:
+        	useInvincibilityPotion();
+        	break;
         default:
             break;
         }
+        timeline.play();
+    }
+    
+    /**
+     * Set up enemy movement
+     */
+    private void enemyMove() {
+    	for (Enemy enemy : dungeon.getEnemies()) {
+    		enemy.moveEnemy(player.getX(), player.getY());
+    	}
+    }
+    
+    /**
+     * Handle player command to use their sword
+     */
+    private void useSword() {
+    	if (player.getSword() != null) {
+    		player.getSword().useItem(player);
+    	}
+    }
+    
+    /**
+     * Handle player command to use invincibility potion
+     */
+    private void useInvincibilityPotion() {
+    	for (Entity entity : player.getInventory()) {
+    		if (entity instanceof InvincibilityPotion) {
+    			((InvincibilityPotion) entity).useItem(player);
+    		}
+    	}
     }
 
 }

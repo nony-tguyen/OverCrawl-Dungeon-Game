@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import unsw.dungeon.combat.Enemy;
+import unsw.dungeon.combat.Sword;
 
 /**
  * The player entity
@@ -14,6 +15,7 @@ public class Player extends MovableEntity {
 	PlayerState normalPlayer;
 	PlayerState invinciblePlayer;
 	List<CollectableEntity> inventory;
+	Sword sword;
 	
     PlayerState playerState;
 
@@ -34,7 +36,9 @@ public class Player extends MovableEntity {
 	public void action() {
 		Enemy enemy = foundEnemy();
 		if (enemy != null) {
+			System.out.println("hello enemy");
 			handleEnemy(enemy);
+			if (dungeon.getPlayer() == null) System.out.println("player is null");
 		}
 		
 		for (Entity entity : dungeon.checkGrid(getX(), getY())) {
@@ -76,6 +80,18 @@ public class Player extends MovableEntity {
 	}
 	
 	/**
+	 * 
+	 * @return the player's sword if they have one
+	 */
+	public Sword getSword() {
+		return sword;
+	}
+	
+	public void setSword(Sword sword) {
+		this.sword = sword;
+	}
+	
+	/**
 	 * Change the player's current state
 	 * @param playerState
 	 */
@@ -113,6 +129,7 @@ public class Player extends MovableEntity {
 	 * The player is killed
 	 */
 	public void killPlayer() {
+		this.removeVisible();
 		dungeon.setPlayer(null);
 		dungeon.updateGameProgression();
 	}

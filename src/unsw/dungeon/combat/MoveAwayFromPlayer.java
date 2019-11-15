@@ -5,7 +5,7 @@ package unsw.dungeon.combat;
  *
  */
 public class MoveAwayFromPlayer implements EnemyMovement {
-
+		
 	@Override
 	public void moveEnemy(Enemy enemy, int playerX, int playerY) {
 		int diff_x = enemy.getX() - playerX;
@@ -27,6 +27,15 @@ public class MoveAwayFromPlayer implements EnemyMovement {
 				enemy.moveDown();
 			}
 		}	
+		
+		// Enemy has been blocked by something, try to move around it
+		if (enemy.getX() - playerX == diff_x && enemy.getY() - playerY == diff_y) {
+			
+			enemy.moveLeft();
+			if (enemy.getX() - playerX == diff_x) enemy.moveRight();
+			if (enemy.getX() - playerX == diff_x) enemy.moveUp();
+			if (enemy.getY() - playerY == diff_y) enemy.moveDown();
+		}
 	}
 
 }
