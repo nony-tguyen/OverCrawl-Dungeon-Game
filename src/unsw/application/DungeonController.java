@@ -76,6 +76,7 @@ public class DungeonController {
     			}
             });
         }
+        dungeonGameProgress();
     }
 
     @FXML
@@ -105,6 +106,19 @@ public class DungeonController {
             break;
         }
         timeline.play();
+    }
+    
+    private void dungeonGameProgress() {
+    	dungeon.isGameFinished().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, 
+					Boolean oldValue, Boolean newValue) {
+				if (newValue == true) {
+					System.out.println("Game Finished!");
+				}
+			}
+    	});
     }
     
     /**
@@ -141,6 +155,6 @@ public class DungeonController {
     	}
     }
     
-
+    
 }
 

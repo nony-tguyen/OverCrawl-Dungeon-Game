@@ -10,7 +10,7 @@ public class ORSubGoal implements GoalConditions {
 	@Override
 	public boolean checkGoalCompleted(List<GoalComponent> goals) {
 		for (GoalComponent g : goals) {
-			if (g.checkGoalCompleted()) {
+			if (g.checkGoalCompleted().get()) {
 				return true;
 			}
 		}

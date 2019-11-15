@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Exit;
 import unsw.dungeon.FloorSwitch;
@@ -20,6 +21,12 @@ import unsw.dungeon.Treasure;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.combat.InvincibilityPotion;
 import unsw.dungeon.combat.Sword;
+import unsw.dungeon.goals.BouldersGoal;
+import unsw.dungeon.goals.CompositeGoal;
+import unsw.dungeon.goals.EnemyGoal;
+import unsw.dungeon.goals.ExitGoal;
+import unsw.dungeon.goals.GoalComponent;
+import unsw.dungeon.goals.TreasureGoal;
 import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.Door;
 import unsw.dungeon.obstacles.Wall;
@@ -179,5 +186,90 @@ public class DungeonControllerLoader extends DungeonLoader {
     public DungeonController loadController() throws FileNotFoundException {
         return new DungeonController(load(), entities);
     }
+
+    
+    /**
+     * Creating goals for the dungeon game
+     */
+   
+
+	@Override
+	public void onLoadGoal(BouldersGoal bouldersGoal, Dungeon dungeon) {
+		for (FloorSwitch floorSwitch : getFloorSwitches(dungeon))
+			floorSwitch.addGoalObserver(bouldersGoal);
+		
+		bouldersGoal.setGoalTotal(getFloorSwitches(dungeon).size());
+		trackGoalProgression(bouldersGoal, dungeon);
+	}
+
+	@Override
+	public void onloadGoal(TreasureGoal treasureGoal, Dungeon dungeon) {
+		for (Treasure treasure : getTreasures(dungeon))
+			treasure.addGoalObserver(treasureGoal);
+		
+		treasureGoal.setGoalTotal(getTreasures(dungeon).size());
+		trackGoalProgression(treasureGoal, dungeon);
+	}
+
+	@Override
+	public void onLoadGoal(EnemyGoal enemyGoal, Dungeon dungeon) {
+		for (Enemy enemy : dungeon.getEnemies()) 
+			enemy.addGoalObserver(enemyGoal);
+		
+		enemyGoal.setGoalTotal(dungeon.getEnemies().size());
+		trackGoalProgression(enemyGoal, dungeon);	
+	}
+
+	@Override
+	public void onLoadGoal(ExitGoal exitGoal, Dungeon dungeon) {
+		Exit exit = exitGoal.getExit(dungeon);
+		exit.addGoalObserver(exitGoal);
+		trackGoalProgression(exitGoal, dungeon);	
+	}
+	
+	@Override
+	public void onloadGoal(CompositeGoal cg, Dungeon dungeon) {
+		trackGoalProgression(cg, dungeon);
+	}
+	
+	private void trackGoalProgression(GoalComponent goal, Dungeon dungeon) {
+		goal.checkGoalCompleted().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if (newValue == true) {
+					System.out.println("goal completed");
+				}	
+			}
+		});
+	}
+	
+	/**
+	 * @param dungeon
+	 * @return Get floor switches in dungeon for goal
+	 */
+	private List<FloorSwitch> getFloorSwitches(Dungeon dungeon) {
+		List<FloorSwitch> floorSwitch = new ArrayList<>();
+		for (Entity entity : dungeon.getEntities()) {
+			if (entity instanceof FloorSwitch)
+				floorSwitch.add((FloorSwitch) entity);
+		}
+		return floorSwitch;
+	}
+	
+	/**
+	 * @param dungeon
+	 * @return Get treasures in dungeon for goal
+	 */
+	private List<Treasure> getTreasures(Dungeon dungeon) {
+		List<Treasure> treasures = new ArrayList<>();
+		for (Entity entity : dungeon.getEntities()) {
+			if (entity instanceof Treasure)
+				treasures.add((Treasure) entity);
+		}
+		return treasures;
+	}
+
+
 
 }

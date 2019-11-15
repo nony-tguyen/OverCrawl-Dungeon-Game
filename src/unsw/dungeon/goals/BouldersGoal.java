@@ -1,5 +1,7 @@
 package unsw.dungeon.goals;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import unsw.dungeon.Dungeon;
 
 public class BouldersGoal implements GoalComponent {
@@ -7,15 +9,15 @@ public class BouldersGoal implements GoalComponent {
 	Dungeon dungeon;
 	int totalFloorSwitch;
 	int currentCount;
-	private boolean complete;
+	private BooleanProperty complete;
 	
 	public BouldersGoal(Dungeon dungeon) {
 		this.dungeon = dungeon;
-		this.complete = false;
+		complete = new SimpleBooleanProperty(false);
 	}
 	
 	@Override
-	public boolean checkGoalCompleted() {
+	public BooleanProperty checkGoalCompleted() {
 		return complete;
 	}
 
@@ -24,11 +26,11 @@ public class BouldersGoal implements GoalComponent {
 		if (goalAchieved) {
 			currentCount++;
 			if (currentCount == totalFloorSwitch) {
-				complete = true;
+				complete.set(true);
 			} 
 		} else {
 			currentCount--;
-			complete = false;
+			complete.set(false);
 		}
 		dungeon.updateGameProgression();
 	}
