@@ -15,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
+import unsw.dungeon.obstacles.Door;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -41,6 +42,7 @@ public class DungeonController {
     @FXML
     public void initialize() {
         Image ground = new Image("/dirt_0_new.png");
+        Image open_door = new Image("/open_door.png");
 
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
@@ -65,6 +67,26 @@ public class DungeonController {
     				}		
     			}
             });
+        	// Changing door image 
+        	if (entity instanceof Door) {
+        		((Door) entity).getClosed().addListener(new ChangeListener<Boolean>() {
+
+					@Override
+					public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue,
+							Boolean newValue) {
+							Node n = initialEntities.get(entity);
+							int col = GridPane.getColumnIndex(n);
+							int row = GridPane.getRowIndex(n);
+							// change that picture 
+							squares.getChildren().remove(n);
+							squares.add(new ImageView(open_door), col, row);
+							initialEntities.put(entity, new ImageView(open_door));
+							
+					}
+        			
+        		});
+        	}
+        	
         }
     }
 

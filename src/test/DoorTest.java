@@ -78,7 +78,7 @@ class DoorTest {
 	@Test
 	void testOpenNoBlock() {
 		initializeDungeon();
-		d.changeState(new OpenState());
+		d.changeState(new OpenState(d));
 		// Check that the enemy is not blocked by door when its open
 		e.moveRight();
 		assertEquals(3, e.getX());

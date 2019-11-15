@@ -29,9 +29,11 @@ public class Key extends CollectableEntity {
 	@Override
 	public void collectItem(Player player) {
 		// Only collect if there are no other keys in the inventory
+		//System.out.println("collecting");
 		if (! hasKey(player)) {
 			player.addItem(this);
-			dungeon.removeEntity(this);			
+			dungeon.removeEntity(this);	
+			removeVisible();
 		}
 	}
 	/**

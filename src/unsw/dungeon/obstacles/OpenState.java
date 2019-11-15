@@ -9,11 +9,11 @@ import unsw.dungeon.Entity;
  *
  */
 public class OpenState implements DoorState {
-	private BooleanProperty closed;
+	private Door door;
 	
-	public ClosedState(Door door) {
+	public OpenState(Door door) {
 		this.door = door;
-		this.closed.set(false);
+		this.door.setClosed(false);
 	}
 	@Override
 	public boolean isBlocking(Entity subject) {

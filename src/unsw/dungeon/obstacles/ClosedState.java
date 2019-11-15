@@ -15,11 +15,9 @@ import unsw.dungeon.Player;
  */
 public class ClosedState implements DoorState {
 	private Door door;
-	private BooleanProperty closed;
 	
 	public ClosedState(Door door) {
 		this.door = door;
-		this.closed.set(true);
 	}
 	@Override
 	public boolean isBlocking(Entity subject) {
@@ -27,7 +25,7 @@ public class ClosedState implements DoorState {
 		if (isPlayer(subject)) {
 			// Matching key
 			if (checkForKey((Player) subject)) {
-				door.changeState(new OpenState());
+				door.changeState(new OpenState(door));
 			}		
 		}
 
