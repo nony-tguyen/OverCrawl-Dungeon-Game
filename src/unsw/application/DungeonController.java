@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -46,7 +47,7 @@ public class DungeonController {
         timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> enemyMove()));	
 		timeline.setCycleCount(Timeline.INDEFINITE);
     }
-
+    
     @FXML
     public void initialize() {
         Image ground = new Image("/dirt_0_new.png");
@@ -75,8 +76,6 @@ public class DungeonController {
     			}
             });
         }
-        
-
     }
 
     @FXML
@@ -132,10 +131,16 @@ public class DungeonController {
     private void useInvincibilityPotion() {
     	for (Entity entity : player.getInventory()) {
     		if (entity instanceof InvincibilityPotion) {
-    			((InvincibilityPotion) entity).useItem(player);
+    			InvincibilityPotion ip = (InvincibilityPotion) entity;
+    			ip.useItem(player);
+    			Timeline potionTimer = new Timeline(new KeyFrame(Duration.seconds(ip.timeLimit),
+    												e -> ip.removeItem(player),
+    												new KeyValue(ip.getTimeRemain(), 0)));
+    			potionTimer.play();
     		}
     	}
     }
+    
 
 }
 
