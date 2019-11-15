@@ -3,6 +3,7 @@ package unsw.dungeon.obstacles;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.BooleanProperty;
 import unsw.dungeon.CollectableEntity;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Key;
@@ -14,9 +15,11 @@ import unsw.dungeon.Player;
  */
 public class ClosedState implements DoorState {
 	private Door door;
+	private BooleanProperty closed;
 	
 	public ClosedState(Door door) {
 		this.door = door;
+		this.closed.set(true);
 	}
 	@Override
 	public boolean isBlocking(Entity subject) {
@@ -61,5 +64,6 @@ public class ClosedState implements DoorState {
 		}		
 		return false;
 	}
+	
 
 }
