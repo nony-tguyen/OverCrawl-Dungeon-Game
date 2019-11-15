@@ -11,6 +11,7 @@ import unsw.dungeon.combat.Enemy;
  *
  */
 public class Player extends MovableEntity {
+	private int playerNum;
 	PlayerState normalPlayer;
 	PlayerState invinciblePlayer;
 	List<CollectableEntity> inventory;
@@ -22,7 +23,7 @@ public class Player extends MovableEntity {
      * @param x
      * @param y
      */
-    public Player(Dungeon dungeon, int x, int y) {
+    public Player(Dungeon dungeon, int x, int y, int playerNum) {
         super(dungeon, x, y);
         inventory = new ArrayList<>();
         normalPlayer = new NormalPlayer(this);
@@ -113,7 +114,7 @@ public class Player extends MovableEntity {
 	 * The player is killed
 	 */
 	public void killPlayer() {
-		dungeon.setPlayer(null);
+		dungeon.removePlayer(this.playerNum);
 		dungeon.updateGameProgression();
 	}
 	
@@ -138,4 +139,12 @@ public class Player extends MovableEntity {
 		else 
 			return null;
 	}
+
+	/**
+	 * @return the playerNum
+	 */
+	public int getPlayerNum() {
+		return playerNum;
+	}
+	
 }

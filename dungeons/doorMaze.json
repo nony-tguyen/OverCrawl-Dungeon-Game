@@ -110,6 +110,7 @@
     {
       "x": 1,
       "y": 1,
+      "playerNum": 1,
       "type": "player"
     },
     {

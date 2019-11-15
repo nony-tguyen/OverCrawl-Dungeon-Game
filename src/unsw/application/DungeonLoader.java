@@ -63,16 +63,20 @@ public abstract class DungeonLoader {
         int x = json.getInt("x");
         int y = json.getInt("y");
         int id = 0;
+        int playerNum = 1;
         if (type.equals("door") || type.equals("key") || type.equals("portal")) {
             id = json.getInt("id");    	
+        }
+        if (type.equals("player")) {
+        	playerNum = json.getInt("playerNum");
         }
 
 
         Entity entity = null;
         switch (type) {
         case "player":
-            Player player = new Player(dungeon, x, y);
-            dungeon.setPlayer(player);
+            Player player = new Player(dungeon, x, y, playerNum);
+            dungeon.addPlayer(player);
             onLoad(player);
             entity = player;
             break;

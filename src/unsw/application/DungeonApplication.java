@@ -10,12 +10,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class DungeonApplication extends Application {
+	//private multilayerMaps
 
     @Override
     public void start(Stage primaryStage) throws IOException {
     	MainScreen mainScreen = new MainScreen(primaryStage);
-        DungeonScreen dungeonScreen = new DungeonScreen(primaryStage, "doorMaze.json");
-        mainScreen.getController().setDungeonScreen(dungeonScreen);
+        DungeonScreen dungeonScreen1 = new DungeonScreen(primaryStage, "doorMaze.json");
+        LevelScreen singlePlayerScreen = new LevelScreen(primaryStage, "Level 2", dungeonScreen1);
+        //DungeonScreen dungeonScreen1 = new DungeonScreen(primaryStage, "doorMaze.json");
+        mainScreen.getController().setDungeonScreen(dungeonScreen1);
+        mainScreen.getController().setSinglePlayerScreen(singlePlayerScreen);
         mainScreen.getController().setMainScreen(mainScreen);
         mainScreen.start();    
     }

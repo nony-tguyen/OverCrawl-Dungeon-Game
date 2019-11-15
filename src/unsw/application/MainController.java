@@ -10,11 +10,14 @@ public class MainController {
     private Button startButton;
 
     private DungeonScreen dungeonScreen;
+    private LevelScreen singlePlayerScreen;
+    
     private MainScreen mainScreen;
 
     @FXML
     void handleSingleplayer(ActionEvent event) {
-        dungeonScreen.start();
+    	singlePlayerScreen.start();
+        //dungeonScreen.start();
     }
     @FXML
     void handleMultiplayer(ActionEvent event) {
@@ -31,6 +34,13 @@ public class MainController {
     public void setDungeonScreen(DungeonScreen dungeonScreen) {
         this.dungeonScreen = dungeonScreen;
     }
+	/**
+	 * @param singlePlayerScreen the singlePlayerScreen to set
+	 */
+	public void setSinglePlayerScreen(LevelScreen singlePlayerScreen) {
+		this.singlePlayerScreen = singlePlayerScreen;
+	}
+    
 
 }
 

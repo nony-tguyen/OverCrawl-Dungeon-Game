@@ -21,8 +21,8 @@ class FloorSwitchTest {
 	@Before
 	public void initializeDungeon() {
 		dungeon = new Dungeon(10, 10);
-		player = new Player(dungeon, 3, 2);
-		dungeon.setPlayer(player);
+		player = new Player(dungeon, 3, 2, 1);
+		dungeon.addPlayer(player);
 		e = new Enemy(dungeon, 2, 3);
 		dungeon.addEntity(e);
 		fs = new FloorSwitch(3,3);

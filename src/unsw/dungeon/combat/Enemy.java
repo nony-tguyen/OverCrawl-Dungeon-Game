@@ -40,8 +40,8 @@ public class Enemy extends MovableEntity implements GoalSubject {
 
 	@Override
 	public void action() {
-		if (dungeon.getPlayer().getX() == getX() && dungeon.getPlayer().getY() == getY()) {
-			dungeon.getPlayer().handleEnemy(this);
+		if (dungeon.getPlayer(1).getX() == getX() && dungeon.getPlayer(1).getY() == getY()) {
+			dungeon.getPlayer(1).handleEnemy(this);
 		}
 		// I think this makes enemy move continuously
 		// moveEnemy(dungeon.getPlayer().getX(),dungeon.getPlayer().getY());

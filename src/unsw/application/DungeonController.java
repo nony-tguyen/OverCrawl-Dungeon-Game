@@ -29,13 +29,13 @@ public class DungeonController {
 
     private HashMap<Entity, ImageView> initialEntities;
 
-    private Player player;
+    private List<Player> players;
 
     private Dungeon dungeon;
 
     public DungeonController(Dungeon dungeon, HashMap<Entity, ImageView> initialEntities) {
         this.dungeon = dungeon;
-        this.player = dungeon.getPlayer();
+        this.players = dungeon.getPlayers();
         this.initialEntities = new HashMap<>(initialEntities);
     }
 
@@ -96,16 +96,16 @@ public class DungeonController {
         case UP:
         	//squares.
         	//dungeon.printEntities();
-            player.moveUp();
+        	players.get(0).moveUp();
             break;
         case DOWN:
-            player.moveDown();
+        	players.get(0).moveDown();
             break;
         case LEFT:
-            player.moveLeft();
+        	players.get(0).moveLeft();
             break;
         case RIGHT:
-            player.moveRight();
+        	players.get(0).moveRight();
             break;
         default:
             break;

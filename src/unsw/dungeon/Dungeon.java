@@ -23,7 +23,7 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
-    private Player player;
+    private List<Player> players;
     private GoalComponent goal;
     private boolean dungeonCompleted;
 
@@ -31,7 +31,7 @@ public class Dungeon {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
-        this.player = null;
+        this.players = new ArrayList<>();
         this.dungeonCompleted = false;
     }
 
@@ -43,12 +43,33 @@ public class Dungeon {
         return height;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Player getPlayer(int playerNum) {
+    	for (Player p : players) {
+    		if (p.getPlayerNum() == (playerNum - 1)) {
+    			return p;
+    		}
+    	}
+        return null;
     }
+    public List<Player> getPlayers() {
+    	return players;
+    }
+    public void removePlayer(int playerNum) {
+    	for (Player p : players) {
+			if (p.getPlayerNum() == (playerNum - 1)) {
+				System.out.println("removing");
+		    	players.remove(p);
+			}
+    	}
+	}
 
-    public void setPlayer(Player player) {
-        this.player = player;
+/*
+    public void setPlayer(List<Player> player) {
+        this.players = player;
+    }
+    */
+    public void addPlayer(Player player) {
+    	players.add(player);
     }
 
     public void addEntity(Entity entity) {
@@ -142,7 +163,7 @@ public class Dungeon {
      * Update the game state after an action
      */
     public void updateGameProgression() {
-    	if (player == null || goal.checkGoalCompleted()) {
+    	if (players.size() == 0 || goal.checkGoalCompleted()) {
     		dungeonCompleted = true;
     	} else {
     		dungeonCompleted = false;

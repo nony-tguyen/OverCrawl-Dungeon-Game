@@ -40,7 +40,6 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image boulderImage;
     private Image floorSwitchImage;
     private Image closedDoorImage;
-    private Image openDoorImage;
     private Image keyImage;
     private Image portalImage;
     private Image treasureImage;
@@ -59,7 +58,6 @@ public class DungeonControllerLoader extends DungeonLoader {
         boulderImage = new Image("/boulder.png");
         floorSwitchImage = new Image("/pressure_plate.png");
         closedDoorImage = new Image("/closed_door.png");
-        openDoorImage = new Image("/open_door.png");
         keyImage = new Image("/key.png");
         portalImage = new Image("/portal.png");
         treasureImage = new Image("/gold_pile.png");
