@@ -1,4 +1,4 @@
-package unsw.dungeon;
+package unsw.application;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,6 +7,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
+import unsw.dungeon.Exit;
+import unsw.dungeon.FloorSwitch;
+import unsw.dungeon.Key;
+import unsw.dungeon.Player;
+import unsw.dungeon.Portal;
+import unsw.dungeon.Treasure;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.combat.InvincibilityPotion;
 import unsw.dungeon.combat.Sword;

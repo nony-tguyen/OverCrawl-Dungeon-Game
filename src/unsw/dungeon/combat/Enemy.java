@@ -70,6 +70,7 @@ public class Enemy extends MovableEntity implements GoalSubject {
 	 */
 	public void killEnemy() {
 		dungeon.removeEntity(this);
+		removeVisible();
 		notifyGoal();
 	}
 
