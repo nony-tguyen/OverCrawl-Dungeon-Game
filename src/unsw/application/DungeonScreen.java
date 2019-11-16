@@ -20,20 +20,24 @@ public class DungeonScreen {
     private LevelScreen nextScreen;
     private GoalScreen goalScreen;
     private InventoryScreen inventoryScreen;
+    private GoalControllerLoader goalLoader;
 
     public DungeonScreen(Stage stage, String map) throws IOException {
         this.stage = stage;
         title = "Dungeon 1";
 
-        goalScreen = new GoalScreen(stage);
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map);      
-        dungeonLoader.setGoalScreen(goalScreen);
 
         String musicFile = "music/Dungeon_Theme.aac";  
         Media sound = new Media(new File(musicFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
         
        // 
+        
+        goalLoader = new GoalControllerLoader();
+        System.out.println("im here first");
+        dungeonLoader.setGoalControllerLoader(goalLoader);
+        System.out.println("im here second");
         this.controller = dungeonLoader.loadController();
         controller.setDungeonScreen(this);
         
@@ -77,6 +81,7 @@ public class DungeonScreen {
 
     
     private void initGoalScreen(Stage stage) throws IOException {
+    	goalScreen = new GoalScreen(stage, goalLoader);
         controller.setGoalScreen(goalScreen);
         goalScreen.getController().setDungeonScreen(this);
     }

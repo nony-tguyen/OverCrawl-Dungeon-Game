@@ -1,16 +1,15 @@
 package unsw.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-import unsw.dungeon.goals.GoalComponent;
+import javafx.scene.layout.VBox;
 
 public class GoalController {
 	@FXML
@@ -18,14 +17,23 @@ public class GoalController {
 	
 	private GoalScreen goalScreen;
 	private DungeonScreen dungeonScreen;
+	private List<HBox> goals;
+	
 
-	public GoalController(GoalScreen goalScreen) {
-		this.goalScreen = goalScreen;
+	public GoalController(List<HBox> goals) {	
+		this.goals = new ArrayList<>(goals);
 	}
 	
 	@FXML
     public void initialize() {
-		
+		VBox vbox = new VBox(5);
+		vbox.setAlignment(Pos.CENTER_LEFT);
+		vbox.setLayoutY(100);
+		for (int i = goals.size() - 1; i >= 0; i--) {
+			vbox.getChildren().add(goals.get(i));
+		}
+
+		displayGoal.getChildren().add(vbox);
 	}
 	
 	@FXML
@@ -36,26 +44,15 @@ public class GoalController {
 		}
 	}
 	
+	public void setGoalScreen(GoalScreen goalScreen) {
+		this.goalScreen = goalScreen;
+	}
+	
 	public void setDungeonScreen(DungeonScreen dungeonScreen) {
         this.dungeonScreen = dungeonScreen;
     }
 	
-	public void addGoalDisplay(Label goalLabel, GoalComponent goal) {
-		HBox hbox = new HBox();
-		hbox.setAlignment(Pos.CENTER);
-		hbox.setSpacing(10);
-		
-		Label title = new Label(goal.getDescription());
-		title.setFont(new Font("Comic Sans MS", 24));
-		Label total = new Label("/  " + goal.getGoalTotal());
-		total.setFont(new Font("Comic Sans MS", 24));
-		goalLabel.setStyle("-fx-font-weight: bold");
-		goalLabel.setFont(new Font("Comic Sans MS", 24));
-		HBox.setMargin(title, new Insets(0, 100, 0, 40));
-		HBox.setMargin(goalLabel, new Insets(0, 0, 0, 0));
-		HBox.setMargin(total, new Insets(0, 100, 0, 0));
-		hbox.getChildren().addAll(title, goalLabel, total);
-		
-		displayGoal.getChildren().add(hbox);
+	public void addGoalDisplay(HBox hbox) {
+		goals.add(hbox);
     }
 }

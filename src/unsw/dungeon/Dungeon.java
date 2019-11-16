@@ -166,6 +166,7 @@ public class Dungeon {
      */
     public void updateGameProgression() {
     	if (players.size() == 0 || goal.checkGoalCompleted().get()) {
+    		System.out.println("hi");
     		dungeonCompleted.set(true);
     	} else {
     		dungeonCompleted.set(false);
@@ -176,6 +177,7 @@ public class Dungeon {
      * @return True if the game has finished by player dying or goals completed
      */
     public BooleanProperty isGameFinished() {
+    	
     	return dungeonCompleted;
     }
 }

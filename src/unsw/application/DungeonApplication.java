@@ -35,11 +35,6 @@ public class DungeonApplication extends Application {
         spDungeon2.setNextScreen(spLevel3Screen);
         spDungeon3.setNextScreen(gameFinished);
 
-
-        GoalScreen spGoalScreen1 = new GoalScreen(primaryStage);
-        GoalScreen spGoalScreen2 = new GoalScreen(primaryStage);
-        GoalScreen spGoalScreen3 = new GoalScreen(primaryStage);
-       
         //InventoryScreen spInventoryScreen = new InventoryScreen(primaryStage);
         
         //GoalScreen goalScreen = new GoalScreen(primaryStage);
@@ -48,16 +43,7 @@ public class DungeonApplication extends Application {
         mainScreen.getController().setSinglePlayerScreen(spLevel1Screen);
         mainScreen.getController().setMainScreen(mainScreen);
         
-        spDungeon1.getController().setGoalScreen(spGoalScreen1);
-        spDungeon2.getController().setGoalScreen(spGoalScreen2);
-        spDungeon3.getController().setGoalScreen(spGoalScreen3);
-       // spDungeon1.getController().setInventoryScreen(spInventoryScreen);
-       // spDungeon2.getController().setInventoryScreen(spInventoryScreen);
-        spGoalScreen1.getController().setDungeonScreen(spDungeon1);
-        spGoalScreen2.getController().setDungeonScreen(spDungeon2);
-        spGoalScreen3.getController().setDungeonScreen(spDungeon3);
-        //dungeonScreen1.getController().setGoalScreen(goalScreen);
-        //goalScreen.getController().setDungeonScreen(dungeonScreen1);
+ 
         mainScreen.start();    
     }
 
