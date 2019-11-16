@@ -19,7 +19,7 @@ public class GoalScreen {
     public GoalScreen(Stage stage) throws IOException {
         this.stage = new Stage(StageStyle.TRANSPARENT);
         this.stage.initModality(Modality.APPLICATION_MODAL);
-        //this.stage.setOpacity(0.2);
+        this.stage.setOpacity(0.7);
         title = "Goals";
         
         controller = new GoalController(this);
@@ -27,6 +27,7 @@ public class GoalScreen {
         loader.setController(controller);
 
         Parent root = loader.load();
+        //root.relocate(100, 80);
         scene = new Scene(root, 600, 400);
         scene.setFill(Color.TRANSPARENT);
         root.requestFocus();
