@@ -60,6 +60,7 @@ public class DungeonScreen {
     public void next() {
         mediaPlayer.stop();
     	nextScreen.start();
+
     }
 
     public DungeonController getController() {

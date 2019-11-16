@@ -14,15 +14,15 @@ public class LevelScreen {
     private Stage stage;
     private String title;
     private LevelController controller;
-    
+    private MainScreen mainScreen;
     private DungeonScreen nextLevel;
     private Scene scene;
    
 
-    public LevelScreen(Stage stage, String text, DungeonScreen nextLevel) throws IOException {
+    public LevelScreen(Stage stage, String text) throws IOException {
         this.stage = stage;
         title = text;
-        this.nextLevel = nextLevel;
+        this.nextLevel = null;
         controller = new LevelController(text);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LevelView.fxml"));
         
@@ -37,13 +37,24 @@ public class LevelScreen {
     public void start() {
         stage.setTitle(title);
         stage.setScene(scene);
-        //this.text.setText("level 2");
         PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished( event -> nextLevel.start() );
+    	if (nextLevel == null) {
+            delay.setOnFinished( event -> mainScreen.start() );
+    	} else {
+            delay.setOnFinished( event -> nextLevel.start() );
+    	}
         delay.play();
 
         
     }
+
+	/**
+	 * @param nextLevel the nextLevel to set
+	 */
+	public void setNextLevel(DungeonScreen nextLevel) {
+		this.nextLevel = nextLevel;
+	}
+    
     
     /*
 
