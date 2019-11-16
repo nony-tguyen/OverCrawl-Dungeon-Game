@@ -146,5 +146,13 @@ public class Player extends MovableEntity {
 	public int getPlayerNum() {
 		return playerNum;
 	}
-	
+	@Override
+	public boolean isBlocking(Entity subject) {
+		if (subject instanceof Player) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

@@ -93,22 +93,38 @@ public class DungeonController {
     @FXML
     public void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
-        case UP:
-        	//squares.
-        	//dungeon.printEntities();
+        case W:
         	players.get(0).moveUp();
             break;
-        case DOWN:
+        case S:
         	players.get(0).moveDown();
             break;
-        case LEFT:
+        case A:
         	players.get(0).moveLeft();
             break;
-        case RIGHT:
+        case D:
         	players.get(0).moveRight();
             break;
+
         default:
             break;
+        }
+        if (players.size() == 2) {
+            switch (event.getCode()) {
+	        case UP:
+	        	players.get(1).moveUp();
+	            break;
+	        case DOWN:
+	        	players.get(1).moveDown();
+	            break;
+	        case LEFT:
+	        	players.get(1).moveLeft();
+	            break;
+	        case RIGHT:
+	        	players.get(1).moveRight();
+	            break;
+ 	
+            }
         }
     }
 
