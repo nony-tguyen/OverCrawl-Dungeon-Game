@@ -17,14 +17,15 @@ public class DungeonScreen {
     private DungeonController controller;
     private Scene scene;
     private MediaPlayer mediaPlayer;
-    private LevelScreen nextScreen;
+    private BufferScreen nextScreen;
+    private BufferScreen gameOver;
     private GoalScreen goalScreen;
     private InventoryScreen inventoryScreen;
     private GoalControllerLoader goalLoader;
 
     public DungeonScreen(Stage stage, String map) throws IOException {
         this.stage = stage;
-        title = "Dungeon 1";
+        title = "Dungeon";
 
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map);      
 
@@ -66,7 +67,12 @@ public class DungeonScreen {
     	nextScreen.start();
 
     }
+    public void end() {
+        mediaPlayer.stop();
+    	gameOver.start();
+    	
 
+    }
     public DungeonController getController() {
         return controller;
     }
@@ -74,7 +80,7 @@ public class DungeonScreen {
 	/**
 	 * @param nextScreen the nextScreen to set
 	 */
-	public void setNextScreen(LevelScreen nextScreen) {
+	public void setNextScreen(BufferScreen nextScreen) {
 		this.nextScreen = nextScreen;
 	}
     
@@ -85,4 +91,12 @@ public class DungeonScreen {
         controller.setGoalScreen(goalScreen);
         goalScreen.getController().setDungeonScreen(this);
     }
+
+	/**
+	 * @param gameOver the gameOver to set
+	 */
+	public void setGameOver(BufferScreen gameOver) {
+		this.gameOver = gameOver;
+	}
+    
 }

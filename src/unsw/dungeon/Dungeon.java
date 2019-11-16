@@ -4,6 +4,7 @@
 package unsw.dungeon;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javafx.beans.property.BooleanProperty;
@@ -28,6 +29,7 @@ public class Dungeon {
     private List<Player> players;
     private GoalComponent goal;
     private BooleanProperty dungeonCompleted;
+    private BooleanProperty gameOver;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -35,6 +37,7 @@ public class Dungeon {
         this.entities = new ArrayList<>();
         this.players = new ArrayList<>();
         this.dungeonCompleted = new SimpleBooleanProperty(false);
+        this.gameOver = new SimpleBooleanProperty(false);
     }
 
     public int getWidth() {
@@ -57,12 +60,29 @@ public class Dungeon {
     	return players;
     }
     public void removePlayer(int playerNum) {
+    	Iterator<Player> iter = players.iterator();
+
+    	while (iter.hasNext()) {
+    	    Player p = iter.next();
+
+    	    if (p.getPlayerNum() == playerNum) {
+    	        iter.remove();  
+    	        updateGameProgression();
+    	    }
+
+    	}
+    	/*
     	for (Player p : players) {
-			if (p.getPlayerNum() == (playerNum - 1)) {
+			if (p.getPlayerNum() == playerNum) {
+
 				System.out.println("removing");
 		    	players.remove(p);
+		    	updateGameProgression();
+		    	//System.out.println(players.size());
+
 			}
     	}
+    	*/
 	}
 
 /*
@@ -165,8 +185,12 @@ public class Dungeon {
      * Update the game state after an action
      */
     public void updateGameProgression() {
-    	if (players.size() == 0 || goal.checkGoalCompleted().get()) {
-    		System.out.println("hi");
+    	System.out.println(players);
+    	if (players.size() == 0) {
+    		System.out.println("Game over");
+    		gameOver.set(true);
+    	}
+    	if (goal.checkGoalCompleted().get()) {
     		dungeonCompleted.set(true);
     	} else {
     		dungeonCompleted.set(false);
@@ -174,10 +198,17 @@ public class Dungeon {
     }
     
     /**
-     * @return True if the game has finished by player dying or goals completed
+     * @return True if the game has finished by goals completed
      */
-    public BooleanProperty isGameFinished() {
+    public BooleanProperty isDungeonComplete() {
     	
     	return dungeonCompleted;
+    }
+    /**
+     * @return True if the game has finished by player dying 
+     */
+    public BooleanProperty isGameOver() {
+    	
+    	return gameOver;
     }
 }

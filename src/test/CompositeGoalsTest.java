@@ -66,7 +66,7 @@ class CompositeGoalsTest {
 		dungeon.setGoal(goal);
 		
 		assertFalse(goal.checkGoalCompleted().get());
-		assertFalse(dungeon.isGameFinished().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 		
 		// Finish enemy goal but overall goal not finished
 		player.moveRight();
@@ -75,13 +75,13 @@ class CompositeGoalsTest {
 		s.useItem(player);
 		assertTrue(enemyGoal.checkGoalCompleted().get());
 		assertFalse(goal.checkGoalCompleted().get());
-		assertFalse(dungeon.isGameFinished().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 		
 		// Finish exit goal, overall goal is now completed
 		player.moveDown();
 		assertTrue(exitGoal.checkGoalCompleted().get());
 		assertTrue(goal.checkGoalCompleted().get());
-		assertTrue(dungeon.isGameFinished().get());
+		assertTrue(dungeon.isDungeonComplete().get());
 	}
 	
 	@Test
@@ -112,7 +112,7 @@ class CompositeGoalsTest {
 		dungeon.setGoal(goal);
 		
 		assertFalse(goal.checkGoalCompleted().get());
-		assertFalse(dungeon.isGameFinished().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 		
 		// Collect all treasure
 		player.moveRight();
@@ -122,7 +122,7 @@ class CompositeGoalsTest {
 		assertTrue(treasureGoal.checkGoalCompleted().get());
 		assertFalse(boulderGoal.checkGoalCompleted().get());
 		assertTrue(goal.checkGoalCompleted().get());
-		assertTrue(dungeon.isGameFinished().get());
+		assertTrue(dungeon.isDungeonComplete().get());
 	}
 	
 	@Test
@@ -171,13 +171,13 @@ class CompositeGoalsTest {
 		assertFalse(enemyGoal.checkGoalCompleted().get());
 		assertTrue(subGoal.checkGoalCompleted().get());
 		assertFalse(goal.checkGoalCompleted().get());
-		assertFalse(dungeon.isGameFinished().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 		
 		// Proceed to exit - finished all the goals
 		player.moveDown();
 		assertTrue(exitGoal.checkGoalCompleted().get());
 		assertTrue(goal.checkGoalCompleted().get());
-		assertTrue(dungeon.isGameFinished().get());
+		assertTrue(dungeon.isDungeonComplete().get());
 	}
 	
 

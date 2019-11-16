@@ -178,7 +178,7 @@ public class DungeonController {
     }
     
     private void dungeonGameProgress() {
-    	dungeon.isGameFinished().addListener(new ChangeListener<Boolean>() {
+    	dungeon.isDungeonComplete().addListener(new ChangeListener<Boolean>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, 
@@ -189,6 +189,17 @@ public class DungeonController {
 				}
 			}
     	});
+    	dungeon.isGameOver().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, 
+					Boolean oldValue, Boolean newValue) {
+				if (newValue == true) {
+					System.out.println("Game Over!");
+					gameOver();
+				}
+			}
+    	});
     }
     
     /**
@@ -196,7 +207,10 @@ public class DungeonController {
      */
     private void enemyMove() {
     	for (Enemy enemy : dungeon.getEnemies()) {
-    		enemy.moveEnemy(players.get(0).getX(), players.get(0).getY());
+    		if (dungeon.isGameOver().get() == false) {
+        		enemy.moveEnemy(players.get(0).getX(), players.get(0).getY());  			
+    		}
+
     	}
     }
     
@@ -245,6 +259,9 @@ public class DungeonController {
 	}
 	public void nextLevel() {
 		dungeonScreen.next();
+	} 
+	public void gameOver() {
+		dungeonScreen.end();
 	}
 
 }

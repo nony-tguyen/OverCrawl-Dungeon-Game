@@ -31,7 +31,7 @@ public class GoalControllerLoader {
 		total.setFont(new Font("Comic Sans MS", 18));
 		goalLabel.setStyle("-fx-font-weight: bold");
 		goalLabel.setFont(new Font("Comic Sans MS", 18));
-		HBox.setMargin(title, new Insets(0, 220, 0, 0));
+		HBox.setMargin(title, new Insets(0, 130, 0, 0));
 		//HBox.setMargin(goalLabel, new Insets(0, 0, 0, 0));
 		HBox.setMargin(total, new Insets(0, 100, 0, 0));
 		hbox.getChildren().addAll(title, goalLabel, total);

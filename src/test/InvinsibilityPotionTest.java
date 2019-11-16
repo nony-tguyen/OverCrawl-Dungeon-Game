@@ -107,7 +107,7 @@ class InvinsibilityPotionTest {
 		assertTrue(player.getX() == 1 && player.getY() == 1);
 		assertFalse(player.isVulnerable());
 		assertFalse(dungeon.getEnemies().contains(e));
-		assertFalse(dungeon.isGameFinished().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 	}
 
 }

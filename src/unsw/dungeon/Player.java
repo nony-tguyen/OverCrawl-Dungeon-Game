@@ -131,8 +131,9 @@ public class Player extends MovableEntity {
 	 */
 	public void killPlayer() {
 		dungeon.removePlayer(this.playerNum);
+		//dungeon.updateGameProgression();
 		this.removeVisible();
-		dungeon.updateGameProgression();
+
 	}
 	
 	public Direction getDirection() {

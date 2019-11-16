@@ -9,21 +9,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class LevelScreen {
+public class BufferScreen {
 
     private Stage stage;
     private String title;
-    private LevelController controller;
+    private BufferController controller;
     private MainScreen mainScreen;
     private DungeonScreen nextLevel;
     private Scene scene;
    
 
-    public LevelScreen(Stage stage, String text) throws IOException {
+    public BufferScreen(Stage stage, String text) throws IOException {
         this.stage = stage;
         title = text;
         this.nextLevel = null;
-        controller = new LevelController(text);
+        controller = new BufferController(text);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/LevelView.fxml"));
         
         loader.setController(controller);
@@ -54,6 +54,14 @@ public class LevelScreen {
 	public void setNextLevel(DungeonScreen nextLevel) {
 		this.nextLevel = nextLevel;
 	}
+
+	/**
+	 * @param mainScreen the mainScreen to set
+	 */
+	public void setMainScreen(MainScreen mainScreen) {
+		this.mainScreen = mainScreen;
+	}
+	
     
     
     /*

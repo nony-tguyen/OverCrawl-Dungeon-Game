@@ -9,7 +9,7 @@ public class MainController {
     @FXML
     private Button startButton;
 
-    private LevelScreen singlePlayerScreen;
+    private BufferScreen singlePlayerScreen;
     
     private MainScreen mainScreen;
 
@@ -34,7 +34,7 @@ public class MainController {
 	/**
 	 * @param singlePlayerScreen the singlePlayerScreen to set
 	 */
-	public void setSinglePlayerScreen(LevelScreen singlePlayerScreen) {
+	public void setSinglePlayerScreen(BufferScreen singlePlayerScreen) {
 		this.singlePlayerScreen = singlePlayerScreen;
 	}
     

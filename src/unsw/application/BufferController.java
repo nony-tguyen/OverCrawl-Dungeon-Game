@@ -3,14 +3,14 @@ package unsw.application;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-public class LevelController {
+public class BufferController {
 
     @FXML
     private Text levelText;
     
     private String text;
     
-    public LevelController(String text) {
+    public BufferController(String text) {
     	this.text = text;
 	}
     @FXML
