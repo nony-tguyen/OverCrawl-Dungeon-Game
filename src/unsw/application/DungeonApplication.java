@@ -2,6 +2,7 @@ package unsw.application;
 
 import java.io.IOException;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,22 +10,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class DungeonApplication extends Application {
+	//private multilayerMaps
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Dungeon");
-
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("tony.json");
-
-        DungeonController controller = dungeonLoader.loadController();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/DungeonView.fxml"));
-        loader.setController(controller);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        root.requestFocus();
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        
+    	MainScreen mainScreen = new MainScreen(primaryStage);
+        DungeonScreen dungeonScreen1 = new DungeonScreen(primaryStage, "tony.json");
+        LevelScreen singlePlayerScreen = new LevelScreen(primaryStage, "Level 2", dungeonScreen1);
+        GoalScreen goalScreen = new GoalScreen(primaryStage);
+        //DungeonScreen dungeonScreen1 = new DungeonScreen(primaryStage, "doorMaze.json");
+        mainScreen.getController().setDungeonScreen(dungeonScreen1);
+        mainScreen.getController().setSinglePlayerScreen(singlePlayerScreen);
+        mainScreen.getController().setMainScreen(mainScreen);
+        dungeonScreen1.getController().setGoalScreen(goalScreen);
+        goalScreen.getController().setDungeonScreen(dungeonScreen1);
+        mainScreen.start();    
     }
 
     public static void main(String[] args) {

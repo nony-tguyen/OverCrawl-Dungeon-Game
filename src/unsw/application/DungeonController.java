@@ -39,6 +39,8 @@ public class DungeonController {
     private Dungeon dungeon;
     
     private Timeline timeline;
+    
+    private GoalScreen goalScreen;
 
     public DungeonController(Dungeon dungeon, HashMap<Entity, ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -102,6 +104,9 @@ public class DungeonController {
         case I:
         	useInvincibilityPotion();
         	break;
+        case TAB:
+        	goalScreen.start();
+        	break;
         default:
             break;
         }
@@ -155,6 +160,8 @@ public class DungeonController {
     	}
     }
     
-    
+	public void setGoalScreen(GoalScreen goalScreen) {
+        this.goalScreen = goalScreen;
+    }
 }
 
