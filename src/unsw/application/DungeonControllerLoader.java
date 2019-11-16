@@ -191,7 +191,6 @@ public class DungeonControllerLoader extends DungeonLoader {
     /**
      * Creating goals for the dungeon game
      */
-   
 
 	@Override
 	public void onLoadGoal(BouldersGoal bouldersGoal, Dungeon dungeon) {
