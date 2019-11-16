@@ -20,7 +20,7 @@ public class InventoryScreen {
         this.stage = new Stage(StageStyle.TRANSPARENT);
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.stage.setOpacity(0.7);
-        title = "Goals";
+        title = "Inventory";
         
         controller = new InventoryController(this);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/InventoryView.fxml"));
@@ -34,6 +34,9 @@ public class InventoryScreen {
     }
     
     public void start() {
+    	// update 
+    	controller.update();
+    	//scene.
         stage.setTitle(title);
         stage.setScene(scene);
         stage.showAndWait();

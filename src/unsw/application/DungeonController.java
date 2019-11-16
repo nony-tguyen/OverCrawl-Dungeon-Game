@@ -116,6 +116,7 @@ public class DungeonController {
         	}
         	
         }
+        //setupInventory();
         dungeonGameProgress();
     }
 
@@ -195,7 +196,7 @@ public class DungeonController {
      */
     private void enemyMove() {
     	for (Enemy enemy : dungeon.getEnemies()) {
-    		enemy.moveEnemy(players.get(1).getX(), players.get(1).getY());
+    		enemy.moveEnemy(players.get(0).getX(), players.get(0).getY());
     	}
     }
     
@@ -229,7 +230,10 @@ public class DungeonController {
     }
 	public void setInventoryScreen(InventoryScreen inventoryScreen) {
         this.inventoryScreen = inventoryScreen;
+     // System.out.println(inventoryScreen);
+        inventoryScreen.getController().setInv(players.get(0).getInventory());
     }
+	
 
 	/**
 	 * @param dungeonScreen the dungeonScreen to set
@@ -241,5 +245,10 @@ public class DungeonController {
 		dungeonScreen.next();
 	}
 	
+	public void setupInventory() {
+		// TODO MAKE IT WORK MULTIPLAYER
+		//System.out.println(players.get(0).getInventory());
+		inventoryScreen.getController().setInv(players.get(0).getInventory());
+	}
 }
 

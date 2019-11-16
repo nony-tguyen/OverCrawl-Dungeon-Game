@@ -19,6 +19,7 @@ public class DungeonScreen {
     private MediaPlayer mediaPlayer;
     private LevelScreen nextScreen;
     private GoalScreen goalScreen;
+    private InventoryScreen inventoryScreen;
 
     public DungeonScreen(Stage stage, String map) throws IOException {
         this.stage = stage;
@@ -31,9 +32,11 @@ public class DungeonScreen {
         String musicFile = "music/Dungeon_Theme.aac";  
         Media sound = new Media(new File(musicFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
-
+        
+       // 
         this.controller = dungeonLoader.loadController();
         controller.setDungeonScreen(this);
+        
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/DungeonView.fxml"));
         loader.setController(controller);
@@ -41,6 +44,9 @@ public class DungeonScreen {
         this.scene = new Scene(root);
         root.requestFocus();
 
+        inventoryScreen = new InventoryScreen(stage);
+        this.controller.setInventoryScreen(inventoryScreen);
+        this.controller.setupInventory();
         /*
         stage.setScene(scene);
         stage.show();

@@ -110,6 +110,7 @@
     {
       "x": 1,
       "y": 1,
+      "playerNum": 1,
       "type": "player"
     },
     {
@@ -1041,6 +1042,12 @@
       "x": 1,
       "y": 13,
       "type": "invincibility"
+    },
+    {
+      "x": 1,
+      "y": 12,
+      "type": "key",
+      "id": 5
     },
     {
       "x": 3,

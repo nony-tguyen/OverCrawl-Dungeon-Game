@@ -14,9 +14,10 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <GridPane fx:id="invGrid" layoutX="14.0" layoutY="46.0">
+      <GridPane fx:id="invGrid" layoutX="14.0" layoutY="55.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
