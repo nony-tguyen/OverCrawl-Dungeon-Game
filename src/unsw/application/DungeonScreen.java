@@ -18,6 +18,7 @@ public class DungeonScreen {
     private Scene scene;
     private MediaPlayer mediaPlayer;
     private LevelScreen nextScreen;
+    private GoalScreen goalScreen;
 
     public DungeonScreen(Stage stage, String map) throws IOException {
         this.stage = stage;
@@ -42,6 +43,7 @@ public class DungeonScreen {
         stage.setScene(scene);
         stage.show();
         */
+        initGoalScreen(stage);
     }
 
     public void start() {
@@ -67,5 +69,11 @@ public class DungeonScreen {
 		this.nextScreen = nextScreen;
 	}
     
-}
 
+    
+    private void initGoalScreen(Stage stage) throws IOException {
+    	goalScreen = new GoalScreen(stage);
+        controller.setGoalScreen(goalScreen);
+        goalScreen.getController().setDungeonScreen(this);
+    }
+}

@@ -26,14 +26,22 @@ public class DungeonApplication extends Application {
         GoalScreen spGoalScreen1 = new GoalScreen(primaryStage);
         GoalScreen spGoalScreen2 = new GoalScreen(primaryStage);
         
+        InventoryScreen spInventoryScreen = new InventoryScreen(primaryStage);
+        
+        //GoalScreen goalScreen = new GoalScreen(primaryStage);
         //DungeonScreen dungeonScreen1 = new DungeonScreen(primaryStage, "doorMaze.json");
         mainScreen.getController().setDungeonScreen(spDungeon1);
         mainScreen.getController().setSinglePlayerScreen(spLevel1Screen);
         mainScreen.getController().setMainScreen(mainScreen);
+        
         spDungeon1.getController().setGoalScreen(spGoalScreen1);
         spDungeon2.getController().setGoalScreen(spGoalScreen2);
+        spDungeon1.getController().setInventoryScreen(spInventoryScreen);
+        spDungeon2.getController().setInventoryScreen(spInventoryScreen);
         spGoalScreen1.getController().setDungeonScreen(spDungeon1);
         spGoalScreen2.getController().setDungeonScreen(spDungeon2);
+        //dungeonScreen1.getController().setGoalScreen(goalScreen);
+        //goalScreen.getController().setDungeonScreen(dungeonScreen1);
         mainScreen.start();    
     }
 

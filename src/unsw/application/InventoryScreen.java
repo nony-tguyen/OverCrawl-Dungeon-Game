@@ -10,25 +10,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class GoalScreen {
+public class InventoryScreen {
 	private Stage stage;
     private String title;
-    private GoalController controller;
+    private InventoryController controller;
     private Scene scene;
     
-    public GoalScreen(Stage stage) throws IOException {
+    public InventoryScreen(Stage stage) throws IOException {
         this.stage = new Stage(StageStyle.TRANSPARENT);
         this.stage.initModality(Modality.APPLICATION_MODAL);
         this.stage.setOpacity(0.7);
         title = "Goals";
         
-        controller = new GoalController(this);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/GoalView.fxml"));
+        controller = new InventoryController(this);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/InventoryView.fxml"));
         loader.setController(controller);
 
         Parent root = loader.load();
         //root.relocate(100, 80);
-        scene = new Scene(root, 600, 400);
+        scene = new Scene(root, 600, 275);
         scene.setFill(Color.TRANSPARENT);
         root.requestFocus();
     }
@@ -39,7 +39,7 @@ public class GoalScreen {
         stage.showAndWait();
     }
     
-    public GoalController getController() {
+    public InventoryController getController() {
         return controller;
     }
     

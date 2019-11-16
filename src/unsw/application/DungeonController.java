@@ -43,6 +43,8 @@ public class DungeonController {
     
     private GoalScreen goalScreen;
     
+    private InventoryScreen inventoryScreen;
+    
     private DungeonScreen dungeonScreen;
 
     public DungeonController(Dungeon dungeon, HashMap<Entity, ImageView> initialEntities) {
@@ -141,6 +143,8 @@ public class DungeonController {
         case TAB:
         	goalScreen.start();
         	break;
+        case I:
+        	inventoryScreen.start();
         default:
             break;
         }
@@ -222,6 +226,9 @@ public class DungeonController {
     
 	public void setGoalScreen(GoalScreen goalScreen) {
         this.goalScreen = goalScreen;
+    }
+	public void setInventoryScreen(InventoryScreen inventoryScreen) {
+        this.inventoryScreen = inventoryScreen;
     }
 
 	/**
