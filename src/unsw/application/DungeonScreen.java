@@ -14,15 +14,18 @@ public class DungeonScreen {
     private DungeonController controller;
     private Scene scene;
     private GoalScreen goalScreen;
+    private GoalControllerLoader goalLoader;
 
     public DungeonScreen(Stage stage, String map) throws IOException {
         this.stage = stage;
         title = "Dungeon 1";
 
-        goalScreen = new GoalScreen(stage);
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map);      
-        dungeonLoader.setGoalScreen(goalScreen);
-
+        
+        goalLoader = new GoalControllerLoader();
+        System.out.println("im here first");
+        dungeonLoader.setGoalControllerLoader(goalLoader);
+        System.out.println("im here second");
         this.controller = dungeonLoader.loadController();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/DungeonView.fxml"));
         loader.setController(controller);
@@ -48,6 +51,7 @@ public class DungeonScreen {
     }
     
     private void initGoalScreen(Stage stage) throws IOException {
+    	goalScreen = new GoalScreen(stage, goalLoader);
         controller.setGoalScreen(goalScreen);
         goalScreen.getController().setDungeonScreen(this);
     }

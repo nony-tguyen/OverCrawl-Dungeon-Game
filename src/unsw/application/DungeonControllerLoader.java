@@ -42,7 +42,7 @@ import unsw.dungeon.obstacles.Wall;
 public class DungeonControllerLoader extends DungeonLoader {
 
     private HashMap<Entity, ImageView> entities;
-    private GoalScreen goalScreen;
+    private GoalControllerLoader goalLoader;
 
     //Images
     private Image playerImage;
@@ -236,8 +236,13 @@ public class DungeonControllerLoader extends DungeonLoader {
 	
 	private void trackGoalProgression(GoalComponent goal, Dungeon dungeon) {
 		Label countLabel = new Label();
-		countLabel.textProperty().bind(goal.getCurrentTotal().asString());
-		goalScreen.addDisplay(countLabel, goal);
+		
+		if (goal.getGoalTotal() == 0) {
+			goalLoader.addCompositeDisplay(countLabel, goal);
+		} else {
+			countLabel.textProperty().bind(goal.getCurrentTotal().asString());
+			goalLoader.addDisplay(countLabel, goal);
+		}
 		
 		goal.checkGoalCompleted().addListener(new ChangeListener<Boolean>() {
 			@Override
@@ -250,8 +255,8 @@ public class DungeonControllerLoader extends DungeonLoader {
 		});
 	}
 	
-	public void setGoalScreen(GoalScreen goalScreen) {
-        this.goalScreen = goalScreen;
+	public void setGoalControllerLoader(GoalControllerLoader goalLoader) {
+        this.goalLoader = goalLoader;
     }
 	/**
 	 * @param dungeon
