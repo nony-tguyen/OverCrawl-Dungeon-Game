@@ -3,6 +3,7 @@ package unsw.application;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -24,7 +25,8 @@ public class InventoryController {
 	
 	private InventoryScreen inventoryScreen;
 	private DungeonScreen dungeonScreen;
-	private List<CollectableEntity> inv;
+	private List<CollectableEntity> inv1;
+	private List<CollectableEntity> inv2;
 
 	public InventoryController(InventoryScreen inventoryScreen) {
 		this.inventoryScreen = inventoryScreen;
@@ -33,14 +35,13 @@ public class InventoryController {
     public void initialize() {
     	// listen for inventory changes 
         invGrid.setHgap(2);
-        invGrid.setVgap(2);
-    	//dungeonScreen.getController().
+        invGrid.setVgap(30);
     }
 	@FXML
     public void handleKeyRelease(KeyEvent event) {
 		if (event.getCode() == KeyCode.I) {
 			System.out.println("key released");
-			invGrid = new GridPane();
+			//invGrid = new GridPane();
 			inventoryScreen.close();
 		}
 	}
@@ -51,40 +52,40 @@ public class InventoryController {
 	/**
 	 * @param inv the inv to set
 	 */
-	public void setInv(List<CollectableEntity> inv) {
-		this.inv = inv;
+	public void setInv1(List<CollectableEntity> inv) {
+		this.inv1 = inv;
+	}
+	public void setInv2(List<CollectableEntity> inv) {
+		this.inv2 = inv;
 	}
 	public void update() {
+    	invGrid.getChildren().clear();
+		addPicture(inv1, 1);
+		if (inv2 != null) {
+			Label player2Label = new Label();
+			player2Label.setText("Player 2");
+			player2Label.setTranslateX(26);
+			player2Label.setTranslateY(115);
+			displayInventory.getChildren().add(player2Label);
+			addPicture(inv2, 2);	
+		}
+	}
+	public void addPicture(List<CollectableEntity> inv, int player) {
     	Image treasureImage = new Image("/gold_pile.png");
     	Image swordImage = new Image("/greatsword_1_new.png");
     	Image keyImage = new Image("/key.png");
     	Image invincibilityImage = new Image("/brilliant_blue_new.png");
-
-    	//int col = 0;
-    	if (inv != null) {
-        	for (CollectableEntity e : inv) {
-        		System.out.println(e);
-        		if (e instanceof Treasure) {
-        			invGrid.addRow(0, new ImageView(invincibilityImage));
-        			//invGrid.add(new ImageView(treasureImage), col, 0);		
-        		} else if (e instanceof Key) {
-        			invGrid.addRow(0, new ImageView(invincibilityImage));
-        			//invGrid.add(new ImageView(keyImage), col, 0);		
-        			System.out.println("Adding key");
-        		} else if (e instanceof Sword) {
-        			invGrid.addRow(0, new ImageView(invincibilityImage));
-        			//invGrid.add(new ImageView(swordImage), col, 0);		
-        			System.out.println("Adding sword");
-        		} else if (e instanceof InvincibilityPotion) {
-        			invGrid.addRow(0, new ImageView(invincibilityImage));
-        			//invGrid.addColumn(new ImageView(invincibilityImage), col, 0);
-        			//invGrid.add(new ImageView(invincibilityImage), col, 0);
-        			System.out.println("Adding ");
-        		}
-        		//col++;
-
-        	} 		
-    	}
+    	for (CollectableEntity e : inv) {
+    		if (e instanceof Treasure) {
+    			invGrid.addRow(player - 1, new ImageView(treasureImage));	
+    		} else if (e instanceof Key) {
+    			invGrid.addRow(player - 1, new ImageView(keyImage));
+    		} else if (e instanceof Sword) {
+    			invGrid.addRow(player - 1, new ImageView(swordImage));	
+    		} else if (e instanceof InvincibilityPotion) {
+    			invGrid.addRow(player - 1, new ImageView(invincibilityImage));
+    		}
+    	} 	
 	}
 
 	

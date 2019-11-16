@@ -46,11 +46,6 @@ public class DungeonScreen {
 
         inventoryScreen = new InventoryScreen(stage);
         this.controller.setInventoryScreen(inventoryScreen);
-        this.controller.setupInventory();
-        /*
-        stage.setScene(scene);
-        stage.show();
-        */
         initGoalScreen(stage);
         
     }

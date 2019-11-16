@@ -113,6 +113,7 @@
       "playerNum": 1,
       "type": "player"
     },
+
     {
       "x": 2,
       "y": 1,
@@ -1052,7 +1053,8 @@
     {
       "x": 3,
       "y": 3,
-      "type": "treasure"
+      "id": 4,
+      "type": "key"
     },
     {
       "x": 4,

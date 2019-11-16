@@ -230,8 +230,10 @@ public class DungeonController {
     }
 	public void setInventoryScreen(InventoryScreen inventoryScreen) {
         this.inventoryScreen = inventoryScreen;
-     // System.out.println(inventoryScreen);
-        inventoryScreen.getController().setInv(players.get(0).getInventory());
+        inventoryScreen.getController().setInv1(players.get(0).getInventory());
+        if (players.size() == 2) {
+            inventoryScreen.getController().setInv2(players.get(1).getInventory());
+        }
     }
 	
 
@@ -244,11 +246,6 @@ public class DungeonController {
 	public void nextLevel() {
 		dungeonScreen.next();
 	}
-	
-	public void setupInventory() {
-		// TODO MAKE IT WORK MULTIPLAYER
-		//System.out.println(players.get(0).getInventory());
-		inventoryScreen.getController().setInv(players.get(0).getInventory());
-	}
+
 }
 
