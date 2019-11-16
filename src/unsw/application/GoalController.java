@@ -20,7 +20,6 @@ public class GoalController {
     public void handleKeyRelease(KeyEvent event) {
 		if (event.getCode() == KeyCode.TAB) {
 			System.out.println("key released");
-			//dungeonScreen.start();
 			goalScreen.close();
 		}
 	}
@@ -28,6 +27,4 @@ public class GoalController {
 	public void setDungeonScreen(DungeonScreen dungeonScreen) {
         this.dungeonScreen = dungeonScreen;
     }
-	
-	
 }
