@@ -20,6 +20,7 @@ import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
 import unsw.dungeon.combat.Enemy;
+import unsw.dungeon.combat.EnemyType;
 import unsw.dungeon.combat.InvincibilityPotion;
 
 /**
@@ -38,7 +39,7 @@ public class DungeonController {
 
     private Dungeon dungeon;
     
-    private Timeline timeline;
+    private List<Timeline> enemyTimeline;
     
     private GoalScreen goalScreen;
 
@@ -46,8 +47,7 @@ public class DungeonController {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new HashMap<>(initialEntities);
-        timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> enemyMove()));	
-		timeline.setCycleCount(Timeline.INDEFINITE);
+        initializeEnemyTimeline();
     }
     
     @FXML
@@ -110,7 +110,7 @@ public class DungeonController {
         default:
             break;
         }
-        timeline.play();
+        playEnemyTimeline();
     }
     
     private void dungeonGameProgress() {
@@ -126,13 +126,45 @@ public class DungeonController {
     	});
     }
     
+    private void initializeEnemyTimeline() {
+    	enemyTimeline = new ArrayList<>();
+    	Timeline enemy1 = new Timeline(new KeyFrame(Duration.millis(1000), e -> enemyMove(EnemyType.NORMAL)));	
+		enemy1.setCycleCount(Timeline.INDEFINITE);
+		
+		Timeline enemy2 = new Timeline(new KeyFrame(Duration.millis(500), e -> enemyMove(EnemyType.HOUND)));	
+		enemy2.setCycleCount(Timeline.INDEFINITE);
+		
+		Timeline enemy3 = new Timeline(new KeyFrame(Duration.millis(1000), e -> enemyMove(EnemyType.GNOME)));	
+		enemy3.setCycleCount(8);
+		enemy3.onFinishedProperty().set(e -> {
+			for (Enemy enemy : dungeon.getEnemies()) {
+				enemy.explode();
+			}
+		});
+		
+		enemyTimeline.add(enemy1);
+		enemyTimeline.add(enemy2);
+		enemyTimeline.add(enemy3);
+    }
+    
+    private void playEnemyTimeline() {
+    	for (Timeline timeline : enemyTimeline) {
+    		timeline.play();
+    	}
+    }
+    
     /**
      * Set up enemy movement
      */
-    private void enemyMove() {
+    private void enemyMove(EnemyType type) {
     	for (Enemy enemy : dungeon.getEnemies()) {
-    		enemy.moveEnemy(player.getX(), player.getY());
+    		if (enemy.getEnemyType() == type)
+    			enemy.moveEnemy(player.getX(), player.getY());
     	}
+    }
+    
+    private void enemyExplode() {
+    	//for ()
     }
     
     /**

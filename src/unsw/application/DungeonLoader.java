@@ -16,6 +16,8 @@ import unsw.dungeon.Player;
 import unsw.dungeon.Portal;
 import unsw.dungeon.Treasure;
 import unsw.dungeon.combat.Enemy;
+import unsw.dungeon.combat.Gnome;
+import unsw.dungeon.combat.Hound;
 import unsw.dungeon.combat.InvincibilityPotion;
 import unsw.dungeon.combat.Sword;
 import unsw.dungeon.goals.ANDSubGoal;
@@ -125,6 +127,16 @@ public abstract class DungeonLoader {
         	onLoad(enemy);
         	entity = enemy; 
         	break;
+        case "hound": 
+        	Hound hound = new Hound(dungeon, x, y);
+        	onLoad(hound);
+        	entity = hound; 
+        	break;
+        case "gnome": 
+        	Gnome gnome = new Gnome(dungeon, x, y);
+        	onLoad(gnome);
+        	entity = gnome; 
+        	break;
         case "sword": 
         	Sword sword = new Sword(dungeon, x, y);
         	onLoad(sword);
@@ -157,6 +169,8 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Key key);
     public abstract void onLoad(Portal portal);
     public abstract void onLoad(Enemy enemy);
+    public abstract void onLoad(Hound hound);
+    public abstract void onLoad(Gnome gnome);
     public abstract void onLoad(Sword sword);
     public abstract void onLoad(InvincibilityPotion invincibility);
     public abstract void onLoad(Exit exit);

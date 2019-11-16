@@ -21,6 +21,8 @@ import unsw.dungeon.Key;
 import unsw.dungeon.Portal;
 import unsw.dungeon.Treasure;
 import unsw.dungeon.combat.Enemy;
+import unsw.dungeon.combat.Gnome;
+import unsw.dungeon.combat.Hound;
 import unsw.dungeon.combat.InvincibilityPotion;
 import unsw.dungeon.combat.Sword;
 import unsw.dungeon.goals.BouldersGoal;
@@ -57,6 +59,8 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image swordImage;
     private Image invincibilityImage;
 	private Image enemyArcherImage;
+	private Image houndImage;
+	private Image gnomeImage;
 
 	private Image exitImage;
 
@@ -76,6 +80,8 @@ public class DungeonControllerLoader extends DungeonLoader {
         swordImage = new Image("/greatsword_1_new.png");
         invincibilityImage = new Image("/brilliant_blue_new.png");
         enemyArcherImage = new Image("/deep_elf_master_archer.png");
+        houndImage = new Image("/hound.png");
+        gnomeImage = new Image("/gnome.png");
         exitImage = new Image("/exit.png");
         
     }
@@ -121,7 +127,16 @@ public class DungeonControllerLoader extends DungeonLoader {
 		ImageView view = new ImageView(enemyArcherImage);
         addEntity(enemy, view);
 	}
-
+	@Override
+	public void onLoad(Hound hound) {
+		ImageView view = new ImageView(houndImage);
+        addEntity(hound, view);
+	}
+	@Override
+	public void onLoad(Gnome gnome) {
+		ImageView view = new ImageView(gnomeImage);
+        addEntity(gnome, view);
+	}
 	@Override
 	public void onLoad(Sword sword) {
 		ImageView view = new ImageView(swordImage);

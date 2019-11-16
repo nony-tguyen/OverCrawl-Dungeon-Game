@@ -20,12 +20,10 @@ public class DungeonScreen {
         this.stage = stage;
         title = "Dungeon 1";
 
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map);      
-        
+        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map);              
         goalLoader = new GoalControllerLoader();
-        System.out.println("im here first");
         dungeonLoader.setGoalControllerLoader(goalLoader);
-        System.out.println("im here second");
+        
         this.controller = dungeonLoader.loadController();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/DungeonView.fxml"));
         loader.setController(controller);

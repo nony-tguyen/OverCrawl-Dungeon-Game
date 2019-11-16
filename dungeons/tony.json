@@ -1056,6 +1056,16 @@
       "x": 14,
       "y": 16,
       "type": "enemy"
+    },
+    {
+      "x": 2,
+      "y": 16,
+      "type": "hound"
+    },
+    {
+      "x": 13,
+      "y": 1,
+      "type": "gnome"
     }
   ],
   "goal-condition": {

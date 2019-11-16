@@ -19,7 +19,6 @@ public class GoalControllerLoader {
 	}
 	
 	public void addDisplay(Label goalLabel, GoalComponent goal) {
-    	System.out.println("adding display");
     	HBox hbox = new HBox();
 		hbox.setAlignment(Pos.CENTER_RIGHT);
 		hbox.setSpacing(10);
@@ -31,13 +30,12 @@ public class GoalControllerLoader {
 		total.setFont(new Font("Comic Sans MS", 18));
 		goalLabel.setStyle("-fx-font-weight: bold");
 		goalLabel.setFont(new Font("Comic Sans MS", 18));
-		HBox.setMargin(title, new Insets(0, 220, 0, 0));
+		HBox.setMargin(title, new Insets(0, 130, 0, 0));
 		//HBox.setMargin(goalLabel, new Insets(0, 0, 0, 0));
 		HBox.setMargin(total, new Insets(0, 100, 0, 0));
 		hbox.getChildren().addAll(title, goalLabel, total);
     	
 		goals.add(hbox);
-    	//controller.addGoalDisplay(hbox);
     }
 	
 	public void addCompositeDisplay(Label goalLabel, GoalComponent goal) {
