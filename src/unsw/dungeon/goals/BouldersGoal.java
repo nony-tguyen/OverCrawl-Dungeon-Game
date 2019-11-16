@@ -1,19 +1,22 @@
 package unsw.dungeon.goals;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.Dungeon;
 
 public class BouldersGoal implements GoalComponent {
 	
-	Dungeon dungeon;
-	int totalFloorSwitch;
-	int currentCount;
+	private Dungeon dungeon;
+	private int totalFloorSwitch;
+	private IntegerProperty currentCount;
 	private BooleanProperty complete;
 	
 	public BouldersGoal(Dungeon dungeon) {
 		this.dungeon = dungeon;
 		complete = new SimpleBooleanProperty(false);
+		currentCount = new SimpleIntegerProperty(0);
 	}
 	
 	@Override
@@ -24,12 +27,12 @@ public class BouldersGoal implements GoalComponent {
 	@Override
 	public void updateGoal(Boolean goalAchieved) {
 		if (goalAchieved) {
-			currentCount++;
-			if (currentCount == totalFloorSwitch) {
+			currentCount.set(getCurrentTotal().get() + 1);
+			if (currentCount.get() == totalFloorSwitch) {
 				complete.set(true);
 			} 
 		} else {
-			currentCount--;
+			currentCount.set(getCurrentTotal().get() - 1);
 			complete.set(false);
 		}
 		dungeon.updateGameProgression();
@@ -41,11 +44,21 @@ public class BouldersGoal implements GoalComponent {
 	}
 
 	@Override
-	public int getCurrentTotal() {
+	public IntegerProperty getCurrentTotal() {
 		return currentCount;
 	}
 
 	@Override
 	public void addGoal(GoalComponent goal) {}
+
+	@Override
+	public String getDescription() {
+		return "Place boulders on all floor switches";
+	}
+
+	@Override
+	public int getGoalTotal() {
+		return totalFloorSwitch;
+	}
 
 }

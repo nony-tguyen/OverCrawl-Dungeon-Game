@@ -5,10 +5,12 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import unsw.dungeon.goals.GoalComponent;
 
 public class GoalScreen {
 	private Stage stage;
@@ -27,7 +29,6 @@ public class GoalScreen {
         loader.setController(controller);
 
         Parent root = loader.load();
-        //root.relocate(100, 80);
         scene = new Scene(root, 600, 400);
         scene.setFill(Color.TRANSPARENT);
         root.requestFocus();
@@ -45,5 +46,9 @@ public class GoalScreen {
     
     public void close() {
     	stage.close();
+    }
+    
+    public void addDisplay(Label label, GoalComponent goal) {
+    	controller.addGoalDisplay(label, goal);
     }
 }

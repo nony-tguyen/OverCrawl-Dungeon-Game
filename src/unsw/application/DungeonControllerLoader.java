@@ -8,9 +8,11 @@ import java.util.List;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Exit;
@@ -40,6 +42,7 @@ import unsw.dungeon.obstacles.Wall;
 public class DungeonControllerLoader extends DungeonLoader {
 
     private HashMap<Entity, ImageView> entities;
+    private GoalScreen goalScreen;
 
     //Images
     private Image playerImage;
@@ -232,17 +235,24 @@ public class DungeonControllerLoader extends DungeonLoader {
 	}
 	
 	private void trackGoalProgression(GoalComponent goal, Dungeon dungeon) {
+		Label countLabel = new Label();
+		countLabel.textProperty().bind(goal.getCurrentTotal().asString());
+		goalScreen.addDisplay(countLabel, goal);
+		
 		goal.checkGoalCompleted().addListener(new ChangeListener<Boolean>() {
-
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				if (newValue == true) {
+					countLabel.setTextFill(Color.GREEN);
 					System.out.println("goal completed");
 				}	
 			}
 		});
 	}
 	
+	public void setGoalScreen(GoalScreen goalScreen) {
+        this.goalScreen = goalScreen;
+    }
 	/**
 	 * @param dungeon
 	 * @return Get floor switches in dungeon for goal

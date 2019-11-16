@@ -1,6 +1,7 @@
 package unsw.dungeon.goals;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 
 public interface GoalComponent {
 	
@@ -25,11 +26,21 @@ public interface GoalComponent {
 	/**
 	 * @return The current total achieved by the player
 	 */
-	public int getCurrentTotal();
+	public IntegerProperty getCurrentTotal();
 	
 	/**
 	 * Add leaf goal 
 	 * @param goal
 	 */
 	public void addGoal(GoalComponent goal);
+	
+	/**
+	 * @return Description of the goal
+	 */
+	public String getDescription();
+	
+	/**
+	 * @return Total goal
+	 */
+	public int getGoalTotal();
 }

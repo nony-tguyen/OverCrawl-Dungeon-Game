@@ -1,7 +1,9 @@
 package unsw.dungeon.goals;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Exit;
@@ -10,10 +12,14 @@ public class ExitGoal implements GoalComponent {
 	
 	private Dungeon dungeon;
 	private BooleanProperty complete;
+	private IntegerProperty currentCount;
+	private int total;
 	
 	public ExitGoal(Dungeon dungeon) {
 		this.dungeon = dungeon;
 		complete = new SimpleBooleanProperty(false);
+		currentCount = new SimpleIntegerProperty(0);
+		total = 1;
 	}
 	
 	@Override
@@ -28,6 +34,7 @@ public class ExitGoal implements GoalComponent {
 		if ((dungeon.getPlayer(1).getX() == exit.getX() && dungeon.getPlayer(1).getY() == exit.getY())
 				|| (dungeon.getPlayer(2).getX() == exit.getX() && dungeon.getPlayer(2).getY() == exit.getY())) {
 			complete.set(true);
+			currentCount.set(1);
 			dungeon.updateGameProgression();
 		} else {
 			complete.set(false);
@@ -39,8 +46,8 @@ public class ExitGoal implements GoalComponent {
 	public void setGoalTotal(int total) { }
 
 	@Override
-	public int getCurrentTotal() {
-		return 0;
+	public IntegerProperty getCurrentTotal() {
+		return currentCount;
 	}
 	
 	public Exit getExit(Dungeon dungeon) {
@@ -53,5 +60,15 @@ public class ExitGoal implements GoalComponent {
 
 	@Override
 	public void addGoal(GoalComponent goal) {}
+
+	@Override
+	public String getDescription() {
+		return "Find the exit";
+	}
+
+	@Override
+	public int getGoalTotal() {
+		return total;
+	}
 
 }
