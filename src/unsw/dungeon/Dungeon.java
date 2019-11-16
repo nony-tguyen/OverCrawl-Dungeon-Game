@@ -6,6 +6,8 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.goals.GoalComponent;
 import unsw.dungeon.obstacles.Boulder;
@@ -25,14 +27,14 @@ public class Dungeon {
     private List<Entity> entities;
     private List<Player> players;
     private GoalComponent goal;
-    private boolean dungeonCompleted;
+    private BooleanProperty dungeonCompleted;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
         this.players = new ArrayList<>();
-        this.dungeonCompleted = false;
+        this.dungeonCompleted = new SimpleBooleanProperty(false);
     }
 
     public int getWidth() {
@@ -163,17 +165,17 @@ public class Dungeon {
      * Update the game state after an action
      */
     public void updateGameProgression() {
-    	if (players.size() == 0 || goal.checkGoalCompleted()) {
-    		dungeonCompleted = true;
+    	if (players.size() == 0 || goal.checkGoalCompleted().get()) {
+    		dungeonCompleted.set(true);
     	} else {
-    		dungeonCompleted = false;
+    		dungeonCompleted.set(false);
     	}
     }
     
     /**
      * @return True if the game has finished by player dying or goals completed
      */
-    public boolean isGameFinished() {
+    public BooleanProperty isGameFinished() {
     	return dungeonCompleted;
     }
 }

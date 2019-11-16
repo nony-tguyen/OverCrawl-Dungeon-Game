@@ -17,10 +17,13 @@ public class DungeonApplication extends Application {
     	MainScreen mainScreen = new MainScreen(primaryStage);
         DungeonScreen dungeonScreen1 = new DungeonScreen(primaryStage, "doorMaze.json");
         LevelScreen singlePlayerScreen = new LevelScreen(primaryStage, "Level 2", dungeonScreen1);
+        GoalScreen goalScreen = new GoalScreen(primaryStage);
         //DungeonScreen dungeonScreen1 = new DungeonScreen(primaryStage, "doorMaze.json");
         mainScreen.getController().setDungeonScreen(dungeonScreen1);
         mainScreen.getController().setSinglePlayerScreen(singlePlayerScreen);
         mainScreen.getController().setMainScreen(mainScreen);
+        dungeonScreen1.getController().setGoalScreen(goalScreen);
+        goalScreen.getController().setDungeonScreen(dungeonScreen1);
         mainScreen.start();    
     }
 

@@ -18,6 +18,15 @@ import unsw.dungeon.Treasure;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.combat.InvincibilityPotion;
 import unsw.dungeon.combat.Sword;
+import unsw.dungeon.goals.ANDSubGoal;
+import unsw.dungeon.goals.BouldersGoal;
+import unsw.dungeon.goals.CompositeGoal;
+import unsw.dungeon.goals.EnemyGoal;
+import unsw.dungeon.goals.ExitGoal;
+import unsw.dungeon.goals.GoalComponent;
+import unsw.dungeon.goals.GoalConditions;
+import unsw.dungeon.goals.ORSubGoal;
+import unsw.dungeon.goals.TreasureGoal;
 import unsw.dungeon.obstacles.Boulder;
 import unsw.dungeon.obstacles.ClosedState;
 import unsw.dungeon.obstacles.Door;
@@ -55,6 +64,11 @@ public abstract class DungeonLoader {
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
+        
+        JSONObject jsonGoals = json.getJSONObject("goal-condition");
+        GoalComponent goal = loadGoal(dungeon, jsonGoals);
+        dungeon.setGoal(goal);
+        
         return dungeon;
     }
 
@@ -155,4 +169,57 @@ public abstract class DungeonLoader {
 
     // TODO Create additional abstract methods for the other entities
 
+    // Create Goals 
+    private GoalComponent loadGoal(Dungeon dungeon, JSONObject json) {
+    	String dungeonGoal = json.getString("goal");
+    	
+    	GoalComponent goal = null;
+    	switch(dungeonGoal) {
+    	case "exit":
+    		ExitGoal exitGoal = new ExitGoal(dungeon);
+    		goal = exitGoal;
+    		onLoadGoal(exitGoal, dungeon);
+    		break;
+    	case "enemies":
+    		EnemyGoal enemyGoal = new EnemyGoal(dungeon);
+    		goal = enemyGoal;
+    		onLoadGoal(enemyGoal, dungeon);
+    		break;
+    	case "boulders":
+    		BouldersGoal bouldersGoal = new BouldersGoal(dungeon);
+    		goal = bouldersGoal;
+    		onLoadGoal(bouldersGoal, dungeon);
+    		break;
+    	case "treasure":
+    		TreasureGoal treasureGoal = new TreasureGoal(dungeon);
+    		goal = treasureGoal;
+    		onloadGoal(treasureGoal, dungeon);
+    		break;
+    	case "AND":
+    		CompositeGoal cgAND = buildCompositeSubGoal(json.getJSONArray("subgoals"), dungeon, new ANDSubGoal());
+    		goal = cgAND;
+    		onloadGoal(cgAND, dungeon);
+    		break;
+    	case "OR":
+    		CompositeGoal cgOR = buildCompositeSubGoal(json.getJSONArray("subgoals"), dungeon, new ORSubGoal());
+    		goal = cgOR;
+    		onloadGoal(cgOR, dungeon);
+    		break;
+    	}
+    	return goal;
+    }
+
+    public abstract void onloadGoal(CompositeGoal cg, Dungeon dungeon);
+	public abstract void onLoadGoal(BouldersGoal bouldersGoal, Dungeon dungeon);
+	public abstract void onloadGoal(TreasureGoal treasureGoal, Dungeon dungeon);
+	public abstract void onLoadGoal(EnemyGoal goal, Dungeon dungeon);
+    public abstract void onLoadGoal(ExitGoal exitGoal, Dungeon dungeon);
+    
+	public CompositeGoal buildCompositeSubGoal(JSONArray goals, Dungeon dungeon, GoalConditions strategy) {
+		CompositeGoal goal = new CompositeGoal(dungeon, strategy);
+		for (int i = 0; i < goals.length(); i++) {
+			goal.addGoal(loadGoal(dungeon, goals.getJSONObject(i)));
+		}
+		return goal;
+	}
 }

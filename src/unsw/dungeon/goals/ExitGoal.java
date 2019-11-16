@@ -1,21 +1,23 @@
 package unsw.dungeon.goals;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Exit;
 
 public class ExitGoal implements GoalComponent {
 	
-	Dungeon dungeon;
-	private boolean complete;
+	private Dungeon dungeon;
+	private BooleanProperty complete;
 	
 	public ExitGoal(Dungeon dungeon) {
 		this.dungeon = dungeon;
-		this.complete = false;
+		complete = new SimpleBooleanProperty(false);
 	}
 	
 	@Override
-	public boolean checkGoalCompleted() {
+	public BooleanProperty checkGoalCompleted() {
 		return complete;
 	}
 
@@ -23,11 +25,12 @@ public class ExitGoal implements GoalComponent {
 	public void updateGoal(Boolean goalAchieved) {
 		Exit exit = getExit(dungeon);
 		// TODO change?
-		if (dungeon.getPlayer(1).getX() == exit.getX() && dungeon.getPlayer(1).getY() == exit.getY()) {
-			complete = true;
+		if ((dungeon.getPlayer(1).getX() == exit.getX() && dungeon.getPlayer(1).getY() == exit.getY())
+				|| (dungeon.getPlayer(2).getX() == exit.getX() && dungeon.getPlayer(2).getY() == exit.getY())) {
+			complete.set(true);
 			dungeon.updateGameProgression();
 		} else {
-			complete = false;
+			complete.set(false);
 			dungeon.updateGameProgression();
 		}
 	}

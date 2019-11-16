@@ -44,7 +44,7 @@ public class Enemy extends MovableEntity implements GoalSubject {
 			dungeon.getPlayer(1).handleEnemy(this);
 		}
 		// I think this makes enemy move continuously
-		// moveEnemy(dungeon.getPlayer().getX(),dungeon.getPlayer().getY());
+		//moveEnemy(dungeon.getPlayer().getX(),dungeon.getPlayer().getY());
 	}
 
 	public boolean isBlocking(Entity subject) {

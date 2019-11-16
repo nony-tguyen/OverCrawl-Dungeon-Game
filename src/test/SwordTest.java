@@ -108,7 +108,7 @@ class SwordTest {
 		assertEquals(s.getDurability(), 4);
 		
 		e1.moveEnemy(1, 0);
-		assertTrue(dungeon.isGameFinished());
+		assertTrue(dungeon.isGameFinished().get());
 	}
 
 }

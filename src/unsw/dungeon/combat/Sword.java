@@ -32,6 +32,7 @@ public class Sword extends CollectableEntity {
 		decreaseDurability();
 		if (durability <= 0) {
 			removeItem(player);
+			player.setSword(null);
 		}
 	}
 
@@ -43,6 +44,7 @@ public class Sword extends CollectableEntity {
 			}
 		}
 		super.collectItem(player);
+		player.setSword(this);
 	}
 
 	@Override

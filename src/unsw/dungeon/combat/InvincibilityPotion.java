@@ -1,5 +1,7 @@
 package unsw.dungeon.combat;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.CollectableEntity;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.InvinciblePlayer;
@@ -11,11 +13,14 @@ import unsw.dungeon.Player;
  *
  */
 public class InvincibilityPotion extends CollectableEntity {
-
-	private int timeLimit = 10;
+	
+	public final int timeLimit;
+	private IntegerProperty timeRemain;
 	
 	public InvincibilityPotion(Dungeon dungeon, int x, int y) {
 		super(dungeon, x, y);
+		timeLimit = 5;
+		timeRemain = new SimpleIntegerProperty(5);
 	}
 
 	@Override
@@ -36,4 +41,13 @@ public class InvincibilityPotion extends CollectableEntity {
 	public int getTimeLimit() {
 		return timeLimit;
 	}
+	
+	/**
+	 * Get time remaining for potion duration
+	 * @return
+	 */
+	public IntegerProperty getTimeRemain() {
+		return timeRemain;
+	}
+	
 }

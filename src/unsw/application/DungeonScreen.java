@@ -26,6 +26,7 @@ public class DungeonScreen {
         String musicFile = "music/Dungeon_Theme.aac";  
         Media sound = new Media(new File(musicFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
+
         this.controller = dungeonLoader.loadController();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/DungeonView.fxml"));
         loader.setController(controller);
@@ -51,3 +52,4 @@ public class DungeonScreen {
         return controller;
     }
 }
+

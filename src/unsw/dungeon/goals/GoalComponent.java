@@ -1,5 +1,6 @@
 package unsw.dungeon.goals;
 
+import javafx.beans.property.BooleanProperty;
 
 public interface GoalComponent {
 	
@@ -7,7 +8,7 @@ public interface GoalComponent {
 	 * Determine whether the goal is completed
 	 * @return true if completed otherwise false
 	 */
-	public boolean checkGoalCompleted();
+	public BooleanProperty checkGoalCompleted();
 	
 	/**
 	 * Update the goal given an action by the goal subject

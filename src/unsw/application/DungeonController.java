@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -12,10 +15,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Player;
 import unsw.dungeon.obstacles.Door;
+import unsw.dungeon.combat.Enemy;
+import unsw.dungeon.combat.InvincibilityPotion;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -32,13 +38,19 @@ public class DungeonController {
     private List<Player> players;
 
     private Dungeon dungeon;
+    
+    private Timeline timeline;
+    
+    private GoalScreen goalScreen;
 
     public DungeonController(Dungeon dungeon, HashMap<Entity, ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.players = dungeon.getPlayers();
         this.initialEntities = new HashMap<>(initialEntities);
+        timeline = new Timeline(new KeyFrame(Duration.millis(1000), e -> enemyMove()));	
+		timeline.setCycleCount(Timeline.INDEFINITE);
     }
-
+    
     @FXML
     public void initialize() {
         Image ground = new Image("/dirt_0_new.png");
@@ -88,6 +100,7 @@ public class DungeonController {
         	}
         	
         }
+        dungeonGameProgress();
     }
 
     @FXML
@@ -105,10 +118,19 @@ public class DungeonController {
         case D:
         	players.get(0).moveRight();
             break;
-
+        case SPACE:
+        	useSword(1);
+        	break;
+        case DIGIT1:
+        	useInvincibilityPotion(1);
+        	break;
+        case TAB:
+        	goalScreen.start();
+        	break;
         default:
             break;
         }
+        // Controls for player 2
         if (players.size() == 2) {
             switch (event.getCode()) {
 	        case UP:
@@ -123,10 +145,68 @@ public class DungeonController {
 	        case RIGHT:
 	        	players.get(1).moveRight();
 	            break;
+	        case SPACE:
+	        	useSword(2);
+	        	break;
+	        case DIGIT1:
+	        	useInvincibilityPotion(2);
+	        	break;
  	
             }
         }
-    }
 
+        timeline.play();
+    }
+    
+    private void dungeonGameProgress() {
+    	dungeon.isGameFinished().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, 
+					Boolean oldValue, Boolean newValue) {
+				if (newValue == true) {
+					System.out.println("Game Finished!");
+				}
+			}
+    	});
+    }
+    
+    /**
+     * Set up enemy movement
+     */
+    private void enemyMove() {
+    	for (Enemy enemy : dungeon.getEnemies()) {
+    		enemy.moveEnemy(players.get(1).getX(), players.get(1).getY());
+    	}
+    }
+    
+    /**
+     * Handle player command to use their sword
+     */
+    private void useSword(int playerNum) {
+    	if (players.get(playerNum - 1).getSword() != null) {
+    		players.get(playerNum - 1).getSword().useItem(players.get(playerNum - 1));
+    	}
+    }
+    
+    /**
+     * Handle player command to use invincibility potion
+     */
+    private void useInvincibilityPotion(int playerNum) {
+    	for (Entity entity : players.get(playerNum - 1).getInventory()) {
+    		if (entity instanceof InvincibilityPotion) {
+    			InvincibilityPotion ip = (InvincibilityPotion) entity;
+    			ip.useItem(players.get(playerNum - 1));
+    			Timeline potionTimer = new Timeline(new KeyFrame(Duration.seconds(ip.timeLimit),
+    												e -> ip.removeItem(players.get(playerNum - 1)),
+    												new KeyValue(ip.getTimeRemain(), 0)));
+    			potionTimer.play();
+    		}
+    	}
+    }
+    
+	public void setGoalScreen(GoalScreen goalScreen) {
+        this.goalScreen = goalScreen;
+    }
 }
 
