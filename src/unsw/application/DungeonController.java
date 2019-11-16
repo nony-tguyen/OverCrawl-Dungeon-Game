@@ -163,10 +163,6 @@ public class DungeonController {
     	}
     }
     
-    private void enemyExplode() {
-    	//for ()
-    }
-    
     /**
      * Handle player command to use their sword
      */
