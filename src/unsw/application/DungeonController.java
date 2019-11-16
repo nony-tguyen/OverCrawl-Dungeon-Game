@@ -1,6 +1,5 @@
 package unsw.application;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
+import unsw.dungeon.MovableEntity;
 import unsw.dungeon.Player;
 import unsw.dungeon.obstacles.Door;
 import unsw.dungeon.combat.Enemy;
@@ -42,6 +42,8 @@ public class DungeonController {
     private Timeline timeline;
     
     private GoalScreen goalScreen;
+    
+    private DungeonScreen dungeonScreen;
 
     public DungeonController(Dungeon dungeon, HashMap<Entity, ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -62,10 +64,22 @@ public class DungeonController {
                 squares.add(new ImageView(ground), x, y);
             }
         }
-
+        // Add the non movable entities first
+        for (Entity e : initialEntities.keySet()) {
+        	if (! (e instanceof MovableEntity)) {
+        		squares.getChildren().add(initialEntities.get(e));
+        	}
+        }
+        for (Entity e : initialEntities.keySet()) {
+        	if (e instanceof MovableEntity) {
+        		squares.getChildren().add(initialEntities.get(e));
+        	}
+        }
+        /*
         for (ImageView entity : initialEntities.values())
+        	//if ()
             squares.getChildren().add(entity);
-        
+        */
         // Removing entity from dungeon
         for (Entity entity : initialEntities.keySet()) {
         	entity.visibleOnMap().addListener(new ChangeListener<Boolean>() {
@@ -145,10 +159,10 @@ public class DungeonController {
 	        case RIGHT:
 	        	players.get(1).moveRight();
 	            break;
-	        case SPACE:
+	        case CONTROL:
 	        	useSword(2);
 	        	break;
-	        case DIGIT1:
+	        case DIGIT0:
 	        	useInvincibilityPotion(2);
 	        	break;
  	
@@ -166,6 +180,7 @@ public class DungeonController {
 					Boolean oldValue, Boolean newValue) {
 				if (newValue == true) {
 					System.out.println("Game Finished!");
+					nextLevel();
 				}
 			}
     	});
@@ -208,5 +223,16 @@ public class DungeonController {
 	public void setGoalScreen(GoalScreen goalScreen) {
         this.goalScreen = goalScreen;
     }
+
+	/**
+	 * @param dungeonScreen the dungeonScreen to set
+	 */
+	public void setDungeonScreen(DungeonScreen dungeonScreen) {
+		this.dungeonScreen = dungeonScreen;
+	}
+	public void nextLevel() {
+		dungeonScreen.next();
+	}
+	
 }
 

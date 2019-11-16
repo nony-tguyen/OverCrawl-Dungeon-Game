@@ -162,7 +162,9 @@ public class DungeonControllerLoader extends DungeonLoader {
             @Override
             public void changed(ObservableValue<? extends Number> observable,
                     Number oldValue, Number newValue) {
+
                 GridPane.setColumnIndex(node, newValue.intValue());
+            	//System.out.println(GridPa);
             }
         });
         entity.y().addListener(new ChangeListener<Number>() {
