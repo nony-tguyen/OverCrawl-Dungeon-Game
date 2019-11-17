@@ -14,18 +14,18 @@ public class PauseScreen {
 	private Stage stage;
     private String title;
     private PauseController controller;
-    private DungeonApplication dApp;
-    private DungeonScreen dungeonScreen;
+
+    //private DungeonScreen dungeonScreen;
     private Scene scene;
     
-    public PauseScreen(Stage stage) throws IOException {
-    	//this.stage = stage;
+    public PauseScreen(Stage stage, DungeonApplication dApp) throws IOException {
+    	this.stage = stage;
         this.stage = new Stage(StageStyle.TRANSPARENT);
         this.stage.initModality(Modality.APPLICATION_MODAL);
         //this.stage.setOpacity(1);
         title = "Paused";
         
-        controller = new PauseController(this);
+        controller = new PauseController(this, dApp);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/PauseView.fxml"));
         loader.setController(controller);
 
@@ -39,24 +39,32 @@ public class PauseScreen {
     public void start() {
     	// update 
     	//scene.
+    	//stage.close();
         stage.setTitle(title);
         stage.setScene(scene);
+        //stage.show();
         stage.showAndWait();
     }
-    public void returnMenu() throws IOException {
-    	close();
-    	dApp.start(stage);
-    }
+
     
     public PauseController getController() {
         return controller;
     }
     
 	public void close() {
+		
     	stage.close();
     }
+
+	/**
+	 * @return the stage
+	 */
+	public Stage getStage() {
+		return stage;
+	}
 	public void setdApp(DungeonApplication dApp) {
-		this.dApp = dApp;
+		controller.setdApp(dApp);
 		
 	}
+
 }

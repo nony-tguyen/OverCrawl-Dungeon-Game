@@ -23,9 +23,11 @@ public class DungeonScreen {
     private PauseScreen pauseScreen;
     private InventoryScreen inventoryScreen;
     private GoalControllerLoader goalLoader;
+    private DungeonApplication dApp;
 
-    public DungeonScreen(Stage stage, String map) throws IOException {
+    public DungeonScreen(Stage stage, String map, DungeonApplication dApp) throws IOException {
         this.stage = stage;
+        this.dApp = dApp;
         title = "Dungeon";
 
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map);      
@@ -48,7 +50,10 @@ public class DungeonScreen {
 
         inventoryScreen = new InventoryScreen(stage);
         this.controller.setInventoryScreen(inventoryScreen);
-
+        
+        pauseScreen = new PauseScreen(stage, dApp);
+        controller.setPauseScreen(pauseScreen);
+        pauseScreen.getController().setDungeonScreen(this);
         initGoalScreen(stage);
         
     }
@@ -61,12 +66,12 @@ public class DungeonScreen {
 
     }
     public void next() {
-        mediaPlayer.stop();
+    	turnOffMusic();
     	nextScreen.start();
 
     }
     public void end() {
-        mediaPlayer.stop();
+    	turnOffMusic();
     	gameOver.start();
     	
 
@@ -74,7 +79,9 @@ public class DungeonScreen {
     public DungeonController getController() {
         return controller;
     }
-
+    public void turnOffMusic() {
+    	mediaPlayer.stop();
+    }
 	/**
 	 * @param nextScreen the nextScreen to set
 	 */
@@ -101,7 +108,13 @@ public class DungeonScreen {
 
 	public void setPauseScreen(PauseScreen pauseScreen) {
 		this.pauseScreen = pauseScreen;
+
         this.controller.setPauseScreen(pauseScreen);
+	}
+
+	public Stage getStage() {
+		// TODO Auto-generated method stub
+		return stage;
 	}
     
 }

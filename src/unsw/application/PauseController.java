@@ -20,16 +20,17 @@ import unsw.dungeon.combat.Sword;
 
 public class PauseController {
 	@FXML
-    private Pane displayInventory;
-	
-    @FXML
-    private GridPane invGrid;
+    private Pane displayPause;
 	
 	private PauseScreen pauseScreen;
+	private DungeonScreen dungeonScreen;
+    private DungeonApplication dApp;
+	
 
 
-	public PauseController(PauseScreen pauseScreen) {
+	public PauseController(PauseScreen pauseScreen, DungeonApplication dApp) {
 		this.pauseScreen = pauseScreen;
+		this.dApp = dApp;
 	}
     @FXML
     public void initialize() {
@@ -38,18 +39,21 @@ public class PauseController {
     void handleKeyPress(KeyEvent event) {
 		if (event.getCode() == KeyCode.ESCAPE) {
 			pauseScreen.close();
+			//dungeonScreen.start();
 		}
     }
 
     @FXML
     void handleResume(ActionEvent event) {
     	pauseScreen.close();
+    	//dungeonScreen.start();
     }
 
     @FXML
     void handleReturn(ActionEvent event) throws IOException {
-    	//pauseScreen.close();
-    	pauseScreen.returnMenu();
+    	pauseScreen.close();
+    	dungeonScreen.turnOffMusic();
+    	dApp.start(dungeonScreen.getStage());
 
     }
 
@@ -57,6 +61,17 @@ public class PauseController {
     void handleViewControls(ActionEvent event) {
 
     }
+	public void setdApp(DungeonApplication dApp) {
+		this.dApp = dApp;
+		
+	}
+	/**
+	 * @param dungeonScreen the dungeonScreen to set
+	 */
+	
+	public void setDungeonScreen(DungeonScreen dungeonScreen) {
+		this.dungeonScreen = dungeonScreen;
+	}
 
 	
 }

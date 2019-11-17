@@ -21,7 +21,7 @@ public class MainScreen {
         controller = new MainController();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/MainMenu.fxml"));
         loader.setController(controller);
-
+        //scene.getStylesheets().add("path/stylesheet.css");
         // load into a Parent node called root
         Parent root = loader.load();
         scene = new Scene(root, 600, 400);
