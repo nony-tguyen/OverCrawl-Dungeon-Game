@@ -5,15 +5,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleKeyPress" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundPane" stylesheets="@../../../../stylesheets/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="180.0" layoutY="49.0" text="Game Paused">
+      <Label layoutX="174.0" layoutY="49.0" text="Game Paused" textFill="WHITE">
          <font>
-            <Font size="37.0" />
+            <Font name="Munro" size="47.0" />
          </font>
       </Label>
       <Button layoutX="193.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleResume" prefHeight="64.0" prefWidth="215.0" text="Resume" />
       <Button layoutX="193.0" layoutY="205.0" mnemonicParsing="false" onAction="#handleReturn" prefHeight="64.0" prefWidth="215.0" text="Return to Main Screen" />
-      <Button layoutX="193.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleViewControls" prefHeight="64.0" prefWidth="215.0" text="View Controls" />
    </children>
 </Pane>

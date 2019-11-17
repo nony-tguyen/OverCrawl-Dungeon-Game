@@ -31,6 +31,7 @@ public class PauseScreen {
 
         Parent root = loader.load();
         //root.relocate(100, 80);
+        
         scene = new Scene(root, 600, 400);
         scene.setFill(Color.TRANSPARENT);
         root.requestFocus();
