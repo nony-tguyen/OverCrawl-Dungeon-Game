@@ -1,10 +1,15 @@
 package unsw.dungeon.goals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
+import unsw.dungeon.Treasure;
 
 public class TreasureGoal implements GoalComponent {
 	
@@ -57,4 +62,12 @@ public class TreasureGoal implements GoalComponent {
 		return totalTreasure;
 	}
 
+	public List<Treasure> getTreasures(Dungeon dungeon) {
+		List<Treasure> treasures = new ArrayList<>();
+		for (Entity entity : dungeon.getEntities()) {
+			if (entity instanceof Treasure)
+				treasures.add((Treasure) entity);
+		}
+		return treasures;
+	}
 }

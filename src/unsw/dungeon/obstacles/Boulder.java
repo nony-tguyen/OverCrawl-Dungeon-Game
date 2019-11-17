@@ -17,6 +17,7 @@ public class Boulder extends MovableEntity {
 	
     public Boulder(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
+        action();
     }
  
 	@Override

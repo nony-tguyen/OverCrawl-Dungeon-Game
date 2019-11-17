@@ -1,10 +1,15 @@
 package unsw.dungeon.goals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
+import unsw.dungeon.FloorSwitch;
 
 public class BouldersGoal implements GoalComponent {
 	
@@ -16,7 +21,7 @@ public class BouldersGoal implements GoalComponent {
 	public BouldersGoal(Dungeon dungeon) {
 		this.dungeon = dungeon;
 		complete = new SimpleBooleanProperty(false);
-		currentCount = new SimpleIntegerProperty(0);
+		currentCount = new SimpleIntegerProperty(getInitialFloorSwitches());
 	}
 	
 	@Override
@@ -61,4 +66,20 @@ public class BouldersGoal implements GoalComponent {
 		return totalFloorSwitch;
 	}
 
+	public List<FloorSwitch> getFloorSwitches(Dungeon dungeon) {
+		List<FloorSwitch> floorSwitch = new ArrayList<>();
+		for (Entity entity : dungeon.getEntities()) {
+			if (entity instanceof FloorSwitch)
+				floorSwitch.add((FloorSwitch) entity);
+		}
+		return floorSwitch;
+	}
+	
+	private int getInitialFloorSwitches() {
+		int count = 0;
+		for (FloorSwitch fs : getFloorSwitches(dungeon)) {
+			if (fs.isTriggered()) count++;
+		}
+		return count;
+	}
 }

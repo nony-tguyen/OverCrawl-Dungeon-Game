@@ -212,19 +212,19 @@ public class DungeonControllerLoader extends DungeonLoader {
 
 	@Override
 	public void onLoadGoal(BouldersGoal bouldersGoal, Dungeon dungeon) {
-		for (FloorSwitch floorSwitch : getFloorSwitches(dungeon))
+		for (FloorSwitch floorSwitch : bouldersGoal.getFloorSwitches(dungeon))
 			floorSwitch.addGoalObserver(bouldersGoal);
 		
-		bouldersGoal.setGoalTotal(getFloorSwitches(dungeon).size());
+		bouldersGoal.setGoalTotal(bouldersGoal.getFloorSwitches(dungeon).size());
 		trackGoalProgression(bouldersGoal, dungeon);
 	}
 
 	@Override
 	public void onloadGoal(TreasureGoal treasureGoal, Dungeon dungeon) {
-		for (Treasure treasure : getTreasures(dungeon))
+		for (Treasure treasure : treasureGoal.getTreasures(dungeon))
 			treasure.addGoalObserver(treasureGoal);
 		
-		treasureGoal.setGoalTotal(getTreasures(dungeon).size());
+		treasureGoal.setGoalTotal(treasureGoal.getTreasures(dungeon).size());
 		trackGoalProgression(treasureGoal, dungeon);
 	}
 
@@ -240,6 +240,7 @@ public class DungeonControllerLoader extends DungeonLoader {
 	@Override
 	public void onLoadGoal(ExitGoal exitGoal, Dungeon dungeon) {
 		Exit exit = exitGoal.getExit(dungeon);
+		exit.addGoalObserver(exitGoal);
 		trackGoalProgression(exitGoal, dungeon);	
 	}
 	
@@ -276,27 +277,27 @@ public class DungeonControllerLoader extends DungeonLoader {
 	 * @param dungeon
 	 * @return Get floor switches in dungeon for goal
 	 */
-	private List<FloorSwitch> getFloorSwitches(Dungeon dungeon) {
+	/*private List<FloorSwitch> getFloorSwitches(Dungeon dungeon) {
 		List<FloorSwitch> floorSwitch = new ArrayList<>();
 		for (Entity entity : dungeon.getEntities()) {
 			if (entity instanceof FloorSwitch)
 				floorSwitch.add((FloorSwitch) entity);
 		}
 		return floorSwitch;
-	}
+	}*/
 	
 	/**
 	 * @param dungeon
 	 * @return Get treasures in dungeon for goal
 	 */
-	private List<Treasure> getTreasures(Dungeon dungeon) {
+	/*private List<Treasure> getTreasures(Dungeon dungeon) {
 		List<Treasure> treasures = new ArrayList<>();
 		for (Entity entity : dungeon.getEntities()) {
 			if (entity instanceof Treasure)
 				treasures.add((Treasure) entity);
 		}
 		return treasures;
-	}
+	}*/
 
 
 
