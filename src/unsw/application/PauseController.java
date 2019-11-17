@@ -52,7 +52,7 @@ public class PauseController {
     @FXML
     void handleReturn(ActionEvent event) throws IOException {
     	pauseScreen.close();
-    	dungeonScreen.turnOffMusic();
+    	//dungeonScreen.turnOffMusic();
     	dApp.start(dungeonScreen.getStage());
 
     }

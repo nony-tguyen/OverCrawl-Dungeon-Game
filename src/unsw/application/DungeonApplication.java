@@ -35,15 +35,15 @@ public class DungeonApplication extends Application {
         BufferScreen mpLevel1Screen = new BufferScreen(primaryStage, "Level 1");
         mpLevel1Screen.setNextLevel(mpDungeon1);
 
-        
+        /*   
         DungeonScreen mpDungeon2 = new DungeonScreen(primaryStage, "mp/dungeon-2.json", this);
         BufferScreen mpLevel2Screen = new BufferScreen(primaryStage, "Level 2");
         mpLevel2Screen.setNextLevel(mpDungeon2);
-        
+     
         DungeonScreen mpDungeon3 = new DungeonScreen(primaryStage, "tony.json", this);
         BufferScreen mpLevel3Screen = new BufferScreen(primaryStage, "Level 3");
         mpLevel3Screen.setNextLevel(mpDungeon3);
-
+*/
         BufferScreen gameFinished = new BufferScreen(primaryStage, "Congrats!");
         BufferScreen gameOver = new BufferScreen(primaryStage, "Game Over");
         gameFinished.setdApp(this);
@@ -52,8 +52,11 @@ public class DungeonApplication extends Application {
         spDungeon2.setGameOver(gameOver);
         spDungeon3.setGameOver(gameOver);
         mpDungeon1.setGameOver(gameOver);
+        /*
         mpDungeon2.setGameOver(gameOver);
         mpDungeon3.setGameOver(gameOver);
+         
+         */
         
     	mainScreen.getController().setControlsScreen(controlsScreenMain);
         mainScreen.getController().setSinglePlayerScreen(spLevel1Screen);
@@ -64,10 +67,11 @@ public class DungeonApplication extends Application {
         spDungeon1.setNextScreen(spLevel2Screen); 
         spDungeon2.setNextScreen(spLevel3Screen);
         spDungeon3.setNextScreen(gameFinished);
-        
+        /*
         mpDungeon1.setNextScreen(mpLevel2Screen); 
         mpDungeon2.setNextScreen(mpLevel3Screen);
-        mpDungeon3.setNextScreen(gameFinished);
+        */
+        mpDungeon1.setNextScreen(gameFinished);
 
         
         mainScreen.start();    
