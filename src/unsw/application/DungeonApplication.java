@@ -54,6 +54,15 @@ public class DungeonApplication extends Application {
         mpDungeon2.setGameOver(gameOver);
         mpDungeon3.setGameOver(gameOver);
         
+        PauseScreen pauseScreen = new PauseScreen(primaryStage);
+        pauseScreen.setdApp(this);
+        spDungeon1.setPauseScreen(pauseScreen);
+        spDungeon2.setPauseScreen(pauseScreen);
+        spDungeon3.setPauseScreen(pauseScreen);
+        mpDungeon1.setPauseScreen(pauseScreen);
+        mpDungeon2.setPauseScreen(pauseScreen);
+        mpDungeon3.setPauseScreen(pauseScreen);
+        
 
 
         //InventoryScreen spInventoryScreen = new InventoryScreen(primaryStage);
