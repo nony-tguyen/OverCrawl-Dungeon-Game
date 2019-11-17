@@ -80,7 +80,7 @@ public class DungeonScreen {
         return controller;
     }
     public void turnOffMusic() {
-    	mediaPlayer.stop();
+    	//mediaPlayer.stop();
     }
 	/**
 	 * @param nextScreen the nextScreen to set
