@@ -182,7 +182,6 @@ public class DungeonControllerLoader extends DungeonLoader {
                     Number oldValue, Number newValue) {
 
                 GridPane.setColumnIndex(node, newValue.intValue());
-            	//System.out.println(GridPa);
             }
         });
         entity.y().addListener(new ChangeListener<Number>() {
@@ -264,7 +263,6 @@ public class DungeonControllerLoader extends DungeonLoader {
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				if (newValue == true) {
 					countLabel.setTextFill(Color.GREEN);
-					System.out.println("goal completed");
 				}	
 			}
 		});
@@ -273,32 +271,4 @@ public class DungeonControllerLoader extends DungeonLoader {
 	public void setGoalControllerLoader(GoalControllerLoader goalLoader) {
         this.goalLoader = goalLoader;
     }
-	/**
-	 * @param dungeon
-	 * @return Get floor switches in dungeon for goal
-	 */
-	/*private List<FloorSwitch> getFloorSwitches(Dungeon dungeon) {
-		List<FloorSwitch> floorSwitch = new ArrayList<>();
-		for (Entity entity : dungeon.getEntities()) {
-			if (entity instanceof FloorSwitch)
-				floorSwitch.add((FloorSwitch) entity);
-		}
-		return floorSwitch;
-	}*/
-	
-	/**
-	 * @param dungeon
-	 * @return Get treasures in dungeon for goal
-	 */
-	/*private List<Treasure> getTreasures(Dungeon dungeon) {
-		List<Treasure> treasures = new ArrayList<>();
-		for (Entity entity : dungeon.getEntities()) {
-			if (entity instanceof Treasure)
-				treasures.add((Treasure) entity);
-		}
-		return treasures;
-	}*/
-
-
-
 }

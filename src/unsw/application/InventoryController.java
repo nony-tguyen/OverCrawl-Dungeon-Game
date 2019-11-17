@@ -40,8 +40,6 @@ public class InventoryController {
 	@FXML
     public void handleKeyRelease(KeyEvent event) {
 		if (event.getCode() == KeyCode.I) {
-			System.out.println("key released");
-			//invGrid = new GridPane();
 			inventoryScreen.close();
 		}
 	}

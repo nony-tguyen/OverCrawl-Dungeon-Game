@@ -39,7 +39,6 @@ public class GoalController {
 	@FXML
     public void handleKeyRelease(KeyEvent event) {
 		if (event.getCode() == KeyCode.TAB) {
-			System.out.println("key released");
 			goalScreen.close();
 		}
 	}

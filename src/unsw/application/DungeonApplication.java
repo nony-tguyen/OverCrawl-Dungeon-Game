@@ -55,24 +55,6 @@ public class DungeonApplication extends Application {
         mpDungeon2.setGameOver(gameOver);
         mpDungeon3.setGameOver(gameOver);
         
-        /*
-        PauseScreen pauseScreen = new PauseScreen(primaryStage);
-        pauseScreen.setdApp(this);
-        spDungeon1.setPauseScreen(pauseScreen);
-        pauseScreen.getController().setDungeonScreen(spDungeon1);
-        spDungeon2.setPauseScreen(pauseScreen);
-        spDungeon3.setPauseScreen(pauseScreen);
-        mpDungeon1.setPauseScreen(pauseScreen);
-        mpDungeon2.setPauseScreen(pauseScreen);
-        mpDungeon3.setPauseScreen(pauseScreen);
-        
-*/
-
-        //InventoryScreen spInventoryScreen = new InventoryScreen(primaryStage);
-        
-        //GoalScreen goalScreen = new GoalScreen(primaryStage);
-        //DungeonScreen dungeonScreen1 = new DungeonScreen(primaryStage, "doorMaze.json");
-        //mainScreen.getController().setDungeonScreen(spDungeon1);
     	mainScreen.getController().setControlsScreen(controlsScreenMain);
         mainScreen.getController().setSinglePlayerScreen(spLevel1Screen);
         mainScreen.getController().setMultiPlayerScreen(mpLevel1Screen);

@@ -37,9 +37,7 @@ public class Player extends MovableEntity {
 	public void action() {
 		Enemy enemy = foundEnemy();
 		if (enemy != null) {
-			//System.out.println("hello enemy");
 			handleEnemy(enemy);
-			//if (dungeon.getPlayer() == null) System.out.println("player is null");
 		}
 		
 		for (Entity entity : dungeon.checkGrid(getX(), getY())) {
@@ -47,12 +45,6 @@ public class Player extends MovableEntity {
 			if (entity.affectGoal()) {
 				entity.notifyGoal();
 			}
-			
-			/*if (entity instanceof CollectableEntity) 
-				((CollectableEntity) entity).collectItem(this);
-			
-			if (entity.affectGoal())
-				((GoalSubject) entity).notifyGoal();	*/
 		}
 	}
 	

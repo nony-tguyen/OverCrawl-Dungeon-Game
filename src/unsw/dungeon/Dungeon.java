@@ -185,7 +185,6 @@ public class Dungeon {
      * Update the game state after an action
      */
     public void updateGameProgression() {
-    	System.out.println(players);
     	if (players.size() == 0) {
     		System.out.println("Game over");
     		gameOver.set(true);
