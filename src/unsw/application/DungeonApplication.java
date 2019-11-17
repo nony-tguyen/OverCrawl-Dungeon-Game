@@ -25,7 +25,7 @@ public class DungeonApplication extends Application {
         BufferScreen spLevel2Screen = new BufferScreen(primaryStage, "Level 2");
         spLevel2Screen.setNextLevel(spDungeon2);
         
-        DungeonScreen spDungeon3 = new DungeonScreen(primaryStage, "tony.json");
+        DungeonScreen spDungeon3 = new DungeonScreen(primaryStage, "sp/dungeon-3.json");
         BufferScreen spLevel3Screen = new BufferScreen(primaryStage, "Level 3");
         spLevel3Screen.setNextLevel(spDungeon3);
         
