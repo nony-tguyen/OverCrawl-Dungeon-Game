@@ -34,9 +34,9 @@ public class DungeonScreen {
 		goalLoader = new GoalControllerLoader();
 		dungeonLoader.setGoalControllerLoader(goalLoader);
 		
-        String musicFile = "music/Dungeon_Theme.aac";  
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        mediaPlayer = new MediaPlayer(sound);
+        //String musicFile = "music/Dungeon_Theme.aac";  
+        //Media sound = new Media(new File(musicFile).toURI().toString());
+        //mediaPlayer = new MediaPlayer(sound);
                 
         this.controller = dungeonLoader.loadController();
         controller.setDungeonScreen(this);
@@ -59,19 +59,19 @@ public class DungeonScreen {
     }
 
     public void start() {
-        mediaPlayer.play();
+        //mediaPlayer.play();
         stage.setTitle(title);
         stage.setScene(scene);
         stage.show();
 
     }
     public void next() {
-    	turnOffMusic();
+    	//turnOffMusic();
     	nextScreen.start();
 
     }
     public void end() {
-    	turnOffMusic();
+    	//turnOffMusic();
     	gameOver.start();
     	
 
