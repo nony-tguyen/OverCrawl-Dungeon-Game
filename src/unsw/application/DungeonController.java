@@ -262,6 +262,11 @@ public class DungeonController {
     	}
     }
     
+    /**
+     * Animation to appear flashing, about to explode
+     * @param type
+     * @param value Setting visible true/false
+     */
     private void enemyFlash(EnemyType type, Boolean value) {
     	for (Enemy enemy : dungeon.getEnemies()) {
     		if (enemy.getEnemyType() == type) {
@@ -275,8 +280,20 @@ public class DungeonController {
      * Handle player command to use their sword
      */
     private void useSword(int playerNum) {
-    	if (players.get(playerNum - 1).getSword() != null) {
-    		players.get(playerNum - 1).getSword().useItem(players.get(playerNum - 1));
+    	Player player = players.get(playerNum - 1);
+    	if (player.getSword() != null) {
+    		player.getSword().useItem(player);
+    		ImageView swordImg = new ImageView(new Image("/greatsword_1_new.png"));
+    		GridPane.setColumnIndex(swordImg, player.getX());
+            GridPane.setRowIndex(swordImg, player.getY());
+            squares.getChildren().add(swordImg);
+            Timeline attackAnimate = new Timeline(new KeyFrame(Duration.millis(100),
+            									  new KeyValue(swordImg.translateXProperty(), 15)));
+            attackAnimate.setAutoReverse(true);
+            attackAnimate.setCycleCount(2);
+            
+            attackAnimate.onFinishedProperty().set(e -> squares.getChildren().remove(swordImg));
+            attackAnimate.play();
     	}
     }
     
