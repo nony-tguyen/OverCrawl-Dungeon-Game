@@ -14,9 +14,9 @@ public class BufferScreen {
     private Stage stage;
     private String title;
     private BufferController controller;
-    private MainScreen mainScreen;
     private DungeonScreen nextLevel;
     private Scene scene;
+    private DungeonApplication dApp;
    
 
     public BufferScreen(Stage stage, String text) throws IOException {
@@ -39,7 +39,14 @@ public class BufferScreen {
         stage.setScene(scene);
         PauseTransition delay = new PauseTransition(Duration.seconds(2));
     	if (nextLevel == null) {
-            delay.setOnFinished( event -> mainScreen.start() );
+            delay.setOnFinished( event -> {
+				try {
+					dApp.start(stage);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} );
     	} else {
             delay.setOnFinished( event -> nextLevel.start() );
     	}
@@ -55,11 +62,9 @@ public class BufferScreen {
 		this.nextLevel = nextLevel;
 	}
 
-	/**
-	 * @param mainScreen the mainScreen to set
-	 */
-	public void setMainScreen(MainScreen mainScreen) {
-		this.mainScreen = mainScreen;
+	public void setdApp(DungeonApplication dApp) {
+		this.dApp = dApp;
+		
 	}
 	
     

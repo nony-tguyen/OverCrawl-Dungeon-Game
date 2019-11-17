@@ -240,7 +240,6 @@ public class DungeonControllerLoader extends DungeonLoader {
 	@Override
 	public void onLoadGoal(ExitGoal exitGoal, Dungeon dungeon) {
 		Exit exit = exitGoal.getExit(dungeon);
-		exit.addGoalObserver(exitGoal);
 		trackGoalProgression(exitGoal, dungeon);	
 	}
 	
