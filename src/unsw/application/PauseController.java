@@ -57,10 +57,7 @@ public class PauseController {
 
     }
 
-    @FXML
-    void handleViewControls(ActionEvent event) {
 
-    }
 	public void setdApp(DungeonApplication dApp) {
 		this.dApp = dApp;
 		
