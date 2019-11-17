@@ -15,6 +15,8 @@ public class DungeonApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
     	MainScreen mainScreen = new MainScreen(primaryStage);
+    	ControlsScreen controlsScreenMain = new ControlsScreen(primaryStage);
+    	controlsScreenMain.getController().setMainScreen(mainScreen);
     	
         DungeonScreen spDungeon1 = new DungeonScreen(primaryStage, "sp/boulders-1.json", this);
         BufferScreen spLevel1Screen = new BufferScreen(primaryStage, "Level 1");
@@ -72,6 +74,7 @@ public class DungeonApplication extends Application {
         //GoalScreen goalScreen = new GoalScreen(primaryStage);
         //DungeonScreen dungeonScreen1 = new DungeonScreen(primaryStage, "doorMaze.json");
         //mainScreen.getController().setDungeonScreen(spDungeon1);
+    	mainScreen.getController().setControlsScreen(controlsScreenMain);
         mainScreen.getController().setSinglePlayerScreen(spLevel1Screen);
         mainScreen.getController().setMultiPlayerScreen(mpLevel1Screen);
         mainScreen.getController().setMainScreen(mainScreen);

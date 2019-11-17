@@ -2,3 +2,6 @@
 
     -fx-background-image: url("../images/background.png");
 }
+.backButton {
+    background-color: #ffbbad;
+}
