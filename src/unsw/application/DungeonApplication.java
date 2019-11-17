@@ -16,7 +16,7 @@ public class DungeonApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
     	MainScreen mainScreen = new MainScreen(primaryStage);
     	
-        DungeonScreen spDungeon1 = new DungeonScreen(primaryStage, "sp/dungeon-2.json");
+        DungeonScreen spDungeon1 = new DungeonScreen(primaryStage, "sp/boulders-1.json");
         BufferScreen spLevel1Screen = new BufferScreen(primaryStage, "Level 1");
         spLevel1Screen.setNextLevel(spDungeon1);
 
