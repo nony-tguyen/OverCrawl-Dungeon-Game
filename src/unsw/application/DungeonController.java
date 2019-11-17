@@ -49,7 +49,10 @@ public class DungeonController {
     private InventoryScreen inventoryScreen;
     
     private DungeonScreen dungeonScreen;
+    
+	private PauseScreen pauseScreen;
 
+	
     public DungeonController(Dungeon dungeon, HashMap<Entity, ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.players = dungeon.getPlayers();
@@ -148,6 +151,10 @@ public class DungeonController {
         	break;
         case I:
         	inventoryScreen.start();
+        	break;
+        case ESCAPE: 
+			pauseScreen.start();
+			break;
         default:
             break;
         }
@@ -167,7 +174,7 @@ public class DungeonController {
 	        case RIGHT:
 	        	players.get(1).moveRight();
 	            break;
-	        case CONTROL:
+	        case DIGIT9:
 	        	useSword(2);
 	        	break;
 	        case DIGIT0:
@@ -330,6 +337,12 @@ public class DungeonController {
 	 */
 	public void setDungeonScreen(DungeonScreen dungeonScreen) {
 		this.dungeonScreen = dungeonScreen;
+	}
+    /**
+	 * @param pauseScreen the pauseScreen to set
+	 */
+	public void setPauseScreen(PauseScreen pauseScreen) {
+		this.pauseScreen = pauseScreen;
 	}
 	public void nextLevel() {
 		dungeonScreen.next();
