@@ -1,32 +1,40 @@
 package unsw.dungeon.goals;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Exit;
 
 public class ExitGoal implements GoalComponent {
 	
-	Dungeon dungeon;
-	private boolean complete;
+	private Dungeon dungeon;
+	private BooleanProperty complete;
+	private IntegerProperty currentCount;
+	private int total;
 	
 	public ExitGoal(Dungeon dungeon) {
 		this.dungeon = dungeon;
-		this.complete = false;
+		complete = new SimpleBooleanProperty(false);
+		currentCount = new SimpleIntegerProperty(0);
+		total = 1;
 	}
 	
 	@Override
-	public boolean checkGoalCompleted() {
+	public BooleanProperty checkGoalCompleted() {
 		return complete;
 	}
 
 	@Override
 	public void updateGoal(Boolean goalAchieved) {
-		Exit exit = getExit(dungeon);
-		if (dungeon.getPlayer().getX() == exit.getX() && dungeon.getPlayer().getY() == exit.getY()) {
-			complete = true;
+		if (goalAchieved) {
+			complete.set(true);
+			currentCount.set(1);
 			dungeon.updateGameProgression();
 		} else {
-			complete = false;
+			complete.set(false);
 			dungeon.updateGameProgression();
 		}
 	}
@@ -35,8 +43,8 @@ public class ExitGoal implements GoalComponent {
 	public void setGoalTotal(int total) { }
 
 	@Override
-	public int getCurrentTotal() {
-		return 0;
+	public IntegerProperty getCurrentTotal() {
+		return currentCount;
 	}
 	
 	public Exit getExit(Dungeon dungeon) {
@@ -49,5 +57,15 @@ public class ExitGoal implements GoalComponent {
 
 	@Override
 	public void addGoal(GoalComponent goal) {}
+
+	@Override
+	public String getDescription() {
+		return "Find the exit";
+	}
+
+	@Override
+	public int getGoalTotal() {
+		return total;
+	}
 
 }

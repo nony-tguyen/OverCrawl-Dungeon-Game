@@ -21,12 +21,12 @@ class KeyTest {
 	@Before
 	public void initializeDungeon() {
 		dungeon = new Dungeon(10, 10);
-		player = new Player(dungeon, 3, 2);
+		player = new Player(dungeon, 3, 2, 1);
 		e = new Enemy(dungeon, 2, 3);
 		dungeon.addEntity(e);
 		b = new Boulder(dungeon, 4, 3);
 		dungeon.addEntity(b);
-		dungeon.setPlayer(player);
+		dungeon.addPlayer(player);
 	}
 	
 	// (Tests two acceptance criteria)

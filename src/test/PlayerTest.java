@@ -15,8 +15,8 @@ class PlayerTest {
 	@Before
 	public void initializeDungeon() {
 		dungeon = new Dungeon(10, 10);
-		player = new Player(dungeon, 3, 2);
-		dungeon.setPlayer(player);
+		player = new Player(dungeon, 3, 2, 1);
+		dungeon.addPlayer(player);
 	}
 	
 	@Test

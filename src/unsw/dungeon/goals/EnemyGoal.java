@@ -1,29 +1,34 @@
 package unsw.dungeon.goals;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.Dungeon;
 
 public class EnemyGoal implements GoalComponent {
 	
 	private Dungeon dungeon;
 	private int totalEnemies;
-	private int currentCount;
-	private boolean complete;
+	private IntegerProperty currentCount;
+	private BooleanProperty complete;
 	
 	public EnemyGoal(Dungeon dungeon) {
 		this.dungeon = dungeon;
-		this.complete = false;
+		complete = new SimpleBooleanProperty(false);
+		currentCount = new SimpleIntegerProperty(0);
 	}
 	
 	@Override
-	public boolean checkGoalCompleted() {
+	public BooleanProperty checkGoalCompleted() {
 		return complete;
 	}
 
 	@Override
 	public void updateGoal(Boolean goalAchieved) {
-		currentCount = currentCount + 1;
-		if (currentCount == totalEnemies) {
-			complete = true;
+		currentCount.set(getCurrentTotal().get() + 1);
+		if (currentCount.get() == totalEnemies) {
+			complete.set(true);
 			dungeon.updateGameProgression();
 		}
 	}
@@ -34,10 +39,20 @@ public class EnemyGoal implements GoalComponent {
 	}
 
 	@Override
-	public int getCurrentTotal() {
+	public IntegerProperty getCurrentTotal() {
 		return currentCount;
 	}
 
 	@Override
 	public void addGoal(GoalComponent goal) {}
+
+	@Override
+	public String getDescription() {
+		return "Kill all enemies";
+	}
+
+	@Override
+	public int getGoalTotal() {
+		return totalEnemies;
+	}
 }

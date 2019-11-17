@@ -23,13 +23,12 @@ class PortalTest {
 	@Before
 	public void initializeDungeon() {
 		dungeon = new Dungeon(10, 10);
-		player = new Player(dungeon, 3, 2);
-		dungeon.setPlayer(player);
+		player = new Player(dungeon, 3, 2, 1);
+		dungeon.addPlayer(player);
 		e = new Enemy(dungeon, 2, 3);
 		dungeon.addEntity(e);
 		b = new Boulder(dungeon, 4, 3);
 		dungeon.addEntity(b);
-		dungeon.setPlayer(player);
 		p1 = new Portal(dungeon, 3, 3, 1);
 		p2 = new Portal(dungeon, 5, 4, 1);
 		dungeon.addEntity(p1);

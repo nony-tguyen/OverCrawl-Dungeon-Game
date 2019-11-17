@@ -26,8 +26,8 @@ class GoalsTest {
 	@Before
 	public void initializeDungeon(){
 		dungeon = new Dungeon(10, 10);
-		player = new Player(dungeon, 0, 0);
-		dungeon.setPlayer(player);
+		player = new Player(dungeon, 0, 0, 1);
+		dungeon.addPlayer(player);
 	}
 	
 	@Test
@@ -51,15 +51,15 @@ class GoalsTest {
 		player.moveRight();
 		s.useItem(player);
 		assertEquals(goal.getCurrentTotal(), 1);
-		assertFalse(goal.checkGoalCompleted());
-		assertFalse(dungeon.isGameFinished());
+		assertFalse(goal.checkGoalCompleted().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 		
 		// Kill 2 enemy - finished goal
 		player.moveRight();
 		s.useItem(player);
 		assertEquals(goal.getCurrentTotal(), 2);
-		assertTrue(goal.checkGoalCompleted());
-		assertTrue(dungeon.isGameFinished());
+		assertTrue(goal.checkGoalCompleted().get());
+		assertTrue(dungeon.isDungeonComplete().get());
 	}
 	
 	@Test
@@ -79,14 +79,14 @@ class GoalsTest {
 		// Collect 1 treasure
 		player.moveRight();
 		assertEquals(goal.getCurrentTotal(), 1);
-		assertFalse(goal.checkGoalCompleted());
-		assertFalse(dungeon.isGameFinished());
+		assertFalse(goal.checkGoalCompleted().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 		
 		// Kill 2 enemy - finished goal
 		player.moveRight();
 		assertEquals(goal.getCurrentTotal(), 2);
-		assertTrue(goal.checkGoalCompleted());
-		assertTrue(dungeon.isGameFinished());		
+		assertTrue(goal.checkGoalCompleted().get());
+		assertTrue(dungeon.isDungeonComplete().get());		
 	}
 	
 	@Test
@@ -111,20 +111,20 @@ class GoalsTest {
 		// Push 1 boulder onto 1 floor switch
 		player.moveRight();
 		assertEquals(goal.getCurrentTotal(), 1);
-		assertFalse(goal.checkGoalCompleted());
-		assertFalse(dungeon.isGameFinished());
+		assertFalse(goal.checkGoalCompleted().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 		
 		// Push 2nd boulder into 2nd floor switch
 		player.moveDown();
 		assertEquals(goal.getCurrentTotal(), 2);
-		assertTrue(goal.checkGoalCompleted());
-		assertTrue(dungeon.isGameFinished());
+		assertTrue(goal.checkGoalCompleted().get());
+		assertTrue(dungeon.isDungeonComplete().get());
 				
 		// Push 2nd boulder away from the floor switch - goal is not longer completed
 		player.moveDown();
 		assertEquals(goal.getCurrentTotal(), 1);
-		assertFalse(goal.checkGoalCompleted());
-		assertFalse(dungeon.isGameFinished());
+		assertFalse(goal.checkGoalCompleted().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 	}
 	
 	@Test
@@ -140,17 +140,17 @@ class GoalsTest {
 		
 		// Player at (1, 0)
 		player.moveRight();	
-		assertFalse(goal.checkGoalCompleted());
-		assertFalse(dungeon.isGameFinished());
+		assertFalse(goal.checkGoalCompleted().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 		
 		// Player at (2, 0)
 		player.moveRight();	
-		assertFalse(goal.checkGoalCompleted());
-		assertFalse(dungeon.isGameFinished());
+		assertFalse(goal.checkGoalCompleted().get());
+		assertFalse(dungeon.isDungeonComplete().get());
 		
 		// Player at (2, 1) -> Goal completed
 		player.moveDown();	
-		assertTrue(goal.checkGoalCompleted());
-		assertTrue(dungeon.isGameFinished());
+		assertTrue(goal.checkGoalCompleted().get());
+		assertTrue(dungeon.isDungeonComplete().get());
 	}
 }

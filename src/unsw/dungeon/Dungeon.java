@@ -4,8 +4,11 @@
 package unsw.dungeon;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import unsw.dungeon.combat.Enemy;
 import unsw.dungeon.goals.GoalComponent;
 import unsw.dungeon.obstacles.Boulder;
@@ -23,16 +26,18 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
-    private Player player;
+    private List<Player> players;
     private GoalComponent goal;
-    private boolean dungeonCompleted;
+    private BooleanProperty dungeonCompleted;
+    private BooleanProperty gameOver;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
-        this.player = null;
-        this.dungeonCompleted = false;
+        this.players = new ArrayList<>();
+        this.dungeonCompleted = new SimpleBooleanProperty(false);
+        this.gameOver = new SimpleBooleanProperty(false);
     }
 
     public int getWidth() {
@@ -43,12 +48,50 @@ public class Dungeon {
         return height;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Player getPlayer(int playerNum) {
+    	for (Player p : players) {
+    		if (p.getPlayerNum() == (playerNum - 1)) {
+    			return p;
+    		}
+    	}
+        return null;
     }
+    public List<Player> getPlayers() {
+    	return players;
+    }
+    public void removePlayer(int playerNum) {
+    	Iterator<Player> iter = players.iterator();
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    	while (iter.hasNext()) {
+    	    Player p = iter.next();
+
+    	    if (p.getPlayerNum() == playerNum) {
+    	        iter.remove();  
+    	        updateGameProgression();
+    	    }
+
+    	}
+    	/*
+    	for (Player p : players) {
+			if (p.getPlayerNum() == playerNum) {
+
+				System.out.println("removing");
+		    	players.remove(p);
+		    	updateGameProgression();
+		    	//System.out.println(players.size());
+
+			}
+    	}
+    	*/
+	}
+
+/*
+    public void setPlayer(List<Player> player) {
+        this.players = player;
+    }
+    */
+    public void addPlayer(Player player) {
+    	players.add(player);
     }
 
     public void addEntity(Entity entity) {
@@ -142,17 +185,30 @@ public class Dungeon {
      * Update the game state after an action
      */
     public void updateGameProgression() {
-    	if (player == null || goal.checkGoalCompleted()) {
-    		dungeonCompleted = true;
+    	System.out.println(players);
+    	if (players.size() == 0) {
+    		System.out.println("Game over");
+    		gameOver.set(true);
+    	}
+    	if (goal.checkGoalCompleted().get()) {
+    		dungeonCompleted.set(true);
     	} else {
-    		dungeonCompleted = false;
+    		dungeonCompleted.set(false);
     	}
     }
     
     /**
-     * @return True if the game has finished by player dying or goals completed
+     * @return True if the game has finished by goals completed
      */
-    public boolean isGameFinished() {
+    public BooleanProperty isDungeonComplete() {
+    	
     	return dungeonCompleted;
+    }
+    /**
+     * @return True if the game has finished by player dying 
+     */
+    public BooleanProperty isGameOver() {
+    	
+    	return gameOver;
     }
 }

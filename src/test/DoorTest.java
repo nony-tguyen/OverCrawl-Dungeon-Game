@@ -24,14 +24,15 @@ class DoorTest {
 	@Before
 	public void initializeDungeon() {
 		dungeon = new Dungeon(10, 10);
-		player = new Player(dungeon, 3, 2);
+		player = new Player(dungeon, 3, 2, 1);
+		dungeon.addPlayer(player);
 		d = new Door(3, 3, 1);
 		dungeon.addEntity(d);
 		e = new Enemy(dungeon, 2, 3);
 		dungeon.addEntity(e);
 		b = new Boulder(dungeon, 4, 3);
 		dungeon.addEntity(b);
-		dungeon.setPlayer(player);
+
 	}
 	@Test
 	void testClosedBlock() {
@@ -78,7 +79,7 @@ class DoorTest {
 	@Test
 	void testOpenNoBlock() {
 		initializeDungeon();
-		d.changeState(new OpenState());
+		d.changeState(new OpenState(d));
 		// Check that the enemy is not blocked by door when its open
 		e.moveRight();
 		assertEquals(3, e.getX());
