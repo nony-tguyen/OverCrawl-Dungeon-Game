@@ -1,5 +1,7 @@
 package unsw.dungeon.obstacles;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import unsw.dungeon.Entity;
 
 /**
@@ -7,13 +9,14 @@ import unsw.dungeon.Entity;
  *
  */
 public class Door extends Entity {
-	
+	private BooleanProperty closed;
 	private DoorState state;
 	private int id;
 	
 	public Door(int x, int y, int id) {
 		super(x, y);
 		this.state = new ClosedState(this);
+		this.closed = new SimpleBooleanProperty(true);
 		this.id = id; 
 	}
 	
@@ -44,6 +47,21 @@ public class Door extends Entity {
 	public DoorState getState() {
 		return state;
 	}
+
+	/**
+	 * @param closed the closed to set
+	 */
+	public void setClosed(boolean b) {
+		this.closed.set(b);
+	}
+
+	/**
+	 * @return the closed
+	 */
+	public BooleanProperty getClosed() {
+		return closed;
+	}
+	
 	
 
 }

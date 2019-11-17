@@ -17,8 +17,8 @@ class BoulderTest {
 	@Before
 	public void initializeDungeon() {
 		dungeon = new Dungeon(10, 10);
-		player = new Player(dungeon, 3, 0);
-		dungeon.setPlayer(player);
+		player = new Player(dungeon, 3, 0, 1);
+		dungeon.addPlayer(player);
 	}
 	
 	@Test

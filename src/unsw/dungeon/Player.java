@@ -12,6 +12,7 @@ import unsw.dungeon.combat.Sword;
  *
  */
 public class Player extends MovableEntity {
+	private int playerNum;
 	PlayerState normalPlayer;
 	PlayerState invinciblePlayer;
 	List<CollectableEntity> inventory;
@@ -24,7 +25,7 @@ public class Player extends MovableEntity {
      * @param x
      * @param y
      */
-    public Player(Dungeon dungeon, int x, int y) {
+    public Player(Dungeon dungeon, int x, int y, int playerNum) {
         super(dungeon, x, y);
         inventory = new ArrayList<>();
         normalPlayer = new NormalPlayer(this);
@@ -36,9 +37,9 @@ public class Player extends MovableEntity {
 	public void action() {
 		Enemy enemy = foundEnemy();
 		if (enemy != null) {
-			System.out.println("hello enemy");
+			//System.out.println("hello enemy");
 			handleEnemy(enemy);
-			if (dungeon.getPlayer() == null) System.out.println("player is null");
+			//if (dungeon.getPlayer() == null) System.out.println("player is null");
 		}
 		
 		for (Entity entity : dungeon.checkGrid(getX(), getY())) {
@@ -129,9 +130,10 @@ public class Player extends MovableEntity {
 	 * The player is killed
 	 */
 	public void killPlayer() {
+		dungeon.removePlayer(this.playerNum);
+		//dungeon.updateGameProgression();
 		this.removeVisible();
-		dungeon.setPlayer(null);
-		dungeon.updateGameProgression();
+
 	}
 	
 	public Direction getDirection() {
@@ -154,5 +156,21 @@ public class Player extends MovableEntity {
 			return dungeon.checkGrid(getX() - 1, getY());
 		else 
 			return null;
+	}
+
+	/**
+	 * @return the playerNum
+	 */
+	public int getPlayerNum() {
+		return playerNum;
+	}
+	@Override
+	public boolean isBlocking(Entity subject) {
+		if (subject instanceof Player) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

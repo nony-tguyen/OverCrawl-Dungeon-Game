@@ -17,8 +17,8 @@ class InvinsibilityPotionTest {
 	@Before
 	public void initializeDungeon(){
 		dungeon = new Dungeon(10, 10);
-		player = new Player(dungeon, 0, 0);
-		dungeon.setPlayer(player);
+		player = new Player(dungeon, 0, 0, 1);
+		dungeon.addPlayer(player);
 	}
 	
 	@Test
@@ -107,7 +107,7 @@ class InvinsibilityPotionTest {
 		assertTrue(player.getX() == 1 && player.getY() == 1);
 		assertFalse(player.isVulnerable());
 		assertFalse(dungeon.getEnemies().contains(e));
-		assertFalse(dungeon.isGameFinished());
+		assertFalse(dungeon.isDungeonComplete().get());
 	}
 
 }

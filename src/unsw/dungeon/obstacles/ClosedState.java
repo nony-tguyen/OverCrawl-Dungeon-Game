@@ -3,6 +3,7 @@ package unsw.dungeon.obstacles;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.BooleanProperty;
 import unsw.dungeon.CollectableEntity;
 import unsw.dungeon.Entity;
 import unsw.dungeon.Key;
@@ -24,7 +25,7 @@ public class ClosedState implements DoorState {
 		if (isPlayer(subject)) {
 			// Matching key
 			if (checkForKey((Player) subject)) {
-				door.changeState(new OpenState());
+				door.changeState(new OpenState(door));
 			}		
 		}
 
@@ -61,5 +62,6 @@ public class ClosedState implements DoorState {
 		}		
 		return false;
 	}
+	
 
 }

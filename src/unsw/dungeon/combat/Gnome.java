@@ -22,8 +22,10 @@ public class Gnome extends Enemy {
 				if (i == 0 && j == 0) continue;
 				
 				entities = dungeon.checkGrid(getX()+i, getY()+j);
-				if (entities.contains(dungeon.getPlayer())) {
-					dungeon.getPlayer().killPlayer();
+				if (entities.contains(dungeon.getPlayer(1))) {
+					dungeon.getPlayer(1).killPlayer();
+				} else if (entities.contains(dungeon.getPlayer(2))) {
+					dungeon.getPlayer(2).killPlayer();
 				}
 				killCloseEnemies(entities);
 			}

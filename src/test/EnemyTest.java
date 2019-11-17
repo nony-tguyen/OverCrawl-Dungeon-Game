@@ -19,8 +19,9 @@ class EnemyTest {
 	@Before
 	public void initializeDungeon(){
 		dungeon = new Dungeon(10, 10);
-		player = new Player(dungeon, 0, 0);
-		dungeon.setPlayer(player);
+		
+		player = new Player(dungeon, 0, 0, 1);
+		dungeon.addPlayer(player);
 	}
 	
 	@Test
@@ -128,7 +129,7 @@ class EnemyTest {
 		
 		// Enemy is now at player's position
 		assertTrue(e1.getX() == 0 && e1.getY() == 0);
-		assertTrue(dungeon.isGameFinished());
+		assertTrue(dungeon.isDungeonComplete().get());
 	}
 
 }

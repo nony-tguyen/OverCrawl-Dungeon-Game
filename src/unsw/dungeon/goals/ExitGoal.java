@@ -30,7 +30,9 @@ public class ExitGoal implements GoalComponent {
 	@Override
 	public void updateGoal(Boolean goalAchieved) {
 		Exit exit = getExit(dungeon);
-		if (dungeon.getPlayer().getX() == exit.getX() && dungeon.getPlayer().getY() == exit.getY()) {
+		// TODO change?
+		if ((dungeon.getPlayer(1).getX() == exit.getX() && dungeon.getPlayer(1).getY() == exit.getY())
+				|| (dungeon.getPlayer(2).getX() == exit.getX() && dungeon.getPlayer(2).getY() == exit.getY())) {
 			complete.set(true);
 			currentCount.set(1);
 			dungeon.updateGameProgression();
